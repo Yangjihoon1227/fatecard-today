@@ -1,35 +1,78 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="Justice">
   <defs>
-    <linearGradient id="bg-major_11_justice" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0b1022"/>
-      <stop offset="52%" stop-color="#211136"/>
-      <stop offset="100%" stop-color="#050816"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#050816"/>
+      <stop offset="45%" stop-color="#17102d"/>
+      <stop offset="100%" stop-color="#020617"/>
     </linearGradient>
-    <radialGradient id="glow-major_11_justice" cx="50%" cy="38%" r="62%">
-      <stop offset="0%" stop-color="#facc15" stop-opacity=".22"/>
-      <stop offset="55%" stop-color="#a78bfa" stop-opacity=".10"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    <radialGradient id="aura" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#facc15" stop-opacity=".18"/>
+      <stop offset="52%" stop-color="#a78bfa" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
     </radialGradient>
-    <filter id="soft-major_11_justice" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4"/>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#7dd3fc" flood-opacity=".42"/>
     </filter>
   </defs>
-  <rect width="420" height="660" rx="34" fill="url(#bg-major_11_justice)"/>
-  <rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#facc15" stroke-opacity=".62" stroke-width="3"/>
-  <rect x="32" y="32" width="356" height="596" rx="22" fill="url(#glow-major_11_justice)"/>
-  <path d="M64 120 C148 72, 272 72, 356 120 M64 540 C148 588, 272 588, 356 540" fill="none" stroke="#facc15" stroke-opacity=".24" stroke-width="2"/>
-  <g opacity=".6">
-    <circle cx="82" cy="152" r="2.5" fill="#fde68a"/><circle cx="340" cy="180" r="2" fill="#c4b5fd"/><circle cx="320" cy="498" r="2.5" fill="#fde68a"/><circle cx="94" cy="486" r="2" fill="#c4b5fd"/>
-  </g>
+  <rect width="420" height="660" rx="34" fill="url(#bg)"/>
+  <rect x="20" y="20" width="380" height="620" rx="30" fill="url(#aura)" stroke="#facc15" stroke-opacity=".54" stroke-width="2"/>
+  <rect x="35" y="35" width="350" height="590" rx="22" fill="none" stroke="#a78bfa" stroke-opacity=".18" stroke-width="1.5"/>
+  <circle cx="129" cy="82" r="2.2" fill="#fde68a" opacity="0.74"/>
+<circle cx="69" cy="387" r="2.2" fill="#fde68a" opacity="0.42"/>
+<circle cx="131" cy="273" r="1.8" fill="#fde68a" opacity="0.55"/>
+<circle cx="324" cy="383" r="2.2" fill="#fde68a" opacity="0.61"/>
+<circle cx="81" cy="403" r="2.2" fill="#fde68a" opacity="0.57"/>
+<circle cx="256" cy="461" r="1.4" fill="#fde68a" opacity="0.30"/>
+<circle cx="314" cy="73" r="1.0" fill="#fde68a" opacity="0.29"/>
+<circle cx="194" cy="327" r="1.8" fill="#fde68a" opacity="0.81"/>
+<circle cx="266" cy="525" r="1.8" fill="#fde68a" opacity="0.49"/>
+<circle cx="226" cy="502" r="2.2" fill="#fde68a" opacity="0.54"/>
+<circle cx="62" cy="66" r="2.2" fill="#fde68a" opacity="0.66"/>
+<circle cx="318" cy="145" r="1.4" fill="#fde68a" opacity="0.72"/>
+<circle cx="136" cy="409" r="1.4" fill="#fde68a" opacity="0.43"/>
+<circle cx="94" cy="230" r="1.0" fill="#fde68a" opacity="0.46"/>
+<circle cx="160" cy="179" r="1.8" fill="#fde68a" opacity="0.61"/>
+<circle cx="73" cy="573" r="1.4" fill="#fde68a" opacity="0.49"/>
+<circle cx="344" cy="347" r="1.0" fill="#fde68a" opacity="0.67"/>
+<circle cx="264" cy="494" r="1.4" fill="#fde68a" opacity="0.66"/>
+<circle cx="193" cy="336" r="1.4" fill="#fde68a" opacity="0.35"/>
+<circle cx="274" cy="530" r="1.8" fill="#fde68a" opacity="0.38"/>
+<circle cx="254" cy="159" r="1.8" fill="#fde68a" opacity="0.48"/>
+<circle cx="315" cy="569" r="2.2" fill="#fde68a" opacity="0.66"/>
+<circle cx="318" cy="326" r="1.0" fill="#fde68a" opacity="0.35"/>
+<circle cx="96" cy="287" r="1.0" fill="#fde68a" opacity="0.75"/>
+<circle cx="371" cy="401" r="1.0" fill="#fde68a" opacity="0.44"/>
+<circle cx="331" cy="513" r="1.0" fill="#fde68a" opacity="0.54"/>
+<circle cx="88" cy="395" r="2.2" fill="#fde68a" opacity="0.71"/>
+<circle cx="240" cy="246" r="1.8" fill="#fde68a" opacity="0.57"/>
+<circle cx="343" cy="542" r="1.0" fill="#fde68a" opacity="0.82"/>
+<circle cx="317" cy="523" r="1.4" fill="#fde68a" opacity="0.38"/>
+<circle cx="336" cy="547" r="2.2" fill="#fde68a" opacity="0.73"/>
+<circle cx="115" cy="470" r="1.4" fill="#fde68a" opacity="0.49"/>
+<circle cx="207" cy="453" r="1.8" fill="#fde68a" opacity="0.58"/>
+<circle cx="297" cy="141" r="1.4" fill="#fde68a" opacity="0.42"/>
   
-        <circle cx="210" cy="262" r="98" fill="#38bdf8" opacity=".16"/>
-        <circle cx="210" cy="262" r="74" fill="none" stroke="#38bdf8" stroke-width="3" opacity=".68"/>
-        <path d="M112 448 C150 392, 270 392, 308 448" fill="none" stroke="#38bdf8" stroke-width="7" stroke-linecap="round" opacity=".75"/>
-        <text x="210" y="292" text-anchor="middle" dominant-baseline="middle" font-size="86" font-family="Georgia, serif" fill="#38bdf8">⚖</text>
-        <text x="64" y="82" font-size="26" font-family="Georgia, serif" fill="#f8fafc" opacity=".92">11</text>
-        <text x="356" y="82" text-anchor="end" font-size="26" font-family="Georgia, serif" fill="#f8fafc" opacity=".92">11</text>
+    <path d="M55 118 C120 74 300 74 365 118" fill="none" stroke="#7dd3fc" stroke-opacity=".28" stroke-width="2"/>
+    <path d="M55 542 C120 586 300 586 365 542" fill="none" stroke="#7dd3fc" stroke-opacity=".28" stroke-width="2"/>
+    <path d="M74 88 L98 88 M322 88 L346 88 M74 572 L98 572 M322 572 L346 572" stroke="#fde68a" stroke-opacity=".50" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="80" cy="100" r="10" fill="none" stroke="#fde68a" stroke-opacity=".45"/>
+    <circle cx="340" cy="100" r="10" fill="none" stroke="#fde68a" stroke-opacity=".45"/>
+    <circle cx="80" cy="560" r="10" fill="none" stroke="#fde68a" stroke-opacity=".45"/>
+    <circle cx="340" cy="560" r="10" fill="none" stroke="#fde68a" stroke-opacity=".45"/>
+    
+  
+        <g filter="url(#glow)">
+          <circle cx="210" cy="288" r="118" fill="#7dd3fc" opacity=".11"/>
+          <circle cx="210" cy="288" r="91" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-opacity=".74"/>
+          <circle cx="210" cy="288" r="58" fill="#fde68a" opacity=".12" stroke="#fde68a" stroke-width="2" stroke-opacity=".55"/>
+          <text x="210" y="310" text-anchor="middle" font-size="96" font-family="Georgia, serif" fill="#7dd3fc">⚖</text>
+        </g>
+        <path d="M132 430 C164 404, 256 404, 288 430" fill="none" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round" stroke-opacity=".62"/>
+        <path d="M156 452 C184 438, 236 438, 264 452" fill="none" stroke="#fde68a" stroke-width="3" stroke-linecap="round" stroke-opacity=".56"/>
+        <text x="62" y="86" font-size="24" font-family="Georgia, serif" fill="#fff7ed">11</text>
+        <text x="358" y="86" text-anchor="end" font-size="24" font-family="Georgia, serif" fill="#fff7ed">11</text>
         
-  <rect x="54" y="530" width="312" height="70" rx="18" fill="#020617" opacity=".48" stroke="#facc15" stroke-opacity=".20"/>
-  <text x="210" y="568" text-anchor="middle" font-size="22" font-family="Georgia, serif" fill="#fff7ed">Justice</text>
-  <text x="210" y="594" text-anchor="middle" font-size="10" font-family="Arial, sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
+  <rect x="58" y="522" width="304" height="76" rx="18" fill="#020617" opacity=".62" stroke="#facc15" stroke-opacity=".24"/>
+  <text x="210" y="558" text-anchor="middle" font-size="20" font-family="Georgia, serif" fill="#fff7ed">Justice</text>
+  <text x="210" y="586" text-anchor="middle" font-size="9" font-family="Arial, sans-serif" letter-spacing="3" fill="#c4b5fd">ORIGINAL SYMBOLIC DECK</text>
 </svg>

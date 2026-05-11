@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v18",
+  "name": "fatecard-today-v20",
   "private": true,
-  "version": "18.0.0",
+  "version": "20.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v18: menu-first AI tarot experience with clean choices and copyright-safe archetypal cards."
+  "description": "FateCard.today v20: copyright-risk-minimized original symbolic tarot deck."
 }

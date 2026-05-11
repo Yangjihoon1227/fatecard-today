@@ -59,3 +59,21 @@ http://localhost:5173
 
 - Fixed FEATURE_UI TypeScript build error from v15/v16
 - Keeps v16 copyright-safe original tarot artwork
+
+
+## v19
+
+- Direct click/touch tarot drawing flow
+- Interpretation appears after all required cards are selected
+- Menu-first feature selection
+- Removed low-value tools from visitor UI
+- Richer Korean reading blocks and localized UI for 8 languages
+- Public-domain-inspired original tarot SVG artwork
+- Copyright/content policy documentation
+
+
+## v20
+
+- Replaced card art with copyright-risk-minimized original symbolic SVG deck.
+- Avoided slight-edit derivative approach.
+- Added copyright-risk-minimized deck policy and safe Nano Banana prompt guide.
