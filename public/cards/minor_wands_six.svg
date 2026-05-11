@@ -1,73 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="Six of Wands">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#050816"/>
-      <stop offset="45%" stop-color="#17102d"/>
-      <stop offset="100%" stop-color="#020617"/>
-    </linearGradient>
-    <radialGradient id="aura" cx="50%" cy="38%" r="68%">
-      <stop offset="0%" stop-color="#facc15" stop-opacity=".18"/>
-      <stop offset="52%" stop-color="#a78bfa" stop-opacity=".10"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#fb923c" flood-opacity=".42"/>
-    </filter>
-  </defs>
-  <rect width="420" height="660" rx="34" fill="url(#bg)"/>
-  <rect x="20" y="20" width="380" height="620" rx="30" fill="url(#aura)" stroke="#facc15" stroke-opacity=".54" stroke-width="2"/>
-  <rect x="35" y="35" width="350" height="590" rx="22" fill="none" stroke="#a78bfa" stroke-opacity=".18" stroke-width="1.5"/>
-  <circle cx="112" cy="204" r="1.0" fill="#fde68a" opacity="0.81"/>
-<circle cx="360" cy="110" r="1.8" fill="#fde68a" opacity="0.56"/>
-<circle cx="148" cy="516" r="1.0" fill="#fde68a" opacity="0.39"/>
-<circle cx="123" cy="569" r="1.0" fill="#fde68a" opacity="0.64"/>
-<circle cx="346" cy="351" r="1.0" fill="#fde68a" opacity="0.56"/>
-<circle cx="87" cy="543" r="2.2" fill="#fde68a" opacity="0.77"/>
-<circle cx="303" cy="477" r="1.0" fill="#fde68a" opacity="0.41"/>
-<circle cx="280" cy="387" r="1.4" fill="#fde68a" opacity="0.74"/>
-<circle cx="215" cy="413" r="1.0" fill="#fde68a" opacity="0.33"/>
-<circle cx="235" cy="222" r="1.0" fill="#fde68a" opacity="0.56"/>
-<circle cx="58" cy="562" r="2.2" fill="#fde68a" opacity="0.79"/>
-<circle cx="243" cy="381" r="1.0" fill="#fde68a" opacity="0.40"/>
-<circle cx="230" cy="505" r="1.0" fill="#fde68a" opacity="0.45"/>
-<circle cx="46" cy="85" r="1.8" fill="#fde68a" opacity="0.36"/>
-<circle cx="145" cy="329" r="2.2" fill="#fde68a" opacity="0.44"/>
-<circle cx="337" cy="314" r="2.2" fill="#fde68a" opacity="0.31"/>
-<circle cx="291" cy="222" r="1.8" fill="#fde68a" opacity="0.43"/>
-<circle cx="315" cy="554" r="1.0" fill="#fde68a" opacity="0.32"/>
-<circle cx="83" cy="446" r="1.8" fill="#fde68a" opacity="0.66"/>
-<circle cx="311" cy="427" r="2.2" fill="#fde68a" opacity="0.80"/>
-<circle cx="249" cy="404" r="1.0" fill="#fde68a" opacity="0.32"/>
-<circle cx="174" cy="341" r="1.8" fill="#fde68a" opacity="0.40"/>
-<circle cx="363" cy="206" r="1.0" fill="#fde68a" opacity="0.67"/>
-<circle cx="288" cy="585" r="1.0" fill="#fde68a" opacity="0.84"/>
-<circle cx="109" cy="513" r="1.0" fill="#fde68a" opacity="0.82"/>
-<circle cx="270" cy="330" r="1.8" fill="#fde68a" opacity="0.31"/>
-<circle cx="54" cy="150" r="1.0" fill="#fde68a" opacity="0.51"/>
-<circle cx="85" cy="256" r="2.2" fill="#fde68a" opacity="0.54"/>
-<circle cx="359" cy="324" r="1.8" fill="#fde68a" opacity="0.43"/>
-<circle cx="49" cy="357" r="1.0" fill="#fde68a" opacity="0.74"/>
-<circle cx="276" cy="70" r="1.4" fill="#fde68a" opacity="0.39"/>
-<circle cx="85" cy="481" r="2.2" fill="#fde68a" opacity="0.74"/>
-<circle cx="313" cy="60" r="1.8" fill="#fde68a" opacity="0.77"/>
-<circle cx="298" cy="380" r="2.2" fill="#fde68a" opacity="0.39"/>
-  
-    <path d="M55 118 C120 74 300 74 365 118" fill="none" stroke="#fb923c" stroke-opacity=".28" stroke-width="2"/>
-    <path d="M55 542 C120 586 300 586 365 542" fill="none" stroke="#fb923c" stroke-opacity=".28" stroke-width="2"/>
-    <path d="M74 88 L98 88 M322 88 L346 88 M74 572 L98 572 M322 572 L346 572" stroke="#facc15" stroke-opacity=".50" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="80" cy="100" r="10" fill="none" stroke="#facc15" stroke-opacity=".45"/>
-    <circle cx="340" cy="100" r="10" fill="none" stroke="#facc15" stroke-opacity=".45"/>
-    <circle cx="80" cy="560" r="10" fill="none" stroke="#facc15" stroke-opacity=".45"/>
-    <circle cx="340" cy="560" r="10" fill="none" stroke="#facc15" stroke-opacity=".45"/>
-    
-  
-            <circle cx="210" cy="286" r="132" fill="#fb923c" opacity=".065"/>
-            <circle cx="210" cy="286" r="102" fill="none" stroke="#facc15" stroke-opacity=".36" stroke-width="2"/>
-            <text x="210" y="164" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text><text x="154" y="220" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text><text x="266" y="220" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text><text x="154" y="302" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text><text x="266" y="302" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text><text x="210" y="360" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Georgia, serif" fill="#fb923c" opacity=".94">♣</text>
-            <text x="62" y="86" font-size="26" font-family="Georgia, serif" fill="#fff7ed">VI</text>
-            <text x="358" y="86" text-anchor="end" font-size="26" font-family="Georgia, serif" fill="#fff7ed">VI</text>
-            
-  <rect x="58" y="522" width="304" height="76" rx="18" fill="#020617" opacity=".62" stroke="#facc15" stroke-opacity=".24"/>
-  <text x="210" y="558" text-anchor="middle" font-size="20" font-family="Georgia, serif" fill="#fff7ed">Six of Wands</text>
-  <text x="210" y="586" text-anchor="middle" font-size="9" font-family="Arial, sans-serif" letter-spacing="3" fill="#c4b5fd">ORIGINAL SYMBOLIC DECK</text>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#061021"/><stop offset="44%" stop-color="#24143b"/><stop offset="100%" stop-color="#050816"/></linearGradient>
+  <radialGradient id="halo" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#facc15" stop-opacity=".20"/><stop offset="52%" stop-color="#a78bfa" stop-opacity=".12"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<rect width="420" height="660" rx="34" fill="url(#bg)"/>
+<rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#d6a84f" stroke-width="3" stroke-opacity=".85"/>
+<rect x="32" y="32" width="356" height="596" rx="22" fill="url(#halo)"/>
+<g fill="none" stroke="#d6a84f" stroke-opacity=".34">
+  <path d="M52 82 C96 48,142 44,184 58"/><path d="M236 58 C278 44,324 48,368 82"/>
+  <path d="M52 578 C96 612,142 616,184 602"/><path d="M236 602 C278 616,324 612,368 578"/>
+  <path d="M70 110 H350 M70 550 H350"/>
+</g>
+<text x="62" y="84" font-size="25" fill="#fff7ed" font-family="Georgia,serif">VI</text>
+<text x="358" y="84" text-anchor="end" font-size="25" fill="#fff7ed" font-family="Georgia,serif">VI</text>
+<g><circle cx="210" cy="260" r="128" fill="#f59e0b" opacity=".08"/><text x="210" y="142" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><text x="150" y="210" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><text x="270" y="210" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><text x="150" y="300" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><text x="270" y="300" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><text x="210" y="386" text-anchor="middle" dominant-baseline="middle" font-size="46" font-family="Georgia,serif" fill="#f59e0b">♣</text><path d="M118 470 C160 434,260 434,302 470" stroke="#f59e0b" stroke-width="6" fill="none" opacity=".72"/></g>
+<g opacity=".7"><circle cx="88" cy="160" r="2" fill="#fde68a"/><circle cx="336" cy="180" r="2" fill="#c4b5fd"/><circle cx="330" cy="492" r="2.3" fill="#fde68a"/><circle cx="92" cy="488" r="2" fill="#c4b5fd"/></g>
+<rect x="54" y="528" width="312" height="74" rx="17" fill="#020617" opacity=".62" stroke="#d6a84f" stroke-opacity=".30"/>
+<text x="210" y="566" text-anchor="middle" font-size="20" font-family="Georgia,serif" fill="#fff7ed">Six of Wands</text>
+<text x="210" y="592" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
 </svg>

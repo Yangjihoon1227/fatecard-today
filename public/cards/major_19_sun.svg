@@ -1,78 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="The Sun">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#050816"/>
-      <stop offset="45%" stop-color="#17102d"/>
-      <stop offset="100%" stop-color="#020617"/>
-    </linearGradient>
-    <radialGradient id="aura" cx="50%" cy="38%" r="68%">
-      <stop offset="0%" stop-color="#facc15" stop-opacity=".18"/>
-      <stop offset="52%" stop-color="#a78bfa" stop-opacity=".10"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#fcd34d" flood-opacity=".42"/>
-    </filter>
-  </defs>
-  <rect width="420" height="660" rx="34" fill="url(#bg)"/>
-  <rect x="20" y="20" width="380" height="620" rx="30" fill="url(#aura)" stroke="#facc15" stroke-opacity=".54" stroke-width="2"/>
-  <rect x="35" y="35" width="350" height="590" rx="22" fill="none" stroke="#a78bfa" stroke-opacity=".18" stroke-width="1.5"/>
-  <circle cx="258" cy="561" r="1.0" fill="#fde68a" opacity="0.84"/>
-<circle cx="342" cy="71" r="1.0" fill="#fde68a" opacity="0.60"/>
-<circle cx="88" cy="135" r="1.0" fill="#fde68a" opacity="0.40"/>
-<circle cx="336" cy="484" r="1.4" fill="#fde68a" opacity="0.32"/>
-<circle cx="93" cy="170" r="1.8" fill="#fde68a" opacity="0.71"/>
-<circle cx="342" cy="141" r="1.0" fill="#fde68a" opacity="0.30"/>
-<circle cx="332" cy="294" r="1.8" fill="#fde68a" opacity="0.40"/>
-<circle cx="333" cy="226" r="1.0" fill="#fde68a" opacity="0.58"/>
-<circle cx="277" cy="190" r="1.0" fill="#fde68a" opacity="0.62"/>
-<circle cx="366" cy="91" r="1.4" fill="#fde68a" opacity="0.75"/>
-<circle cx="376" cy="221" r="1.0" fill="#fde68a" opacity="0.35"/>
-<circle cx="74" cy="160" r="1.0" fill="#fde68a" opacity="0.57"/>
-<circle cx="266" cy="324" r="1.8" fill="#fde68a" opacity="0.46"/>
-<circle cx="173" cy="568" r="1.4" fill="#fde68a" opacity="0.72"/>
-<circle cx="164" cy="294" r="1.4" fill="#fde68a" opacity="0.59"/>
-<circle cx="202" cy="101" r="1.8" fill="#fde68a" opacity="0.48"/>
-<circle cx="181" cy="237" r="1.4" fill="#fde68a" opacity="0.67"/>
-<circle cx="305" cy="312" r="1.8" fill="#fde68a" opacity="0.44"/>
-<circle cx="54" cy="493" r="1.8" fill="#fde68a" opacity="0.82"/>
-<circle cx="266" cy="502" r="1.4" fill="#fde68a" opacity="0.47"/>
-<circle cx="62" cy="409" r="1.0" fill="#fde68a" opacity="0.51"/>
-<circle cx="104" cy="528" r="1.8" fill="#fde68a" opacity="0.58"/>
-<circle cx="49" cy="537" r="1.4" fill="#fde68a" opacity="0.40"/>
-<circle cx="62" cy="186" r="1.0" fill="#fde68a" opacity="0.70"/>
-<circle cx="264" cy="312" r="1.8" fill="#fde68a" opacity="0.57"/>
-<circle cx="229" cy="157" r="1.8" fill="#fde68a" opacity="0.59"/>
-<circle cx="106" cy="495" r="1.4" fill="#fde68a" opacity="0.83"/>
-<circle cx="116" cy="234" r="1.4" fill="#fde68a" opacity="0.82"/>
-<circle cx="209" cy="454" r="1.8" fill="#fde68a" opacity="0.57"/>
-<circle cx="252" cy="156" r="1.0" fill="#fde68a" opacity="0.54"/>
-<circle cx="168" cy="464" r="1.8" fill="#fde68a" opacity="0.74"/>
-<circle cx="247" cy="552" r="1.0" fill="#fde68a" opacity="0.45"/>
-<circle cx="138" cy="256" r="1.8" fill="#fde68a" opacity="0.74"/>
-<circle cx="272" cy="483" r="1.0" fill="#fde68a" opacity="0.34"/>
-  
-    <path d="M55 118 C120 74 300 74 365 118" fill="none" stroke="#fcd34d" stroke-opacity=".28" stroke-width="2"/>
-    <path d="M55 542 C120 586 300 586 365 542" fill="none" stroke="#fcd34d" stroke-opacity=".28" stroke-width="2"/>
-    <path d="M74 88 L98 88 M322 88 L346 88 M74 572 L98 572 M322 572 L346 572" stroke="#fb923c" stroke-opacity=".50" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="80" cy="100" r="10" fill="none" stroke="#fb923c" stroke-opacity=".45"/>
-    <circle cx="340" cy="100" r="10" fill="none" stroke="#fb923c" stroke-opacity=".45"/>
-    <circle cx="80" cy="560" r="10" fill="none" stroke="#fb923c" stroke-opacity=".45"/>
-    <circle cx="340" cy="560" r="10" fill="none" stroke="#fb923c" stroke-opacity=".45"/>
-    
-  
-        <g filter="url(#glow)">
-          <circle cx="210" cy="288" r="118" fill="#fcd34d" opacity=".11"/>
-          <circle cx="210" cy="288" r="91" fill="none" stroke="#fcd34d" stroke-width="3" stroke-opacity=".74"/>
-          <circle cx="210" cy="288" r="58" fill="#fb923c" opacity=".12" stroke="#fb923c" stroke-width="2" stroke-opacity=".55"/>
-          <text x="210" y="310" text-anchor="middle" font-size="96" font-family="Georgia, serif" fill="#fcd34d">☉</text>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#061021"/><stop offset="44%" stop-color="#24143b"/><stop offset="100%" stop-color="#050816"/></linearGradient>
+  <radialGradient id="halo" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#facc15" stop-opacity=".20"/><stop offset="52%" stop-color="#a78bfa" stop-opacity=".12"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<rect width="420" height="660" rx="34" fill="url(#bg)"/>
+<rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#d6a84f" stroke-width="3" stroke-opacity=".85"/>
+<rect x="32" y="32" width="356" height="596" rx="22" fill="url(#halo)"/>
+<g fill="none" stroke="#d6a84f" stroke-opacity=".34">
+  <path d="M52 82 C96 48,142 44,184 58"/><path d="M236 58 C278 44,324 48,368 82"/>
+  <path d="M52 578 C96 612,142 616,184 602"/><path d="M236 602 C278 616,324 612,368 578"/>
+  <path d="M70 110 H350 M70 550 H350"/>
+</g>
+<text x="62" y="84" font-size="25" fill="#fff7ed" font-family="Georgia,serif">19</text>
+<text x="358" y="84" text-anchor="end" font-size="25" fill="#fff7ed" font-family="Georgia,serif">19</text>
+<g>
+        <circle cx="210" cy="160" r="78" fill="#fde047" opacity=".75"/>
+        <g stroke="#fde047" stroke-width="5" opacity=".7">
+          <path d="M210 48 V82"/><path d="M210 238 V272"/><path d="M98 160 H132"/><path d="M288 160 H322"/>
+          <path d="M130 80 L152 104"/><path d="M290 80 L268 104"/><path d="M130 240 L152 216"/><path d="M290 240 L268 216"/>
         </g>
-        <path d="M132 430 C164 404, 256 404, 288 430" fill="none" stroke="#fcd34d" stroke-width="6" stroke-linecap="round" stroke-opacity=".62"/>
-        <path d="M156 452 C184 438, 236 438, 264 452" fill="none" stroke="#fb923c" stroke-width="3" stroke-linecap="round" stroke-opacity=".56"/>
-        <text x="62" y="86" font-size="24" font-family="Georgia, serif" fill="#fff7ed">19</text>
-        <text x="358" y="86" text-anchor="end" font-size="24" font-family="Georgia, serif" fill="#fff7ed">19</text>
-        
-  <rect x="58" y="522" width="304" height="76" rx="18" fill="#020617" opacity=".62" stroke="#facc15" stroke-opacity=".24"/>
-  <text x="210" y="558" text-anchor="middle" font-size="20" font-family="Georgia, serif" fill="#fff7ed">The Sun</text>
-  <text x="210" y="586" text-anchor="middle" font-size="9" font-family="Arial, sans-serif" letter-spacing="3" fill="#c4b5fd">ORIGINAL SYMBOLIC DECK</text>
+        <circle cx="185" cy="150" r="7" fill="#111827"/><circle cx="235" cy="150" r="7" fill="#111827"/>
+        <path d="M178 185 Q210 208 242 185" stroke="#111827" stroke-width="5" fill="none"/>
+        <path d="M112 418 C145 318,290 318,318 418 L300 478 H130 Z" fill="#f8fafc" opacity=".78" stroke="#fde047" stroke-width="4"/>
+        <path d="M156 350 Q210 290 270 350" stroke="#facc15" stroke-width="12" fill="none" opacity=".55"/></g>
+<g opacity=".7"><circle cx="88" cy="160" r="2" fill="#fde68a"/><circle cx="336" cy="180" r="2" fill="#c4b5fd"/><circle cx="330" cy="492" r="2.3" fill="#fde68a"/><circle cx="92" cy="488" r="2" fill="#c4b5fd"/></g>
+<rect x="54" y="528" width="312" height="74" rx="17" fill="#020617" opacity=".62" stroke="#d6a84f" stroke-opacity=".30"/>
+<text x="210" y="566" text-anchor="middle" font-size="20" font-family="Georgia,serif" fill="#fff7ed">The Sun</text>
+<text x="210" y="592" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
 </svg>

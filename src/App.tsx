@@ -203,7 +203,7 @@ function makeCopy(lang: Lang): CopyPack {
     },
     ko: {
       langLabel: "언어", brandSub: "AI TAROT", menu: "메뉴",
-      aiTitle: "AI 심볼릭 타로",
+      aiTitle: "AI 타로 오라클",
       aiSubtitle: "직접 카드를 고르고, 모든 카드가 공개된 뒤 AI가 상징을 엮어 흐름과 감정선을 해석합니다.",
       chooseHint: "카드를 클릭하거나 터치해 직접 뽑으세요.",
       step1: "섞기", step2: "카드 선택", step3: "해석 보기",
