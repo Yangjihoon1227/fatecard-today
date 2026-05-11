@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v17",
+  "name": "fatecard-today-v18",
   "private": true,
-  "version": "17.0.0",
+  "version": "18.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v17: fixed FEATURE_UI TypeScript build issue plus v16 copyright-safe card artwork."
+  "description": "FateCard.today v18: menu-first AI tarot experience with clean choices and copyright-safe archetypal cards."
 }
