@@ -1,0 +1,22 @@
+{
+  "name": "fatecard-today-v12",
+  "private": true,
+  "version": "12.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev.cjs",
+    "build": "tsc -b && vite build",
+    "start": "node server.cjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "deploy:build": "tsc -b && vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {},
+  "description": "FateCard.today polished hero copy and animated premium oracle UI."
+}

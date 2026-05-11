@@ -1,0 +1,7 @@
+﻿node_modules/
+dist/
+server/data/metrics.json
+.env
+.DS_Store
+
+tsconfig.tsbuildinfo

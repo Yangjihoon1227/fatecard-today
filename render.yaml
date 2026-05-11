@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: fatecard-today
+    env: node
+    plan: free
+    buildCommand: npm install --registry=https://registry.npmjs.org/ && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: SITE_URL
+        value: https://fatecard-today.onrender.com
+      - key: VITE_SITE_URL
+        value: https://fatecard-today.onrender.com
+      - key: SPONSOR_EMAIL
+        value: tbvjrkrh@gmail.com
+      - key: VITE_SPONSOR_EMAIL
+        value: tbvjrkrh@gmail.com
+      - key: NODE_VERSION
+        value: 22

@@ -1,0 +1,1 @@
+Put Nano Banana generated images here. Recommended filenames: oracle-hero-bg.png, fate-card-back.png, fate-card-frame.png, share-card-bg.png, icon-set.png. The app currently uses premium CSS-only visuals, so it runs without images.
