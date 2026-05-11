@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="Knight of Wands">
+  <defs>
+    <linearGradient id="bg-minor_wands_knight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1022"/>
+      <stop offset="52%" stop-color="#211136"/>
+      <stop offset="100%" stop-color="#050816"/>
+    </linearGradient>
+    <radialGradient id="glow-minor_wands_knight" cx="50%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#facc15" stop-opacity=".22"/>
+      <stop offset="55%" stop-color="#a78bfa" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-minor_wands_knight" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+  <rect width="420" height="660" rx="34" fill="url(#bg-minor_wands_knight)"/>
+  <rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#facc15" stroke-opacity=".62" stroke-width="3"/>
+  <rect x="32" y="32" width="356" height="596" rx="22" fill="url(#glow-minor_wands_knight)"/>
+  <path d="M64 120 C148 72, 272 72, 356 120 M64 540 C148 588, 272 588, 356 540" fill="none" stroke="#facc15" stroke-opacity=".24" stroke-width="2"/>
+  <g opacity=".6">
+    <circle cx="82" cy="152" r="2.5" fill="#fde68a"/><circle cx="340" cy="180" r="2" fill="#c4b5fd"/><circle cx="320" cy="498" r="2.5" fill="#fde68a"/><circle cx="94" cy="486" r="2" fill="#c4b5fd"/>
+  </g>
+  
+            <circle cx="210" cy="252" r="100" fill="#fb923c" opacity=".12"/>
+            <path d="M138 390 C160 315, 260 315, 282 390 Z" fill="#fb923c" opacity=".20" stroke="#fb923c" stroke-width="3"/>
+            <circle cx="210" cy="206" r="48" fill="#fb923c" opacity=".22" stroke="#fb923c" stroke-width="3"/>
+            <text x="210" y="218" text-anchor="middle" font-size="54" font-family="Georgia, serif" fill="#fb923c">♞</text>
+            <text x="210" y="326" text-anchor="middle" font-size="60" font-family="Georgia, serif" fill="#fb923c">♣</text>
+            <text x="64" y="82" font-size="30" font-family="Georgia, serif" fill="#f8fafc">N</text>
+            <text x="356" y="82" text-anchor="end" font-size="30" font-family="Georgia, serif" fill="#f8fafc">N</text>
+            
+  <rect x="54" y="530" width="312" height="70" rx="18" fill="#020617" opacity=".48" stroke="#facc15" stroke-opacity=".20"/>
+  <text x="210" y="568" text-anchor="middle" font-size="22" font-family="Georgia, serif" fill="#fff7ed">Knight of Wands</text>
+  <text x="210" y="594" text-anchor="middle" font-size="10" font-family="Arial, sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
+</svg>

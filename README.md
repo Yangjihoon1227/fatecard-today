@@ -45,3 +45,17 @@ http://localhost:5173
 - 움직임이 과하지 않은지
 - 카드 결과와 공유 버튼이 겹치지 않는지
 - 공유 기능이 유지되는지
+
+
+## v15
+
+- Full feature portal UI localization
+- Chained feature interactions
+- Localized non-English card labels/fallback readings
+- Journal/copy/interpreter chaining
+
+
+## v17
+
+- Fixed FEATURE_UI TypeScript build error from v15/v16
+- Keeps v16 copyright-safe original tarot artwork

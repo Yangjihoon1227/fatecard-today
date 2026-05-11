@@ -2052,16 +2052,69 @@ export const TAROT_DECK: TarotCardBase[] = [
   }
 ];
 
+const MAJOR_TITLE_I18N: Record<string, Record<string, string>> = {
+  ja: { fool:"愚者", magician:"魔術師", high_priestess:"女教皇", empress:"女帝", emperor:"皇帝", hierophant:"教皇", lovers:"恋人", chariot:"戦車", strength:"力", hermit:"隠者", wheel:"運命の輪", justice:"正義", hanged_man:"吊るされた男", death:"死神", temperance:"節制", devil:"悪魔", tower:"塔", star:"星", moon:"月", sun:"太陽", judgement:"審判", world:"世界" },
+  zh: { fool:"愚者", magician:"魔术师", high_priestess:"女祭司", empress:"女皇", emperor:"皇帝", hierophant:"教皇", lovers:"恋人", chariot:"战车", strength:"力量", hermit:"隐士", wheel:"命运之轮", justice:"正义", hanged_man:"倒吊人", death:"死神", temperance:"节制", devil:"恶魔", tower:"高塔", star:"星星", moon:"月亮", sun:"太阳", judgement:"审判", world:"世界" },
+  es: { fool:"El Loco", magician:"El Mago", high_priestess:"La Sacerdotisa", empress:"La Emperatriz", emperor:"El Emperador", hierophant:"El Hierofante", lovers:"Los Enamorados", chariot:"El Carro", strength:"La Fuerza", hermit:"El Ermitaño", wheel:"La Rueda de la Fortuna", justice:"La Justicia", hanged_man:"El Colgado", death:"La Muerte", temperance:"La Templanza", devil:"El Diablo", tower:"La Torre", star:"La Estrella", moon:"La Luna", sun:"El Sol", judgement:"El Juicio", world:"El Mundo" },
+  fr: { fool:"Le Mat", magician:"Le Magicien", high_priestess:"La Papesse", empress:"L’Impératrice", emperor:"L’Empereur", hierophant:"Le Pape", lovers:"Les Amoureux", chariot:"Le Chariot", strength:"La Force", hermit:"L’Ermite", wheel:"La Roue de Fortune", justice:"La Justice", hanged_man:"Le Pendu", death:"La Mort", temperance:"Tempérance", devil:"Le Diable", tower:"La Maison Dieu", star:"L’Étoile", moon:"La Lune", sun:"Le Soleil", judgement:"Le Jugement", world:"Le Monde" },
+  de: { fool:"Der Narr", magician:"Der Magier", high_priestess:"Die Hohepriesterin", empress:"Die Herrscherin", emperor:"Der Herrscher", hierophant:"Der Hierophant", lovers:"Die Liebenden", chariot:"Der Wagen", strength:"Die Kraft", hermit:"Der Eremit", wheel:"Rad des Schicksals", justice:"Gerechtigkeit", hanged_man:"Der Gehängte", death:"Der Tod", temperance:"Mäßigkeit", devil:"Der Teufel", tower:"Der Turm", star:"Der Stern", moon:"Der Mond", sun:"Die Sonne", judgement:"Gericht", world:"Die Welt" },
+  pt: { fool:"O Louco", magician:"O Mago", high_priestess:"A Sacerdotisa", empress:"A Imperatriz", emperor:"O Imperador", hierophant:"O Hierofante", lovers:"Os Enamorados", chariot:"O Carro", strength:"A Força", hermit:"O Eremita", wheel:"A Roda da Fortuna", justice:"A Justiça", hanged_man:"O Enforcado", death:"A Morte", temperance:"A Temperança", devil:"O Diabo", tower:"A Torre", star:"A Estrela", moon:"A Lua", sun:"O Sol", judgement:"O Julgamento", world:"O Mundo" }
+};
+const SUIT_I18N: Record<string, Record<string, string>> = {
+  ja:{wands:"ワンド",cups:"カップ",swords:"ソード",pentacles:"ペンタクル"}, zh:{wands:"权杖",cups:"圣杯",swords:"宝剑",pentacles:"星币"}, es:{wands:"Bastos",cups:"Copas",swords:"Espadas",pentacles:"Oros"}, fr:{wands:"Bâtons",cups:"Coupes",swords:"Épées",pentacles:"Deniers"}, de:{wands:"Stäbe",cups:"Kelche",swords:"Schwerter",pentacles:"Münzen"}, pt:{wands:"Paus",cups:"Copas",swords:"Espadas",pentacles:"Ouros"}
+};
+const RANK_I18N: Record<string, Record<string, string>> = {
+  ja:{ace:"エース",two:"2",three:"3",four:"4",five:"5",six:"6",seven:"7",eight:"8",nine:"9",ten:"10",page:"ペイジ",knight:"ナイト",queen:"クイーン",king:"キング"}, zh:{ace:"王牌",two:"二",three:"三",four:"四",five:"五",six:"六",seven:"七",eight:"八",nine:"九",ten:"十",page:"侍从",knight:"骑士",queen:"王后",king:"国王"}, es:{ace:"As",two:"Dos",three:"Tres",four:"Cuatro",five:"Cinco",six:"Seis",seven:"Siete",eight:"Ocho",nine:"Nueve",ten:"Diez",page:"Sota",knight:"Caballero",queen:"Reina",king:"Rey"}, fr:{ace:"As",two:"Deux",three:"Trois",four:"Quatre",five:"Cinq",six:"Six",seven:"Sept",eight:"Huit",nine:"Neuf",ten:"Dix",page:"Valet",knight:"Chevalier",queen:"Reine",king:"Roi"}, de:{ace:"Ass",two:"Zwei",three:"Drei",four:"Vier",five:"Fünf",six:"Sechs",seven:"Sieben",eight:"Acht",nine:"Neun",ten:"Zehn",page:"Bube",knight:"Ritter",queen:"Königin",king:"König"}, pt:{ace:"Ás",two:"Dois",three:"Três",four:"Quatro",five:"Cinco",six:"Seis",seven:"Sete",eight:"Oito",nine:"Nove",ten:"Dez",page:"Valete",knight:"Cavaleiro",queen:"Rainha",king:"Rei"}
+};
+const TEXT_I18N: Record<string, any> = {
+  en:{upright:"Upright",reversed:"Reversed",major:"Major Arcana",minor:"Minor Arcana",auraU:"This card asks for clear attention, steady action, and honest reflection.",auraR:"This reversed card warns against avoidance, imbalance, or repeating the same pattern.",mission:"Take one useful action today instead of looking for another sign.",warning:"Do not force the interpretation to fit what you already want."},
+  ko:{upright:"정방향",reversed:"역방향",major:"메이저 아르카나",minor:"마이너 아르카나",auraU:"이 카드는 분명한 관찰, 안정적인 행동, 솔직한 성찰을 요구한다.",auraR:"역방향은 회피, 불균형, 반복되는 패턴을 경고한다.",mission:"다른 신호를 찾기보다 오늘 할 수 있는 행동 하나를 해라.",warning:"이미 원하는 답에 해석을 억지로 맞추지 마라."},
+  ja:{upright:"正位置",reversed:"逆位置",major:"大アルカナ",minor:"小アルカナ",auraU:"このカードは明確な観察、落ち着いた行動、正直な内省を求めています。",auraR:"逆位置は回避、不均衡、同じパターンの繰り返しに注意を促します。",mission:"別のサインを探すより、今日できる行動を一つ選びましょう。",warning:"望む答えに合わせて解釈を曲げないでください。"},
+  zh:{upright:"正位",reversed:"逆位",major:"大阿卡那",minor:"小阿卡那",auraU:"这张牌要求清晰观察、稳定行动和诚实反思。",auraR:"逆位提醒你避免逃避、失衡或重复旧模式。",mission:"不要再寻找另一个信号，今天先做一个有用的行动。",warning:"不要把解释强行套进你想要的答案。"},
+  es:{upright:"Derecha",reversed:"Invertida",major:"Arcano Mayor",minor:"Arcano Menor",auraU:"Esta carta pide atención clara, acción estable y reflexión honesta.",auraR:"La carta invertida advierte sobre evasión, desequilibrio o patrones repetidos.",mission:"Haz una acción útil hoy en vez de buscar otra señal.",warning:"No fuerces la interpretación para que diga lo que quieres."},
+  fr:{upright:"Endroit",reversed:"Renversée",major:"Arcane Majeur",minor:"Arcane Mineur",auraU:"Cette carte demande une attention claire, une action stable et une réflexion honnête.",auraR:"La carte renversée avertit contre l’évitement, le déséquilibre ou les schémas répétés.",mission:"Fais une action utile aujourd’hui au lieu de chercher un autre signe.",warning:"Ne force pas l’interprétation pour confirmer ce que tu veux."},
+  de:{upright:"Aufrecht",reversed:"Umgekehrt",major:"Große Arkana",minor:"Kleine Arkana",auraU:"Diese Karte verlangt klare Aufmerksamkeit, ruhiges Handeln und ehrliche Reflexion.",auraR:"Die umgekehrte Karte warnt vor Ausweichen, Ungleichgewicht oder alten Mustern.",mission:"Tue heute eine nützliche Sache, statt nach einem weiteren Zeichen zu suchen.",warning:"Biege die Deutung nicht so, dass sie nur deinen Wunsch bestätigt."},
+  pt:{upright:"Normal",reversed:"Invertida",major:"Arcano Maior",minor:"Arcano Menor",auraU:"Esta carta pede atenção clara, ação firme e reflexão honesta.",auraR:"A carta invertida alerta para fuga, desequilíbrio ou repetição de padrões.",mission:"Faça uma ação útil hoje em vez de procurar outro sinal.",warning:"Não force a interpretação para caber no que você quer ouvir."}
+};
+
+function localTitle(card: TarotCardBase, lang: SupportedCardLang) {
+  if (lang === "ko" || lang === "en") return card.title[lang === "ko" ? "ko" : "en"];
+  if (card.arcana === "major") {
+    const key = card.id.replace(/^major_\\d+_/, "");
+    return MAJOR_TITLE_I18N[lang]?.[key] || card.title.en;
+  }
+  const parts = card.id.split("_");
+  const suit = parts[1];
+  const rank = parts[2];
+  const s = SUIT_I18N[lang]?.[suit] || suit;
+  const r = RANK_I18N[lang]?.[rank] || rank;
+  if (lang === "es" || lang === "fr" || lang === "pt") return `${r} de ${s}`;
+  if (lang === "de") return `${r} der ${s}`;
+  return `${s} ${r}`;
+}
+
 export function getTarotText(card: TarotCardBase, lang: SupportedCardLang, reversed: boolean) {
-  const textLang = lang === "ko" ? "ko" : "en";
+  const baseLang = lang === "ko" ? "ko" : "en";
   const direction = reversed ? "reversed" : "upright";
+  const ui = TEXT_I18N[lang] || TEXT_I18N.en;
+  if (lang === "ko" || lang === "en") {
+    return {
+      title: card.title[baseLang],
+      subtitle: reversed ? `${ui.reversed} · ${card.keywords.reversed[baseLang]}` : `${ui.upright} · ${card.keywords.upright[baseLang]}`,
+      aura: card.meaning[direction][baseLang],
+      tone: card.advice.upright[baseLang],
+      warning: card.advice.reversed[baseLang],
+      mission: card.advice.upright[baseLang],
+      archetype: card.arcana === "major" ? ui.major : ui.minor
+    };
+  }
   return {
-    title: card.title[textLang],
-    subtitle: reversed ? (textLang === "ko" ? "역방향 · " : "Reversed · ") + card.keywords.reversed[textLang] : (textLang === "ko" ? "정방향 · " : "Upright · ") + card.keywords.upright[textLang],
-    aura: card.meaning[direction][textLang],
-    tone: card.advice.upright[textLang],
-    warning: card.advice.reversed[textLang],
-    mission: card.advice.upright[textLang],
-    archetype: card.arcana === "major" ? (textLang === "ko" ? "메이저 아르카나" : "Major Arcana") : (textLang === "ko" ? "마이너 아르카나" : "Minor Arcana")
+    title: localTitle(card, lang),
+    subtitle: `${reversed ? ui.reversed : ui.upright} · ${card.keywords[direction].en}`,
+    aura: reversed ? ui.auraR : ui.auraU,
+    tone: ui.mission,
+    warning: ui.warning,
+    mission: ui.mission,
+    archetype: card.arcana === "major" ? ui.major : ui.minor
   };
 }

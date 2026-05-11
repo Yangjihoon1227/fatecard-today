@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v14",
+  "name": "fatecard-today-v17",
   "private": true,
-  "version": "14.0.0",
+  "version": "17.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v14: popular tarot-site inspired feature architecture and mystical UI polish."
+  "description": "FateCard.today v17: fixed FEATURE_UI TypeScript build issue plus v16 copyright-safe card artwork."
 }

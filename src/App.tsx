@@ -20,6 +20,7 @@ type FateCard = {
   money: number;
   work: number;
   mind: number;
+  artPath: string;
 };
 type Metrics = {
   totalPageViews: number;
@@ -208,6 +209,58 @@ const UI: Record<Lang, any> = {
   }
 };
 
+
+const FEATURE_UI: any = {
+  en: {
+    nav: [["daily","Daily"],["freeTest","3-Card"],["yesno","Yes/No"],["love","Love"],["birth","Birth"],["guide","78 Cards"],["spreads","Spreads"],["journal","Journal"],["learn","Learn"],["contact","Sponsor"]],
+    portalEyebrow: "TAROT TOOLKIT", portalTitle: "Not a menu. Real working features.", portalDesc: "Daily card, free mini reading, 78-card guide, spreads, interpreter, prompt builder, vote, updates, and contact are all usable sections.",
+    featureCards: [
+      { id:"daily", icon:"✦", title:"Daily Card", desc:"One card per local day. The main ritual." }, { id:"freeTest", icon:"🃏", title:"Free 3-Card", desc:"Past / Present / Next mini reading." }, { id:"yesno", icon:"☯", title:"Yes / No", desc:"Fast one-card answer with grounded advice." }, { id:"love", icon:"♥", title:"Love Tarot", desc:"Two-heart relationship snapshot." }, { id:"birth", icon:"☉", title:"Birth Card", desc:"Major Arcana card from birth date." }, { id:"guide", icon:"📖", title:"78 Card Guide", desc:"Search meanings by card, suit, or keyword." }, { id:"spreads", icon:"◇", title:"Spreads", desc:"Topic-based layouts for decision clarity." }, { id:"journal", icon:"✍", title:"Journal", desc:"Save today’s reflection in this browser." }, { id:"learn", icon:"🎓", title:"Learn / Quiz", desc:"Card-of-the-moment meaning practice." }, { id:"interpreter", icon:"🤖", title:"Interpreter", desc:"Structured reading from card + question." }, { id:"prompts", icon:"⌘", title:"Prompt Builder", desc:"Copy prompts for deeper AI reflection." }, { id:"community", icon:"▣", title:"Community", desc:"Vote for the next feature." }, { id:"updates", icon:"📣", title:"Updates", desc:"Roadmap and changelog." }, { id:"contact", icon:"✉", title:"Sponsor / Contact", desc:"Ads, partners, localization." }
+    ],
+    goDaily:"Go to daily card", dailyTitle:"Daily Fate Card", dailyDesc:"Use the main card above. One draw is locked until local midnight.",
+    freeTitle:"Free 3-card tarot test", freeDesc:"Draw Past / Present / Next using the same 78-card deck. This is free and separate from the daily lock.", draw3:"Draw free 3-card test", spreadLabels:["Past","Present","Next"], useInterp:"Use in interpreter", saveJournal:"Save to journal", copyReading:"Copy reading",
+    yesTitle:"Yes / No tarot", yesDesc:"A quick one-card answer. Treat it as reflection, not certainty.", drawYes:"Draw yes / no card", answer:"Answer", yesUpright:"Leaning YES — but only if you act cleanly.", yesReverse:"Leaning NO / delay — fix the hidden issue first.",
+    loveTitle:"Love tarot", loveDesc:"Two cards: your current energy and the relationship signal.", drawLove:"Draw two-heart reading", loveLabels:["Your energy","The signal"],
+    birthTitle:"Birth card", birthDesc:"Enter a birth date above, then calculate a Major Arcana birth card.", calcBirth:"Calculate birth card", theme:"Theme",
+    guideTitle:"78-card meaning guide", guidePlaceholder:"Search card, suit, keyword...", clickGuide:"Click a card to open it in the interpreter.",
+    spreadsTitle:"Tarot spreads", spreadsDesc:"Pick a topic and draw a simple 3-card spread.", spreadTopics:{love:"love",money:"money",work:"work",mind:"mind"}, spreadLabels2:["Situation","Block","Action"], chooseTopic:"Choose a topic to draw.",
+    journalTitle:"Daily tarot journal", journalDesc:"Write what today’s card makes you notice. Stored locally in this browser.", journalPlaceholder:"What did today's card make you notice?", save:"Save", clear:"Clear",
+    learnTitle:"Learn / quiz", learnDesc:"Practice card meanings.", newQuiz:"New quiz card", reveal:"Reveal meaning", quizPlaceholder:"What do you think this card means?", reference:"Reference",
+    interpTitle:"AI-style tarot interpreter", interpDesc:"Structured interpretation using your selected tarot card and question.", questionPlaceholder:"Write your question...", action:"Action", warning:"Warning",
+    promptsTitle:"Tarot prompt builder", promptsDesc:"Copy prompts for ChatGPT, Claude, Gemini, or any AI tool.", copyPrompt:"Copy prompt",
+    communityTitle:"Community vote", communityDesc:"Vote on the next feature. Prototype votes are saved in your browser.", voteOptions:["Love compatibility","Weekly report","Share card themes","Full localization","Premium deep reading"], yourVote:"Your vote",
+    updatesTitle:"Update news", next:"Next", contactTitle:"Sponsor / Contact", contactDesc:"Advertising, sponsor cards, collaboration, localization, or premium report partnerships.", copied:"Copied.", copiedToJournal:"Saved to journal.", noCard:"Draw or select a card first.",
+    promptRole:(q:string, card:string, ori:string)=>`You are a practical tarot reader. My question is: "${q || "What should I focus on today?"}". Use ${card} (${ori}) as the core symbol. Give me: 1) the honest meaning, 2) what I may be avoiding, 3) one action I should take today, 4) one warning. Keep it grounded and do not claim certainty.`,
+    reflectionPrompt:(topic:string)=>`Create a ${topic} tarot reflection for today. Use one-card-per-day discipline: no rerolls, no vague flattery. Give me one card archetype, one uncomfortable truth, one useful action, and one sentence I can share.`
+  },
+  ko: {
+    nav: [["daily","데일리"],["freeTest","3카드"],["yesno","예/아니오"],["love","연애"],["birth","탄생카드"],["guide","78장"],["spreads","스프레드"],["journal","저널"],["learn","학습"],["contact","스폰서"]],
+    portalEyebrow:"타로 도구 모음", portalTitle:"그냥 메뉴가 아니라 실제 작동하는 기능들", portalDesc:"하루 카드, 무료 3카드, 78장 가이드, 스프레드, 해석기, 프롬프트, 투표, 업데이트, 문의까지 모두 눌러서 사용할 수 있다.",
+    featureCards:[{id:"daily",icon:"✦",title:"오늘의 카드",desc:"현지 시간 기준 하루 한 장."},{id:"freeTest",icon:"🃏",title:"무료 3카드",desc:"과거 / 현재 / 다음 흐름."},{id:"yesno",icon:"☯",title:"예 / 아니오",desc:"한 장으로 보는 빠른 판단."},{id:"love",icon:"♥",title:"연애 타로",desc:"두 장으로 보는 관계 신호."},{id:"birth",icon:"☉",title:"탄생 카드",desc:"생년월일 기반 메이저 카드."},{id:"guide",icon:"📖",title:"78장 가이드",desc:"카드·슈트·키워드 검색."},{id:"spreads",icon:"◇",title:"스프레드",desc:"주제별 3장 배열."},{id:"journal",icon:"✍",title:"저널",desc:"오늘의 해석 기록."},{id:"learn",icon:"🎓",title:"학습 / 퀴즈",desc:"카드 의미 연습."},{id:"interpreter",icon:"🤖",title:"해석기",desc:"질문과 카드 기반 해석."},{id:"prompts",icon:"⌘",title:"프롬프트",desc:"AI 해석용 문장 생성."},{id:"community",icon:"▣",title:"투표",desc:"다음 기능 선택."},{id:"updates",icon:"📣",title:"업데이트",desc:"로드맵과 변경사항."},{id:"contact",icon:"✉",title:"스폰서 / 문의",desc:"광고·제휴·번역 문의."}],
+    goDaily:"오늘의 카드로 이동",dailyTitle:"오늘의 운명 카드",dailyDesc:"위의 메인 카드를 사용한다. 한 번 뽑으면 선택 언어 시간대 기준 00시까지 잠긴다.",
+    freeTitle:"무료 3카드 타로",freeDesc:"동일한 78장 덱으로 과거 / 현재 / 다음 카드를 뽑는다. 하루 한 장 잠금과 별도로 무료 사용 가능.",draw3:"무료 3카드 뽑기",spreadLabels:["과거","현재","다음"],useInterp:"해석기로 보내기",saveJournal:"저널에 저장",copyReading:"리딩 복사",
+    yesTitle:"예 / 아니오 타로",yesDesc:"한 장으로 빠르게 보는 답. 확정 예언이 아니라 참고용이다.",drawYes:"예/아니오 카드 뽑기",answer:"답변",yesUpright:"YES 쪽에 가깝다. 단, 깔끔하게 행동해야 한다.",yesReverse:"NO 또는 지연 쪽이다. 숨은 문제부터 고쳐라.",
+    loveTitle:"연애 타로",loveDesc:"두 장으로 나의 에너지와 관계 신호를 본다.",drawLove:"두 장 연애 리딩",loveLabels:["나의 에너지","관계 신호"],
+    birthTitle:"탄생 카드",birthDesc:"위 생년월일을 입력하고 메이저 아르카나 탄생 카드를 계산한다.",calcBirth:"탄생 카드 계산",theme:"테마",
+    guideTitle:"78장 카드 해석 가이드",guidePlaceholder:"카드, 슈트, 키워드 검색...",clickGuide:"카드를 누르면 해석기로 연결된다.",
+    spreadsTitle:"타로 스프레드",spreadsDesc:"주제를 고르면 3장 스프레드가 나온다.",spreadTopics:{love:"연애",money:"돈",work:"일",mind:"멘탈"},spreadLabels2:["상황","막힘","행동"],chooseTopic:"주제를 선택해 뽑아라.",
+    journalTitle:"오늘의 타로 저널",journalDesc:"오늘 카드가 떠올리게 한 생각을 기록한다. 현재 브라우저에 저장된다.",journalPlaceholder:"오늘 카드가 무엇을 보게 했는가?",save:"저장",clear:"비우기",
+    learnTitle:"학습 / 퀴즈",learnDesc:"카드 의미를 연습한다.",newQuiz:"새 퀴즈 카드",reveal:"의미 보기",quizPlaceholder:"이 카드의 의미를 추측해보세요.",reference:"참고",
+    interpTitle:"AI식 타로 해석기",interpDesc:"선택한 카드와 질문을 바탕으로 구조화된 해석을 만든다.",questionPlaceholder:"질문을 적어라...",action:"행동",warning:"경고",
+    promptsTitle:"타로 프롬프트 빌더",promptsDesc:"ChatGPT/Claude/Gemini 등에 넣을 프롬프트를 만든다.",copyPrompt:"프롬프트 복사",
+    communityTitle:"커뮤니티 투표",communityDesc:"다음 기능을 고른다. 현재는 브라우저에 저장된다.",voteOptions:["연애 궁합","주간 리포트","공유 카드 테마","전체 현지화","프리미엄 심층 리딩"],yourVote:"내 투표",
+    updatesTitle:"업데이트 소식",next:"다음",contactTitle:"스폰서 / 문의",contactDesc:"광고, 스폰서 카드, 제휴, 현지화, 프리미엄 리포트 문의.",copied:"복사됨.",copiedToJournal:"저널에 저장됨.",noCard:"먼저 카드를 뽑거나 선택해라.",
+    promptRole:(q:string,card:string,ori:string)=>`당신은 현실적인 타로 리더다. 내 질문은 "${q || "오늘 무엇에 집중해야 할까?"}"이다. 핵심 상징으로 ${card} (${ori})를 사용해라. 1) 솔직한 의미 2) 내가 피하고 있는 것 3) 오늘 할 행동 4) 경고를 구체적으로 말해라. 확정 예언처럼 말하지 마라.`,
+    reflectionPrompt:(topic:string)=>`오늘의 ${topic} 타로 성찰을 만들어라. 하루 한 장 원칙을 지켜라. 다시 뽑기 없음, 모호한 칭찬 없음. 카드 원형, 불편한 진실, 실천 행동, 공유용 한 문장을 줘라.`
+  }
+};
+FEATURE_UI.ja = { ...FEATURE_UI.en, nav:[["daily","毎日"],["freeTest","3枚"],["yesno","Yes/No"],["love","恋愛"],["birth","誕生"],["guide","78枚"],["spreads","展開"],["journal","日記"],["learn","学習"],["contact","連絡"]], portalEyebrow:"タロットツール", portalTitle:"ただのメニューではなく、実際に使える機能", portalDesc:"毎日のカード、3枚引き、78枚ガイド、スプレッド、解釈、プロンプト、投票、連絡まで使えます.", draw3:"無料3枚を引く", drawYes:"Yes/Noカードを引く", drawLove:"恋愛リーディング", calcBirth:"誕生カード計算", save:"保存", clear:"削除", copied:"コピーしました.", copiedToJournal:"日記に保存しました.", noCard:"先にカードを選んでください." };
+FEATURE_UI.zh = { ...FEATURE_UI.en, nav:[["daily","每日"],["freeTest","三张牌"],["yesno","是/否"],["love","爱情"],["birth","出生牌"],["guide","78张"],["spreads","牌阵"],["journal","日记"],["learn","学习"],["contact","联系"]], portalEyebrow:"塔罗工具", portalTitle:"不是菜单，而是真正可用的功能", portalDesc:"每日牌、三张牌、78张指南、牌阵、解释器、提示词、投票、联系都可以使用。", draw3:"抽免费三张牌", drawYes:"抽是/否牌", drawLove:"抽爱情牌", calcBirth:"计算出生牌", save:"保存", clear:"清除", copied:"已复制.", copiedToJournal:"已保存到日记.", noCard:"请先选择一张牌." };
+FEATURE_UI.es = { ...FEATURE_UI.en, nav:[["daily","Diaria"],["freeTest","3 cartas"],["yesno","Sí/No"],["love","Amor"],["birth","Natal"],["guide","78 cartas"],["spreads","Tiradas"],["journal","Diario"],["learn","Aprender"],["contact","Contacto"]], portalEyebrow:"HERRAMIENTAS DE TAROT", portalTitle:"No es un menú. Son funciones reales.", portalDesc:"Carta diaria, lectura de 3 cartas, guía de 78 cartas, tiradas, intérprete, prompts, votación y contacto.", draw3:"Sacar 3 cartas gratis", drawYes:"Sacar carta Sí/No", drawLove:"Lectura de amor", calcBirth:"Calcular carta natal", save:"Guardar", clear:"Borrar", copied:"Copiado.", copiedToJournal:"Guardado en el diario.", noCard:"Elige una carta primero." };
+FEATURE_UI.fr = { ...FEATURE_UI.en, nav:[["daily","Jour"],["freeTest","3 cartes"],["yesno","Oui/Non"],["love","Amour"],["birth","Naissance"],["guide","78 cartes"],["spreads","Tirages"],["journal","Journal"],["learn","Apprendre"],["contact","Contact"]], portalEyebrow:"OUTILS TAROT", portalTitle:"Pas un simple menu. De vraies fonctions.", portalDesc:"Carte du jour, tirage 3 cartes, guide 78 cartes, tirages, interprète, prompts, vote et contact.", draw3:"Tirer 3 cartes gratuites", drawYes:"Tirer Oui/Non", drawLove:"Tirage amour", calcBirth:"Calculer la carte de naissance", save:"Enregistrer", clear:"Effacer", copied:"Copié.", copiedToJournal:"Enregistré dans le journal.", noCard:"Choisis d'abord une carte." };
+FEATURE_UI.de = { ...FEATURE_UI.en, nav:[["daily","Täglich"],["freeTest","3 Karten"],["yesno","Ja/Nein"],["love","Liebe"],["birth","Geburt"],["guide","78 Karten"],["spreads","Legungen"],["journal","Journal"],["learn","Lernen"],["contact","Kontakt"]], portalEyebrow:"TAROT-WERKZEUGE", portalTitle:"Kein Menü. Echte Funktionen.", portalDesc:"Tageskarte, 3-Karten-Legung, 78-Karten-Guide, Legungen, Interpreter, Prompts, Abstimmung und Kontakt.", draw3:"3 Karten gratis ziehen", drawYes:"Ja/Nein-Karte ziehen", drawLove:"Liebeslegung", calcBirth:"Geburtskarte berechnen", save:"Speichern", clear:"Leeren", copied:"Kopiert.", copiedToJournal:"Im Journal gespeichert.", noCard:"Wähle zuerst eine Karte." };
+FEATURE_UI.pt = { ...FEATURE_UI.en, nav:[["daily","Diária"],["freeTest","3 cartas"],["yesno","Sim/Não"],["love","Amor"],["birth","Nascimento"],["guide","78 cartas"],["spreads","Tiragens"],["journal","Diário"],["learn","Aprender"],["contact","Contato"]], portalEyebrow:"FERRAMENTAS DE TAROT", portalTitle:"Não é só menu. São funções reais.", portalDesc:"Carta diária, 3 cartas, guia de 78 cartas, tiragens, intérprete, prompts, votação e contato.", draw3:"Tirar 3 cartas grátis", drawYes:"Tirar Sim/Não", drawLove:"Leitura de amor", calcBirth:"Calcular carta de nascimento", save:"Salvar", clear:"Limpar", copied:"Copiado.", copiedToJournal:"Salvo no diário.", noCard:"Escolha uma carta primeiro." };
+
 const BASE_CARDS = TAROT_DECK;
 
 
@@ -228,6 +281,7 @@ function cardFromBase(base: any, lang: Lang, dateKey: string, reversed: boolean)
     luckyColor: base.luckyColor,
     symbol: base.symbol,
     luckyNumber: 1 + (seed % 27),
+    artPath: `/cards/${base.id}.svg`,
     love: clamp(base.scores.love + n(1, -6, 6), 1, 99),
     money: clamp(base.scores.money + n(3, -6, 6), 1, 99),
     work: clamp(base.scores.work + n(5, -6, 6), 1, 99),
@@ -302,9 +356,12 @@ export default function App() {
   const [journalText, setJournalText] = useState(localStorage.getItem("fate-journal") || "");
   const [quizCard, setQuizCard] = useState<FateCard | null>(null);
   const [quizAnswer, setQuizAnswer] = useState("");
+  const [quizReveal, setQuizReveal] = useState(false);
+  const [featureNotice, setFeatureNotice] = useState("");
   const shareCanvas = useRef<HTMLCanvasElement | null>(null);
 
   const t = UI[lang];
+  const ft = FEATURE_UI[lang] || FEATURE_UI.en;
   const timeZone = getTimeZone(lang);
   const dateKey = status?.dateKey || metrics.dateKey || "";
   const candidateId = useMemo(() => pickCardToken(name || "Guest", birth, dateKey || "preview", lang), [name, birth, dateKey, lang]);
@@ -553,23 +610,46 @@ export default function App() {
     await recordShare();
   };
 
+  const flash = (msg: string) => {
+    setFeatureNotice(msg);
+    window.setTimeout(() => setFeatureNotice(""), 1800);
+  };
 
-  const featureCards = [
-    { id: "daily", icon: "✦", title: "Daily Card", desc: "One card per local day. The main ritual." },
-    { id: "freeTest", icon: "🃏", title: "Free 3-Card", desc: "Past / Present / Next mini reading." },
-    { id: "yesno", icon: "☯", title: "Yes / No", desc: "Fast one-card answer with grounded advice." },
-    { id: "love", icon: "♥", title: "Love Tarot", desc: "Two-heart relationship snapshot." },
-    { id: "birth", icon: "☉", title: "Birth Card", desc: "Major Arcana card from birth date." },
-    { id: "guide", icon: "📖", title: "78 Card Guide", desc: "Search meanings by card, suit, or keyword." },
-    { id: "spreads", icon: "◇", title: "Spreads", desc: "Topic-based layouts for decision clarity." },
-    { id: "journal", icon: "✍", title: "Journal", desc: "Save today’s reflection in this browser." },
-    { id: "learn", icon: "🎓", title: "Learn / Quiz", desc: "Card-of-the-moment meaning practice." },
-    { id: "interpreter", icon: "🤖", title: "Interpreter", desc: "Structured reading from card + question." },
-    { id: "prompts", icon: "⌘", title: "Prompt Builder", desc: "Copy prompts for deeper AI reflection." },
-    { id: "community", icon: "▣", title: "Community", desc: "Vote for the next feature." },
-    { id: "updates", icon: "📣", title: "Updates", desc: "Roadmap and changelog." },
-    { id: "contact", icon: "✉", title: "Sponsor / Contact", desc: "Ads, partners, localization." }
-  ];
+  const copyPlain = async (text: string) => {
+    try {
+      await navigator.clipboard?.writeText(text);
+      setCopied(true);
+      flash(ft.copied);
+    } catch {
+      flash(ft.copied);
+    }
+  };
+
+  const addJournal = (text: string) => {
+    const next = [journalText, text].filter(Boolean).join("\n\n---\n\n");
+    setJournalText(next);
+    localStorage.setItem("fate-journal", next);
+    flash(ft.copiedToJournal);
+  };
+
+  const openInInterpreter = (c?: FateCard | null, question = "") => {
+    if (!c) {
+      flash(ft.noCard);
+      return;
+    }
+    setInterpCardId(c.id);
+    setInterpReverse(c.orientation === "reversed");
+    if (question) setInterpQuestion(question);
+    setFeature("interpreter");
+    document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const featureReadingText = (title: string, cards: FateCard[]) => {
+    return `${title}\n` + cards.filter(Boolean).map((c, i) => `${i + 1}. ${c.title} (${c.orientation}) — ${c.mission}`).join("\n");
+  };
+
+
+  const featureCards = ft.featureCards;
 
   const drawSpread = (topic = spreadTopic) => {
     const seedBase = hashString(`${dateKey}|${name}|${birth}|${topic}|spread`);
@@ -623,19 +703,20 @@ export default function App() {
     const base = BASE_CARDS[Math.abs(seed) % BASE_CARDS.length];
     setQuizCard(cardFromBase(base, lang, `${dateKey}-quiz-${seed}`, false));
     setQuizAnswer("");
+    setQuizReveal(false);
   };
 
   const selectedInterpBase = BASE_CARDS.find((c: any) => c.id === interpCardId) || BASE_CARDS[0];
   const selectedInterpCard = cardFromBase(selectedInterpBase, lang, `${dateKey}-interp`, interpReverse);
 
-  const generatedPrompt = `You are a practical tarot reader. My question is: "${interpQuestion || "What should I focus on today?"}". Use ${selectedInterpCard.title} (${selectedInterpCard.orientation}) as the core symbol. Give me: 1) the honest meaning, 2) what I may be avoiding, 3) one action I should take today, 4) one warning. Keep it grounded and do not claim certainty.`;
+  const generatedPrompt = ft.promptRole(interpQuestion, selectedInterpCard.title, selectedInterpCard.orientation);
 
-  const reflectionPrompt = `Create a ${promptTopic} tarot reflection for today. Use one-card-per-day discipline: no rerolls, no vague flattery. Give me one card archetype, one uncomfortable truth, one useful action, and one sentence I can share.`;
+  const reflectionPrompt = ft.reflectionPrompt(promptTopic);
 
   const filteredGuideCards = BASE_CARDS.filter((base: any) => {
-    const txt = `${base.title.en} ${base.title.ko} ${base.keywords.upright.en} ${base.keywords.upright.ko}`.toLowerCase();
+    const txt = [base.id, base.arcana, base.title?.en, base.title?.ko, base.keywords?.upright?.en, base.keywords?.upright?.ko, base.keywords?.reversed?.en, base.keywords?.reversed?.ko].filter(Boolean).join(" ").toLowerCase();
     return txt.includes(guideQuery.toLowerCase());
-  }).slice(0, 18);
+  }).slice(0, 24);
 
   const shareTargets = [
     { id: "native", icon: "↗", label: t.nativeShare || "Share", action: nativeShare },
@@ -690,18 +771,7 @@ export default function App() {
         </nav>
 
         <div className="siteNav" aria-label="FateCard sections">
-          {[
-            ["daily", "Daily"],
-            ["freeTest", "3-Card"],
-            ["yesno", "Yes/No"],
-            ["love", "Love"],
-            ["birth", "Birth"],
-            ["guide", "78 Cards"],
-            ["spreads", "Spreads"],
-            ["journal", "Journal"],
-            ["learn", "Learn"],
-            ["contact", "Sponsor"]
-          ].map(([id, label]) => (
+          {ft.nav.map(([id, label]: [string, string]) => (
             <button key={id} onClick={() => { setFeature(id); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }); }}>{label}</button>
           ))}
         </div>
@@ -751,6 +821,9 @@ export default function App() {
                 <div className="cardHead">
                   <span>{currentCard.symbol}</span>
                   <small>{currentCard.archetype}</small>
+                </div>
+                <div className="tarotArtFrame">
+                  <img src={currentCard.artPath} alt={`${currentCard.title} tarot illustration`} loading="lazy" />
                 </div>
                 <h2>{currentCard.title}</h2>
                 <p className="subtitle">{currentCard.subtitle}</p>
@@ -815,13 +888,14 @@ export default function App() {
 
       <section className="featurePortal" id="features">
         <div className="featureIntro">
-          <p className="eyebrow">TAROT TOOLKIT</p>
-          <h3>Not a menu. Real working features.</h3>
-          <p>Daily card, free mini reading, 78-card guide, spreads, interpreter, prompt builder, vote, updates, and contact are all usable sections.</p>
+          <p className="eyebrow">{ft.portalEyebrow}</p>
+          <h3>{ft.portalTitle}</h3>
+          <p>{ft.portalDesc}</p>
+          {featureNotice && <div className="featureNotice">{featureNotice}</div>}
         </div>
 
         <div className="featureGrid">
-          {featureCards.map((item) => (
+          {featureCards.map((item: any) => (
             <button key={item.id} className={`featureTile ${feature === item.id ? "active" : ""}`} onClick={() => setFeature(item.id)}>
               <span>{item.icon}</span>
               <b>{item.title}</b>
@@ -831,227 +905,35 @@ export default function App() {
         </div>
 
         <div className="featurePanel">
-          {feature === "daily" && (
-            <div className="panelCard">
-              <h4>Daily Fate Card</h4>
-              <p>Use the main card above. One draw is locked until local midnight. This keeps the product sharper than infinite rerolls.</p>
-              <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Go to daily card</button>
-            </div>
-          )}
+          {feature === "daily" && <div className="panelCard"><h4>{ft.dailyTitle}</h4><p>{ft.dailyDesc}</p><div className="chainActions"><button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>{ft.goDaily}</button><button onClick={() => openInInterpreter(currentCard)}>{ft.useInterp}</button><button onClick={() => addJournal(`${ft.dailyTitle}: ${currentCard.title} — ${currentCard.mission}`)}>{ft.saveJournal}</button></div></div>}
 
-          {feature === "freeTest" && (
-            <div className="panelCard">
-              <h4>Free 3-card tarot test</h4>
-              <p>Draw Past / Present / Next using the same 78-card deck. This is free and separate from the one-card daily lock.</p>
-              <button onClick={() => drawSpread("free")}>Draw free 3-card test</button>
-              {spreadCards.length > 0 && (
-                <div className="miniSpread">
-                  {["Past", "Present", "Next"].map((label, i) => (
-                    <div className="miniCard" key={label}>
-                      <span>{label}</span>
-                      <b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b>
-                      <small>{spreadCards[i]?.subtitle}</small>
-                      <p>{spreadCards[i]?.mission}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "freeTest" && <div className="panelCard"><h4>{ft.freeTitle}</h4><p>{ft.freeDesc}</p><button onClick={() => drawSpread("free")}>{ft.draw3}</button>{spreadCards.length > 0 && <><div className="miniSpread">{ft.spreadLabels.map((label: string, i: number) => <div className="miniCard" key={label}><span>{label}</span><b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b><small>{spreadCards[i]?.subtitle}</small><p>{spreadCards[i]?.mission}</p><button onClick={() => openInInterpreter(spreadCards[i], label)}>{ft.useInterp}</button></div>)}</div><div className="chainActions"><button onClick={() => copyPlain(featureReadingText(ft.freeTitle, spreadCards))}>{ft.copyReading}</button><button onClick={() => addJournal(featureReadingText(ft.freeTitle, spreadCards))}>{ft.saveJournal}</button></div></>}</div>}
 
+          {feature === "yesno" && <div className="panelCard"><h4>{ft.yesTitle}</h4><p>{ft.yesDesc}</p><button onClick={drawYesNo}>{ft.drawYes}</button>{yesNoCard && <div className="readingBox"><b>{yesNoCard.symbol} {yesNoCard.title}</b><p><strong>{ft.answer}:</strong> {yesNoCard.orientation === "upright" ? ft.yesUpright : ft.yesReverse}</p><p>{yesNoCard.aura}</p><p><strong>{ft.action}:</strong> {yesNoCard.mission}</p><div className="chainActions"><button onClick={() => openInInterpreter(yesNoCard, ft.yesTitle)}>{ft.useInterp}</button><button onClick={() => addJournal(`${ft.yesTitle}: ${yesNoCard.title} — ${yesNoCard.mission}`)}>{ft.saveJournal}</button></div></div>}</div>}
 
-          {feature === "yesno" && (
-            <div className="panelCard">
-              <h4>Yes / No tarot</h4>
-              <p>A quick one-card answer. Treat it as reflection, not certainty.</p>
-              <button onClick={drawYesNo}>Draw yes / no card</button>
-              {yesNoCard && (
-                <div className="readingBox">
-                  <b>{yesNoCard.symbol} {yesNoCard.title}</b>
-                  <p><strong>Answer:</strong> {yesNoCard.orientation === "upright" ? "Leaning YES — but only if you act cleanly." : "Leaning NO / delay — fix the hidden issue first."}</p>
-                  <p>{yesNoCard.aura}</p>
-                  <p><strong>Action:</strong> {yesNoCard.mission}</p>
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "love" && <div className="panelCard lovePanel"><h4>{ft.loveTitle}</h4><p>{ft.loveDesc}</p><button onClick={drawLove}>{ft.drawLove}</button>{loveCards.length > 0 && <><div className="miniSpread">{ft.loveLabels.map((label: string, i: number) => <div className="miniCard heartCard" key={label}><span>{label}</span><b>{loveCards[i]?.symbol} {loveCards[i]?.title}</b><small>{loveCards[i]?.subtitle}</small><p>{loveCards[i]?.mission}</p><button onClick={() => openInInterpreter(loveCards[i], label)}>{ft.useInterp}</button></div>)}</div><div className="chainActions"><button onClick={() => copyPlain(featureReadingText(ft.loveTitle, loveCards))}>{ft.copyReading}</button><button onClick={() => addJournal(featureReadingText(ft.loveTitle, loveCards))}>{ft.saveJournal}</button></div></>}</div>}
 
-          {feature === "love" && (
-            <div className="panelCard lovePanel">
-              <h4>Love tarot</h4>
-              <p>Two cards: your current energy and the relationship signal. More honest than vague compatibility percentages.</p>
-              <button onClick={drawLove}>Draw two-heart reading</button>
-              {loveCards.length > 0 && (
-                <div className="miniSpread">
-                  {["Your energy", "The signal"].map((label, i) => (
-                    <div className="miniCard heartCard" key={label}>
-                      <span>{label}</span>
-                      <b>{loveCards[i]?.symbol} {loveCards[i]?.title}</b>
-                      <small>{loveCards[i]?.subtitle}</small>
-                      <p>{loveCards[i]?.mission}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "birth" && <div className="panelCard"><h4>{ft.birthTitle}</h4><p>{ft.birthDesc}</p><button onClick={calculateBirthCard}>{ft.calcBirth}</button>{birthResult && <div className="readingBox"><b>{birthResult.symbol} {birthResult.title}</b><p>{birthResult.aura}</p><p><strong>{ft.theme}:</strong> {birthResult.mission}</p><div className="chainActions"><button onClick={() => openInInterpreter(birthResult, ft.birthTitle)}>{ft.useInterp}</button><button onClick={() => addJournal(`${ft.birthTitle}: ${birthResult.title} — ${birthResult.mission}`)}>{ft.saveJournal}</button></div></div>}</div>}
 
-          {feature === "birth" && (
-            <div className="panelCard">
-              <h4>Birth card</h4>
-              <p>Enter a birth date above, then calculate a Major Arcana birth card. This is a simple numerology-style feature for engagement.</p>
-              <button onClick={calculateBirthCard}>Calculate birth card</button>
-              {birthResult && (
-                <div className="readingBox">
-                  <b>{birthResult.symbol} {birthResult.title}</b>
-                  <p>{birthResult.aura}</p>
-                  <p><strong>Theme:</strong> {birthResult.mission}</p>
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "guide" && <div className="panelCard"><h4>{ft.guideTitle}</h4><p>{ft.clickGuide}</p><input className="featureInput" value={guideQuery} onChange={(e) => setGuideQuery(e.target.value)} placeholder={ft.guidePlaceholder} /><div className="guideList">{filteredGuideCards.map((base: any) => { const c = cardFromBase(base, lang, `${dateKey}-guide-${base.id}`, false); return <article key={base.id} onClick={() => openInInterpreter(c, ft.guideTitle)} role="button" tabIndex={0}><img className="guideThumb" src={c.artPath} alt="" loading="lazy" /><div><b>{c.title}</b><small>{c.archetype} · {c.subtitle}</small><p>{c.mission}</p></div></article>; })}</div></div>}
 
-          {feature === "guide" && (
-            <div className="panelCard">
-              <h4>78-card meaning guide</h4>
-              <input className="featureInput" value={guideQuery} onChange={(e) => setGuideQuery(e.target.value)} placeholder="Search card, suit, keyword..." />
-              <div className="guideList">
-                {filteredGuideCards.map((base: any) => {
-                  const c = cardFromBase(base, lang, `${dateKey}-guide-${base.id}`, false);
-                  return (
-                    <article key={base.id}>
-                      <i style={{ background: c.luckyColor }}>{c.symbol}</i>
-                      <div>
-                        <b>{c.title}</b>
-                        <small>{c.archetype} · {c.subtitle}</small>
-                        <p>{c.mission}</p>
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          {feature === "spreads" && <div className="panelCard"><h4>{ft.spreadsTitle}</h4><p>{ft.spreadsDesc}</p><div className="pillRow">{Object.entries(ft.spreadTopics).map(([topic, label]: [string, any]) => <button key={topic} className={spreadTopic === topic ? "selected" : ""} onClick={() => drawSpread(topic)}>{label}</button>)}</div>{spreadCards.length === 0 ? <p className="muted">{ft.chooseTopic}</p> : <><div className="miniSpread">{ft.spreadLabels2.map((label: string, i: number) => <div className="miniCard" key={label}><span>{label}</span><b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b><small>{spreadCards[i]?.subtitle}</small><p>{spreadCards[i]?.warning}</p><button onClick={() => openInInterpreter(spreadCards[i], label)}>{ft.useInterp}</button></div>)}</div><div className="chainActions"><button onClick={() => copyPlain(featureReadingText(ft.spreadsTitle, spreadCards))}>{ft.copyReading}</button><button onClick={() => addJournal(featureReadingText(ft.spreadsTitle, spreadCards))}>{ft.saveJournal}</button></div></>}</div>}
 
-          {feature === "spreads" && (
-            <div className="panelCard">
-              <h4>Tarot spreads</h4>
-              <p>Pick a topic and draw a simple 3-card spread. More spread layouts can be added later.</p>
-              <div className="pillRow">
-                {["love", "money", "work", "mind"].map((topic) => (
-                  <button key={topic} className={spreadTopic === topic ? "selected" : ""} onClick={() => drawSpread(topic)}>{topic}</button>
-                ))}
-              </div>
-              {spreadCards.length === 0 ? <p className="muted">Choose a topic to draw.</p> : (
-                <div className="miniSpread">
-                  {["Situation", "Block", "Action"].map((label, i) => (
-                    <div className="miniCard" key={label}>
-                      <span>{label}</span>
-                      <b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b>
-                      <small>{spreadCards[i]?.subtitle}</small>
-                      <p>{spreadCards[i]?.warning}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "journal" && <div className="panelCard"><h4>{ft.journalTitle}</h4><p>{ft.journalDesc}</p><textarea value={journalText} onChange={(e) => setJournalText(e.target.value)} placeholder={ft.journalPlaceholder} /><div className="chainActions"><button onClick={saveJournal}>{ft.save}</button><button onClick={() => { setJournalText(""); localStorage.removeItem("fate-journal"); }}>{ft.clear}</button></div></div>}
 
+          {feature === "learn" && <div className="panelCard"><h4>{ft.learnTitle}</h4><p>{ft.learnDesc}</p><button onClick={newQuizCard}>{ft.newQuiz}</button>{quizCard && <div className="readingBox"><b>{quizCard.symbol} {quizCard.title}</b><input className="featureInput" value={quizAnswer} onChange={(e) => setQuizAnswer(e.target.value)} placeholder={ft.quizPlaceholder} /><div className="chainActions"><button onClick={() => setQuizReveal(true)}>{ft.reveal}</button><button onClick={() => openInInterpreter(quizCard, ft.learnTitle)}>{ft.useInterp}</button></div>{quizReveal && <><p><strong>{ft.reference}:</strong> {quizCard.subtitle}</p><p>{quizCard.mission}</p></>}</div>}</div>}
 
-          {feature === "journal" && (
-            <div className="panelCard">
-              <h4>Daily tarot journal</h4>
-              <p>Write what today’s card makes you notice. Stored locally in this browser for now.</p>
-              <textarea value={journalText} onChange={(e) => setJournalText(e.target.value)} placeholder="What did today's card make you notice?" />
-              <button onClick={saveJournal}>Save journal note</button>
-            </div>
-          )}
+          {feature === "interpreter" && <div className="panelCard"><h4>{ft.interpTitle}</h4><p>{ft.interpDesc}</p><div className="formGrid"><select value={interpCardId} onChange={(e) => setInterpCardId(e.target.value)}>{BASE_CARDS.map((base: any) => <option key={base.id} value={base.id}>{cardFromBase(base, lang, "option", false).title}</option>)}</select><label className="toggleLine"><input type="checkbox" checked={interpReverse} onChange={(e) => setInterpReverse(e.target.checked)} /> Reversed</label></div><textarea value={interpQuestion} onChange={(e) => setInterpQuestion(e.target.value)} placeholder={ft.questionPlaceholder} /><div className="readingBox"><b>{selectedInterpCard.symbol} {selectedInterpCard.title}</b><p>{selectedInterpCard.aura}</p><p><strong>{ft.action}:</strong> {selectedInterpCard.mission}</p><p><strong>{ft.warning}:</strong> {selectedInterpCard.warning}</p><div className="chainActions"><button onClick={() => copyPlain(generatedPrompt)}>{ft.copyPrompt}</button><button onClick={() => addJournal(`${ft.interpTitle}: ${selectedInterpCard.title} — ${selectedInterpCard.mission}`)}>{ft.saveJournal}</button></div></div></div>}
 
-          {feature === "learn" && (
-            <div className="panelCard">
-              <h4>Learn / quiz</h4>
-              <p>Practice card meanings. This is inspired by learning-focused tarot sites, but simplified for fast retention.</p>
-              <button onClick={newQuizCard}>New quiz card</button>
-              {quizCard && (
-                <div className="readingBox">
-                  <b>{quizCard.symbol} {quizCard.title}</b>
-                  <input className="featureInput" value={quizAnswer} onChange={(e) => setQuizAnswer(e.target.value)} placeholder="What do you think this card means?" />
-                  <p><strong>Reference:</strong> {quizCard.subtitle}</p>
-                  <p>{quizCard.mission}</p>
-                </div>
-              )}
-            </div>
-          )}
+          {feature === "prompts" && <div className="panelCard"><h4>{ft.promptsTitle}</h4><p>{ft.promptsDesc}</p><div className="pillRow">{["love", "money", "work", "mind", "decision"].map((topic) => <button key={topic} className={promptTopic === topic ? "selected" : ""} onClick={() => setPromptTopic(topic)}>{topic}</button>)}</div><textarea readOnly value={reflectionPrompt} /><button onClick={() => copyPlain(reflectionPrompt)}>{ft.copyPrompt}</button></div>}
 
-          {feature === "interpreter" && (
-            <div className="panelCard">
-              <h4>AI-style tarot interpreter</h4>
-              <p>This does not call an external AI API yet. It produces a structured interpretation using your selected tarot card and question.</p>
-              <div className="formGrid">
-                <select value={interpCardId} onChange={(e) => setInterpCardId(e.target.value)}>
-                  {BASE_CARDS.map((base: any) => <option key={base.id} value={base.id}>{base.title.en} / {base.title.ko}</option>)}
-                </select>
-                <label className="toggleLine"><input type="checkbox" checked={interpReverse} onChange={(e) => setInterpReverse(e.target.checked)} /> Reversed</label>
-              </div>
-              <textarea value={interpQuestion} onChange={(e) => setInterpQuestion(e.target.value)} placeholder="Write your question..." />
-              <div className="readingBox">
-                <b>{selectedInterpCard.symbol} {selectedInterpCard.title}</b>
-                <p>{selectedInterpCard.aura}</p>
-                <p><strong>Action:</strong> {selectedInterpCard.mission}</p>
-                <p><strong>Warning:</strong> {selectedInterpCard.warning}</p>
-              </div>
-            </div>
-          )}
+          {feature === "community" && <div className="panelCard"><h4>{ft.communityTitle}</h4><p>{ft.communityDesc}</p><div className="voteGrid">{ft.voteOptions.map((v: string) => <button key={v} className={pollChoice === v ? "selected" : ""} onClick={() => { setPollChoice(v); localStorage.setItem("fate-poll", v); }}>{v}</button>)}</div>{pollChoice && <p className="muted">{ft.yourVote}: {pollChoice}</p>}</div>}
 
-          {feature === "prompts" && (
-            <div className="panelCard">
-              <h4>Tarot prompt builder</h4>
-              <p>For users who want deeper interpretation in ChatGPT, Claude, Gemini, or any AI tool.</p>
-              <div className="pillRow">
-                {["love", "money", "work", "mind", "decision"].map((topic) => (
-                  <button key={topic} className={promptTopic === topic ? "selected" : ""} onClick={() => setPromptTopic(topic)}>{topic}</button>
-                ))}
-              </div>
-              <textarea readOnly value={reflectionPrompt} />
-              <button onClick={() => navigator.clipboard?.writeText(reflectionPrompt)}>Copy prompt</button>
-            </div>
-          )}
+          {feature === "updates" && <div className="panelCard"><h4>{ft.updatesTitle}</h4><ul className="updateList"><li><b>v15:</b> Full feature UI localization and chained interactions.</li><li><b>v14:</b> Popular tarot-site inspired feature map and mystical UI polish.</li><li><b>v13:</b> Real feature portal added.</li><li><b>{ft.next}:</b> database-backed visitor analytics, server-side polls, premium reports, real generated assets.</li></ul></div>}
 
-          {feature === "community" && (
-            <div className="panelCard">
-              <h4>Community vote</h4>
-              <p>Vote on the next feature. Local prototype votes are saved in your browser for now; later this should move to a database.</p>
-              <div className="voteGrid">
-                {["Love compatibility", "Weekly report", "Share card themes", "Korean full localization", "Premium deep reading"].map((v) => (
-                  <button key={v} className={pollChoice === v ? "selected" : ""} onClick={() => { setPollChoice(v); localStorage.setItem("fate-poll", v); }}>{v}</button>
-                ))}
-              </div>
-              {pollChoice && <p className="muted">Your vote: {pollChoice}</p>}
-            </div>
-          )}
-
-          {feature === "updates" && (
-            <div className="panelCard">
-              <h4>Update news</h4>
-              <ul className="updateList">
-                <li><b>v14:</b> Popular tarot-site inspired feature map, love/yes-no/birth/journal/quiz sections, mystical Nano Banana-style UI polish.</li><li><b>v13:</b> Real feature portal added.</li>
-                <li><b>v12:</b> Premium animated oracle UI polish.</li>
-                <li><b>v10:</b> Full 78-card tarot deck.</li>
-                <li><b>Next:</b> database-backed visitors, card history, premium reports, better generated assets.</li>
-              </ul>
-            </div>
-          )}
-
-          {feature === "contact" && (
-            <div className="panelCard">
-              <h4>Sponsor / Contact</h4>
-              <p>Advertising, sponsor cards, collaboration, localization, or premium report partnerships.</p>
-              <a className="contactButton" href={`mailto:${sponsorEmail}`}>{sponsorEmail}</a>
-            </div>
-          )}
+          {feature === "contact" && <div className="panelCard"><h4>{ft.contactTitle}</h4><p>{ft.contactDesc}</p><a className="contactButton" href={`mailto:${sponsorEmail}`}>{sponsorEmail}</a></div>}
         </div>
       </section>
-
 
       <footer>
         <span>{t.entertainment}</span>
