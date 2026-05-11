@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { TAROT_DECK, getTarotText } from "./tarotDeck";
 
 type Lang = "en" | "ko" | "ja" | "zh" | "es" | "fr" | "de" | "pt";
@@ -43,7 +43,8 @@ type DailyStatus = {
   nextResetIso: string;
 };
 
-const DEFAULT_EMAIL = "tbvjrkrh@gmail.com"; type RuntimeConfig = { siteUrl: string; configuredSiteUrl: string; hostUrl: string; sponsorEmail: string; supportUrl: string; premiumUrl: string; };
+const DEFAULT_EMAIL = "tbvjrkrh@gmail.com";
+type RuntimeConfig = { siteUrl: string; configuredSiteUrl: string; hostUrl: string; sponsorEmail: string; supportUrl: string; premiumUrl: string; };
 
 const LANGS: Record<Lang, { label: string; native: string; locale: string; timeZone: string | "device" }> = {
   en: { label: "English", native: "English", locale: "en-US", timeZone: "device" },
@@ -286,6 +287,21 @@ export default function App() {
   const [card, setCard] = useState<FateCard | null>(null);
   const [copied, setCopied] = useState(false);
   const [shareOpen, setShareOpen] = useState(false);
+  const [feature, setFeature] = useState<string>("daily");
+  const [guideQuery, setGuideQuery] = useState("");
+  const [spreadTopic, setSpreadTopic] = useState("love");
+  const [spreadCards, setSpreadCards] = useState<FateCard[]>([]);
+  const [interpCardId, setInterpCardId] = useState(BASE_CARDS[0]?.id || "");
+  const [interpReverse, setInterpReverse] = useState(false);
+  const [interpQuestion, setInterpQuestion] = useState("");
+  const [promptTopic, setPromptTopic] = useState("love");
+  const [pollChoice, setPollChoice] = useState("");
+  const [yesNoCard, setYesNoCard] = useState<FateCard | null>(null);
+  const [loveCards, setLoveCards] = useState<FateCard[]>([]);
+  const [birthResult, setBirthResult] = useState<FateCard | null>(null);
+  const [journalText, setJournalText] = useState(localStorage.getItem("fate-journal") || "");
+  const [quizCard, setQuizCard] = useState<FateCard | null>(null);
+  const [quizAnswer, setQuizAnswer] = useState("");
   const shareCanvas = useRef<HTMLCanvasElement | null>(null);
 
   const t = UI[lang];
@@ -537,6 +553,90 @@ export default function App() {
     await recordShare();
   };
 
+
+  const featureCards = [
+    { id: "daily", icon: "✦", title: "Daily Card", desc: "One card per local day. The main ritual." },
+    { id: "freeTest", icon: "🃏", title: "Free 3-Card", desc: "Past / Present / Next mini reading." },
+    { id: "yesno", icon: "☯", title: "Yes / No", desc: "Fast one-card answer with grounded advice." },
+    { id: "love", icon: "♥", title: "Love Tarot", desc: "Two-heart relationship snapshot." },
+    { id: "birth", icon: "☉", title: "Birth Card", desc: "Major Arcana card from birth date." },
+    { id: "guide", icon: "📖", title: "78 Card Guide", desc: "Search meanings by card, suit, or keyword." },
+    { id: "spreads", icon: "◇", title: "Spreads", desc: "Topic-based layouts for decision clarity." },
+    { id: "journal", icon: "✍", title: "Journal", desc: "Save today’s reflection in this browser." },
+    { id: "learn", icon: "🎓", title: "Learn / Quiz", desc: "Card-of-the-moment meaning practice." },
+    { id: "interpreter", icon: "🤖", title: "Interpreter", desc: "Structured reading from card + question." },
+    { id: "prompts", icon: "⌘", title: "Prompt Builder", desc: "Copy prompts for deeper AI reflection." },
+    { id: "community", icon: "▣", title: "Community", desc: "Vote for the next feature." },
+    { id: "updates", icon: "📣", title: "Updates", desc: "Roadmap and changelog." },
+    { id: "contact", icon: "✉", title: "Sponsor / Contact", desc: "Ads, partners, localization." }
+  ];
+
+  const drawSpread = (topic = spreadTopic) => {
+    const seedBase = hashString(`${dateKey}|${name}|${birth}|${topic}|spread`);
+    const used = new Set<string>();
+    const picked: FateCard[] = [];
+    for (let i = 0; i < 3; i++) {
+      let idx = Math.abs(seedBase + i * 17 + (seedBase >> (i + 2))) % BASE_CARDS.length;
+      while (used.has(BASE_CARDS[idx].id)) idx = (idx + 1) % BASE_CARDS.length;
+      used.add(BASE_CARDS[idx].id);
+      picked.push(cardFromBase(BASE_CARDS[idx], lang, `${dateKey}-spread-${topic}-${i}`, ((seedBase >> (i + 5)) % 100) < 28));
+    }
+    setSpreadCards(picked);
+    setSpreadTopic(topic);
+  };
+
+
+  const drawYesNo = () => {
+    const seed = hashString(`${dateKey}|${name}|${birth}|yesno|${Date.now()}`);
+    const base = BASE_CARDS[Math.abs(seed) % BASE_CARDS.length];
+    const reversed = (Math.abs(seed >> 4) % 100) < 35;
+    setYesNoCard(cardFromBase(base, lang, `${dateKey}-yesno-${seed}`, reversed));
+  };
+
+  const drawLove = () => {
+    const seed = hashString(`${dateKey}|${name}|${birth}|love`);
+    const first = BASE_CARDS[Math.abs(seed) % BASE_CARDS.length];
+    let secondIdx = Math.abs(seed + 31) % BASE_CARDS.length;
+    if (BASE_CARDS[secondIdx].id === first.id) secondIdx = (secondIdx + 1) % BASE_CARDS.length;
+    setLoveCards([
+      cardFromBase(first, lang, `${dateKey}-love-self`, (seed % 100) < 30),
+      cardFromBase(BASE_CARDS[secondIdx], lang, `${dateKey}-love-other`, ((seed >> 3) % 100) < 30)
+    ]);
+  };
+
+  const calculateBirthCard = () => {
+    const value = birth || "2000-12-27";
+    const digits = value.replace(/[^0-9]/g, "").split("").map((n) => Number(n));
+    let sum = digits.reduce((a, b) => a + b, 0);
+    while (sum > 21) sum = String(sum).split("").reduce((a, b) => a + Number(b), 0);
+    const major = BASE_CARDS.filter((c: any) => c.arcana === "major");
+    const base = major[sum % major.length] || BASE_CARDS[0];
+    setBirthResult(cardFromBase(base, lang, `${value}-birth`, false));
+  };
+
+  const saveJournal = () => {
+    localStorage.setItem("fate-journal", journalText);
+  };
+
+  const newQuizCard = () => {
+    const seed = hashString(`${dateKey}|quiz|${Date.now()}|${Math.random()}`);
+    const base = BASE_CARDS[Math.abs(seed) % BASE_CARDS.length];
+    setQuizCard(cardFromBase(base, lang, `${dateKey}-quiz-${seed}`, false));
+    setQuizAnswer("");
+  };
+
+  const selectedInterpBase = BASE_CARDS.find((c: any) => c.id === interpCardId) || BASE_CARDS[0];
+  const selectedInterpCard = cardFromBase(selectedInterpBase, lang, `${dateKey}-interp`, interpReverse);
+
+  const generatedPrompt = `You are a practical tarot reader. My question is: "${interpQuestion || "What should I focus on today?"}". Use ${selectedInterpCard.title} (${selectedInterpCard.orientation}) as the core symbol. Give me: 1) the honest meaning, 2) what I may be avoiding, 3) one action I should take today, 4) one warning. Keep it grounded and do not claim certainty.`;
+
+  const reflectionPrompt = `Create a ${promptTopic} tarot reflection for today. Use one-card-per-day discipline: no rerolls, no vague flattery. Give me one card archetype, one uncomfortable truth, one useful action, and one sentence I can share.`;
+
+  const filteredGuideCards = BASE_CARDS.filter((base: any) => {
+    const txt = `${base.title.en} ${base.title.ko} ${base.keywords.upright.en} ${base.keywords.upright.ko}`.toLowerCase();
+    return txt.includes(guideQuery.toLowerCase());
+  }).slice(0, 18);
+
   const shareTargets = [
     { id: "native", icon: "↗", label: t.nativeShare || "Share", action: nativeShare },
     { id: "x", icon: "𝕏", label: "X", action: () => openShareWindow("x") },
@@ -588,6 +688,23 @@ export default function App() {
             </label>
           </div>
         </nav>
+
+        <div className="siteNav" aria-label="FateCard sections">
+          {[
+            ["daily", "Daily"],
+            ["freeTest", "3-Card"],
+            ["yesno", "Yes/No"],
+            ["love", "Love"],
+            ["birth", "Birth"],
+            ["guide", "78 Cards"],
+            ["spreads", "Spreads"],
+            ["journal", "Journal"],
+            ["learn", "Learn"],
+            ["contact", "Sponsor"]
+          ].map(([id, label]) => (
+            <button key={id} onClick={() => { setFeature(id); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }); }}>{label}</button>
+          ))}
+        </div>
 
         <div className="grid">
           <section className="intro">
@@ -695,6 +812,247 @@ export default function App() {
         </div>
       </section>
 
+
+      <section className="featurePortal" id="features">
+        <div className="featureIntro">
+          <p className="eyebrow">TAROT TOOLKIT</p>
+          <h3>Not a menu. Real working features.</h3>
+          <p>Daily card, free mini reading, 78-card guide, spreads, interpreter, prompt builder, vote, updates, and contact are all usable sections.</p>
+        </div>
+
+        <div className="featureGrid">
+          {featureCards.map((item) => (
+            <button key={item.id} className={`featureTile ${feature === item.id ? "active" : ""}`} onClick={() => setFeature(item.id)}>
+              <span>{item.icon}</span>
+              <b>{item.title}</b>
+              <small>{item.desc}</small>
+            </button>
+          ))}
+        </div>
+
+        <div className="featurePanel">
+          {feature === "daily" && (
+            <div className="panelCard">
+              <h4>Daily Fate Card</h4>
+              <p>Use the main card above. One draw is locked until local midnight. This keeps the product sharper than infinite rerolls.</p>
+              <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Go to daily card</button>
+            </div>
+          )}
+
+          {feature === "freeTest" && (
+            <div className="panelCard">
+              <h4>Free 3-card tarot test</h4>
+              <p>Draw Past / Present / Next using the same 78-card deck. This is free and separate from the one-card daily lock.</p>
+              <button onClick={() => drawSpread("free")}>Draw free 3-card test</button>
+              {spreadCards.length > 0 && (
+                <div className="miniSpread">
+                  {["Past", "Present", "Next"].map((label, i) => (
+                    <div className="miniCard" key={label}>
+                      <span>{label}</span>
+                      <b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b>
+                      <small>{spreadCards[i]?.subtitle}</small>
+                      <p>{spreadCards[i]?.mission}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+
+          {feature === "yesno" && (
+            <div className="panelCard">
+              <h4>Yes / No tarot</h4>
+              <p>A quick one-card answer. Treat it as reflection, not certainty.</p>
+              <button onClick={drawYesNo}>Draw yes / no card</button>
+              {yesNoCard && (
+                <div className="readingBox">
+                  <b>{yesNoCard.symbol} {yesNoCard.title}</b>
+                  <p><strong>Answer:</strong> {yesNoCard.orientation === "upright" ? "Leaning YES — but only if you act cleanly." : "Leaning NO / delay — fix the hidden issue first."}</p>
+                  <p>{yesNoCard.aura}</p>
+                  <p><strong>Action:</strong> {yesNoCard.mission}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {feature === "love" && (
+            <div className="panelCard lovePanel">
+              <h4>Love tarot</h4>
+              <p>Two cards: your current energy and the relationship signal. More honest than vague compatibility percentages.</p>
+              <button onClick={drawLove}>Draw two-heart reading</button>
+              {loveCards.length > 0 && (
+                <div className="miniSpread">
+                  {["Your energy", "The signal"].map((label, i) => (
+                    <div className="miniCard heartCard" key={label}>
+                      <span>{label}</span>
+                      <b>{loveCards[i]?.symbol} {loveCards[i]?.title}</b>
+                      <small>{loveCards[i]?.subtitle}</small>
+                      <p>{loveCards[i]?.mission}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {feature === "birth" && (
+            <div className="panelCard">
+              <h4>Birth card</h4>
+              <p>Enter a birth date above, then calculate a Major Arcana birth card. This is a simple numerology-style feature for engagement.</p>
+              <button onClick={calculateBirthCard}>Calculate birth card</button>
+              {birthResult && (
+                <div className="readingBox">
+                  <b>{birthResult.symbol} {birthResult.title}</b>
+                  <p>{birthResult.aura}</p>
+                  <p><strong>Theme:</strong> {birthResult.mission}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {feature === "guide" && (
+            <div className="panelCard">
+              <h4>78-card meaning guide</h4>
+              <input className="featureInput" value={guideQuery} onChange={(e) => setGuideQuery(e.target.value)} placeholder="Search card, suit, keyword..." />
+              <div className="guideList">
+                {filteredGuideCards.map((base: any) => {
+                  const c = cardFromBase(base, lang, `${dateKey}-guide-${base.id}`, false);
+                  return (
+                    <article key={base.id}>
+                      <i style={{ background: c.luckyColor }}>{c.symbol}</i>
+                      <div>
+                        <b>{c.title}</b>
+                        <small>{c.archetype} · {c.subtitle}</small>
+                        <p>{c.mission}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {feature === "spreads" && (
+            <div className="panelCard">
+              <h4>Tarot spreads</h4>
+              <p>Pick a topic and draw a simple 3-card spread. More spread layouts can be added later.</p>
+              <div className="pillRow">
+                {["love", "money", "work", "mind"].map((topic) => (
+                  <button key={topic} className={spreadTopic === topic ? "selected" : ""} onClick={() => drawSpread(topic)}>{topic}</button>
+                ))}
+              </div>
+              {spreadCards.length === 0 ? <p className="muted">Choose a topic to draw.</p> : (
+                <div className="miniSpread">
+                  {["Situation", "Block", "Action"].map((label, i) => (
+                    <div className="miniCard" key={label}>
+                      <span>{label}</span>
+                      <b>{spreadCards[i]?.symbol} {spreadCards[i]?.title}</b>
+                      <small>{spreadCards[i]?.subtitle}</small>
+                      <p>{spreadCards[i]?.warning}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+
+          {feature === "journal" && (
+            <div className="panelCard">
+              <h4>Daily tarot journal</h4>
+              <p>Write what today’s card makes you notice. Stored locally in this browser for now.</p>
+              <textarea value={journalText} onChange={(e) => setJournalText(e.target.value)} placeholder="What did today's card make you notice?" />
+              <button onClick={saveJournal}>Save journal note</button>
+            </div>
+          )}
+
+          {feature === "learn" && (
+            <div className="panelCard">
+              <h4>Learn / quiz</h4>
+              <p>Practice card meanings. This is inspired by learning-focused tarot sites, but simplified for fast retention.</p>
+              <button onClick={newQuizCard}>New quiz card</button>
+              {quizCard && (
+                <div className="readingBox">
+                  <b>{quizCard.symbol} {quizCard.title}</b>
+                  <input className="featureInput" value={quizAnswer} onChange={(e) => setQuizAnswer(e.target.value)} placeholder="What do you think this card means?" />
+                  <p><strong>Reference:</strong> {quizCard.subtitle}</p>
+                  <p>{quizCard.mission}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {feature === "interpreter" && (
+            <div className="panelCard">
+              <h4>AI-style tarot interpreter</h4>
+              <p>This does not call an external AI API yet. It produces a structured interpretation using your selected tarot card and question.</p>
+              <div className="formGrid">
+                <select value={interpCardId} onChange={(e) => setInterpCardId(e.target.value)}>
+                  {BASE_CARDS.map((base: any) => <option key={base.id} value={base.id}>{base.title.en} / {base.title.ko}</option>)}
+                </select>
+                <label className="toggleLine"><input type="checkbox" checked={interpReverse} onChange={(e) => setInterpReverse(e.target.checked)} /> Reversed</label>
+              </div>
+              <textarea value={interpQuestion} onChange={(e) => setInterpQuestion(e.target.value)} placeholder="Write your question..." />
+              <div className="readingBox">
+                <b>{selectedInterpCard.symbol} {selectedInterpCard.title}</b>
+                <p>{selectedInterpCard.aura}</p>
+                <p><strong>Action:</strong> {selectedInterpCard.mission}</p>
+                <p><strong>Warning:</strong> {selectedInterpCard.warning}</p>
+              </div>
+            </div>
+          )}
+
+          {feature === "prompts" && (
+            <div className="panelCard">
+              <h4>Tarot prompt builder</h4>
+              <p>For users who want deeper interpretation in ChatGPT, Claude, Gemini, or any AI tool.</p>
+              <div className="pillRow">
+                {["love", "money", "work", "mind", "decision"].map((topic) => (
+                  <button key={topic} className={promptTopic === topic ? "selected" : ""} onClick={() => setPromptTopic(topic)}>{topic}</button>
+                ))}
+              </div>
+              <textarea readOnly value={reflectionPrompt} />
+              <button onClick={() => navigator.clipboard?.writeText(reflectionPrompt)}>Copy prompt</button>
+            </div>
+          )}
+
+          {feature === "community" && (
+            <div className="panelCard">
+              <h4>Community vote</h4>
+              <p>Vote on the next feature. Local prototype votes are saved in your browser for now; later this should move to a database.</p>
+              <div className="voteGrid">
+                {["Love compatibility", "Weekly report", "Share card themes", "Korean full localization", "Premium deep reading"].map((v) => (
+                  <button key={v} className={pollChoice === v ? "selected" : ""} onClick={() => { setPollChoice(v); localStorage.setItem("fate-poll", v); }}>{v}</button>
+                ))}
+              </div>
+              {pollChoice && <p className="muted">Your vote: {pollChoice}</p>}
+            </div>
+          )}
+
+          {feature === "updates" && (
+            <div className="panelCard">
+              <h4>Update news</h4>
+              <ul className="updateList">
+                <li><b>v14:</b> Popular tarot-site inspired feature map, love/yes-no/birth/journal/quiz sections, mystical Nano Banana-style UI polish.</li><li><b>v13:</b> Real feature portal added.</li>
+                <li><b>v12:</b> Premium animated oracle UI polish.</li>
+                <li><b>v10:</b> Full 78-card tarot deck.</li>
+                <li><b>Next:</b> database-backed visitors, card history, premium reports, better generated assets.</li>
+              </ul>
+            </div>
+          )}
+
+          {feature === "contact" && (
+            <div className="panelCard">
+              <h4>Sponsor / Contact</h4>
+              <p>Advertising, sponsor cards, collaboration, localization, or premium report partnerships.</p>
+              <a className="contactButton" href={`mailto:${sponsorEmail}`}>{sponsorEmail}</a>
+            </div>
+          )}
+        </div>
+      </section>
+
+
       <footer>
         <span>{t.entertainment}</span>
       </footer>
@@ -705,7 +1063,7 @@ export default function App() {
 function Metric({ label, value }: { label: string; value: number; key?: string }) {
   return <div className="metric"><span>{label}</span><strong>{value.toLocaleString()}</strong></div>;
 }
-function Score({ label, value }: { label: string; value: number; key?: string }) {
+function Score({ label, value }: { label: string; value: number }) {
   return <div className="score"><span>{label}</span><b>{value}</b><i><em style={{ width: `${value}%` }} /></i></div>;
 }
 function round(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
@@ -734,5 +1092,3 @@ function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: num
   }
   ctx.fillText(line, x, yy);
 }
-
-

@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v12",
+  "name": "fatecard-today-v14",
   "private": true,
-  "version": "12.0.0",
+  "version": "14.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today polished hero copy and animated premium oracle UI."
+  "description": "FateCard.today v14: popular tarot-site inspired feature architecture and mystical UI polish."
 }
