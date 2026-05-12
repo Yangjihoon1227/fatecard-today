@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v25",
+  "name": "fatecard-today-v26",
   "private": true,
-  "version": "25.0.0",
+  "version": "26.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v25: premium home, single collapsible sidebar, full-deck spread draw, selectable card count."
+  "description": "FateCard.today v26: fixed-count readings, 18-card 6/12 month reading, stronger nav, improved full-deck spread layout."
 }
