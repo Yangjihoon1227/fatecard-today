@@ -149,7 +149,7 @@ function makeCard(base:TarotCardBase,lang:Lang,seed:string):DrawCard{const rev=h
 export default function App(){
   const [lang,setLang]=useState<Lang>((localStorage.getItem("fate-lang") as Lang)||"ko");
   const [mode,setMode]=useState<Mode>("home");
-  const [drawer,setDrawer]=useState(true);
+  const [drawer,setDrawer]=useState(()=> typeof window==="undefined" ? true : window.innerWidth>860);
   const [shuffleSeed,setShuffleSeed]=useState(()=>"seed-"+Date.now());
   const [selectedIds,setSelectedIds]=useState<string[]>([]);
   const [revealed,setRevealed]=useState(false);
@@ -171,7 +171,7 @@ export default function App(){
 
   useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question-draft",questionDraft);localStorage.setItem("fate-question",submittedQuestion);},[lang,name,birth,gender,job,questionDraft,submittedQuestion]);
   useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);},[mode,lang]);
-  const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);window.scrollTo({top:0,behavior:"smooth"});};
+  const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);if(typeof window!=="undefined" && window.innerWidth<=860){setDrawer(false);}window.scrollTo({top:0,behavior:"smooth"});};
   const reshuffle=()=>{setShuffleSeed("seed-"+Date.now());setSelectedIds([]);setRevealed(false);setCopied(false);};
   const choose=(id:string)=>{if(revealed)return;if(selectedIds.includes(id)){setSelectedIds(selectedIds.filter(x=>x!==id));setCopied(false);return;}if(selectedIds.length>=need)return;setSelectedIds([...selectedIds,id]);setCopied(false);};
   const showReading=()=>{if(complete)setRevealed(true);};
@@ -196,6 +196,7 @@ export default function App(){
 
     <main className="main">
       <header className="topBar">
+        <button className="mobileMenuBtn" onClick={()=>setDrawer(!drawer)} aria-label={c.menu}>☰</button>
         <button className="homeIcon" onClick={()=>go("home")} title={c.home}><ModeIcon mode="home" /></button>
         <button className="topBrand" onClick={()=>go("home")}>{c.brand}</button>
         <div className="topSpacer"/>

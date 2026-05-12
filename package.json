@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v29",
+  "name": "fatecard-today-v30",
   "private": true,
-  "version": "29.0.0",
+  "version": "30.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v29: build fix and refined mystical mode icons."
+  "description": "FateCard.today v30: mobile/tablet responsive layout fix, off-canvas menu, and upgraded mystical icons."
 }

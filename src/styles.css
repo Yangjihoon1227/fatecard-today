@@ -1087,3 +1087,415 @@ footer{
   box-shadow:none;
 }
 .homeIcon .modeIcon svg{stroke:#f4d388;width:18px;height:18px;}
+
+
+/* v30: mobile/tablet safe layout + off-canvas sidebar + refined oracle icons */
+html, body, #root, .app {
+  width: 100%;
+  max-width: 100%;
+}
+body {
+  overflow-x: hidden;
+}
+.main, .homePage, .reader, .deckTable, .readingPanel, .homeHero, .featureGrid, .readerHero {
+  min-width: 0;
+}
+.mobileMenuBtn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(231,194,109,.58);
+  border-radius: 13px;
+  background: rgba(7,13,30,.78);
+  color: #ffe8a8;
+  font-size: 23px;
+  box-shadow: 0 0 18px rgba(214,162,79,.12);
+}
+
+/* Better premium icon objects */
+.modeIcon {
+  position: relative;
+  overflow: hidden;
+}
+.modeIcon::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 11px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,247,214,.55), transparent 30%),
+    conic-gradient(from 210deg, rgba(255,236,177,.0), rgba(255,236,177,.45), rgba(168,85,247,.30), rgba(255,236,177,.0));
+  opacity: .66;
+}
+.modeIcon::after {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border-radius: 50%;
+  border: 1px solid rgba(98,56,140,.38);
+}
+.modeIcon svg {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 5px rgba(255,232,173,.32));
+}
+.navList button.active .modeIcon {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 0 28px rgba(192,132,252,.32), 0 12px 34px rgba(0,0,0,.38);
+}
+.featureGrid .modeIcon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+}
+.featureGrid .modeIcon svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* Tablet: let content breathe, no desktop-like overflow */
+@media (max-width: 1180px) {
+  .main {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .homeHero {
+    max-width: 100%;
+  }
+  .featureGrid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .readerGrid {
+    width: 100%;
+  }
+}
+
+/* Mobile: no persistent left rail. Sidebar becomes a real off-canvas drawer. */
+@media (max-width: 860px) {
+  .app {
+    overflow-x: hidden;
+  }
+  .mobileMenuBtn {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 42px;
+  }
+  .sidebar {
+    width: min(86vw, 330px) !important;
+    transform: translateX(-108%);
+    transition: transform .24s ease;
+    box-shadow: 24px 0 70px rgba(0,0,0,.58);
+    border-right-color: rgba(231,194,109,.50);
+    overflow-y: auto;
+  }
+  .drawerOpen .sidebar {
+    transform: translateX(0);
+  }
+  .drawerClosed .sidebar {
+    width: min(86vw, 330px) !important;
+    transform: translateX(-108%);
+  }
+  .main,
+  .drawerOpen .main,
+  .drawerClosed .main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 14px 14px 34px !important;
+  }
+  .sideBrand {
+    grid-template-columns: 42px 54px 1fr !important;
+  }
+  .brandSeal,
+  .brandName,
+  .navList b,
+  .navList small,
+  .membership,
+  .sponsor {
+    display: block !important;
+  }
+  .navList button {
+    grid-template-columns: 44px 1fr !important;
+    padding: 10px 12px !important;
+  }
+  .topBar {
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    height: 56px;
+    padding: 7px 0;
+    background: linear-gradient(180deg, rgba(4,8,19,.94), rgba(4,8,19,.72));
+    backdrop-filter: blur(14px);
+  }
+  .topBrand {
+    display: inline-block !important;
+    max-width: 118px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 17px;
+  }
+  .homeIcon {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 42px;
+  }
+  .messageBtn {
+    display: none !important;
+  }
+  .language {
+    margin-left: auto;
+    min-width: 116px;
+    height: 42px;
+    padding: 8px 10px;
+    justify-content: center;
+  }
+  .language select {
+    max-width: 72px;
+    font-size: 14px;
+  }
+  .homePage {
+    display: block;
+    min-height: auto;
+    padding-top: 14px;
+    text-align: center;
+  }
+  .homeHero {
+    width: 100%;
+    padding: 18px 12px 10px;
+  }
+  .moonMark {
+    width: 118px;
+    height: 118px;
+    font-size: 50px;
+  }
+  .homeHero h1 {
+    font-size: clamp(42px, 13vw, 62px);
+    line-height: .94;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .homeHero .sub {
+    font-size: 18px;
+  }
+  .lead {
+    font-size: 17px !important;
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+  .featureGrid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+    margin-top: 22px;
+  }
+  .featureGrid button {
+    width: 100%;
+    min-height: 116px;
+    padding: 18px 18px;
+    border-radius: 22px;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 58px minmax(0,1fr);
+    grid-template-areas:
+      "icon title"
+      "icon desc"
+      "icon fixed";
+    align-items: center;
+  }
+  .featureGrid .modeIcon { grid-area: icon; }
+  .featureGrid b { grid-area: title; font-size: 20px; }
+  .featureGrid small { grid-area: desc; font-size: 15px; line-height: 1.4; }
+  .featureGrid em { grid-area: fixed; font-size: 16px; }
+  .homeActions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 360px;
+    margin: 22px auto 0;
+  }
+  .homeActions button {
+    width: 100%;
+    min-height: 52px;
+  }
+  .spreadPreview {
+    width: 100%;
+    max-width: 100%;
+    height: 118px;
+    overflow: hidden;
+    margin: 8px auto 18px;
+  }
+  .spreadPreview img {
+    width: 52px !important;
+    height: 82px !important;
+    transform: translateX(calc((var(--i) - 21) * 12px)) rotate(calc((var(--i) - 21) * .72deg)) !important;
+  }
+  .howPanel {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    margin: 0 0 22px;
+    text-align: left;
+  }
+  .howPanel h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+  .howPanel p {
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+  .readerHero {
+    padding: 10px 4px 0;
+  }
+  .readerHero h1 {
+    font-size: clamp(36px, 12vw, 54px);
+    word-break: keep-all;
+  }
+  .fixedBadge {
+    flex-wrap: wrap;
+  }
+  .profileBox {
+    grid-template-columns: 1fr !important;
+  }
+  .readerGrid,
+  .readerGrid.revealedGrid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+  .deckTable,
+  .readingPanel,
+  .deckGuide,
+  .sponsorPage,
+  .perCardSection,
+  .integratedBlocks {
+    padding: 18px !important;
+    border-radius: 22px !important;
+    width: 100%;
+  }
+  .tableHead {
+    display: grid;
+    gap: 8px;
+  }
+  .tableHead h2 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+  .fullSpread {
+    min-height: 280px !important;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 76px 46px 36px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  .largeSpread {
+    min-height: 320px !important;
+  }
+  .spreadCard {
+    width: 58px !important;
+    height: 94px !important;
+    margin-left: -24px !important;
+  }
+  .spreadCard:first-child {
+    margin-left: 0 !important;
+  }
+  .spreadCard img {
+    width: 58px !important;
+    height: 94px !important;
+  }
+  .spreadCard.picked {
+    transform: translateY(-22px) scale(1.09) !important;
+  }
+  .actions {
+    grid-template-columns: 1fr !important;
+    gap: 10px;
+  }
+  .readingPanel {
+    position: relative !important;
+    top: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .placeholders span {
+    width: 44px;
+    height: 70px;
+  }
+  .askBox,
+  .bottomAsk {
+    grid-template-columns: 1fr !important;
+    padding: 16px !important;
+    border-radius: 20px !important;
+  }
+  .chatComposer textarea {
+    min-height: 116px;
+  }
+  .resultHero {
+    display: grid !important;
+    padding: 18px !important;
+  }
+  .resultHero h2 {
+    font-size: 34px !important;
+  }
+  .resultCardStrip,
+  .resultCardStrip.many {
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 12px;
+  }
+  .resultCardStrip img {
+    max-height: 210px;
+  }
+  .cardDetailGrid {
+    grid-template-columns: 1fr !important;
+  }
+  .cardDetail {
+    grid-template-columns: 82px minmax(0,1fr) !important;
+    padding: 12px !important;
+    gap: 12px !important;
+  }
+  .cardDetail img {
+    width: 82px !important;
+  }
+  .cardDetail h4 {
+    font-size: 19px !important;
+  }
+  .cardDetail p,
+  .integratedBlocks p {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .deckGrid {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 12px;
+  }
+  footer {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+}
+
+/* Small phones */
+@media (max-width: 390px) {
+  .language {
+    min-width: 102px;
+  }
+  .topBrand {
+    max-width: 90px;
+  }
+  .featureGrid button {
+    grid-template-columns: 50px minmax(0,1fr);
+    min-height: 104px;
+    padding: 15px;
+  }
+  .featureGrid .modeIcon {
+    width: 48px;
+    height: 48px;
+  }
+  .featureGrid b {
+    font-size: 18px;
+  }
+  .resultCardStrip,
+  .deckGrid {
+    grid-template-columns: 1fr !important;
+  }
+}
