@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v31",
+  "name": "fatecard-today-v33",
   "private": true,
-  "version": "31.0.0",
+  "version": "33.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v31: tarot fronts styled as clean cards instead of photographed scans."
+  "description": "FateCard.today v33: show immediate AI answer in chat area after sending a question."
 }

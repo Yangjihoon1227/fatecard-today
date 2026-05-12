@@ -65,7 +65,7 @@ function rwsImageUrl(cardId: string) {
 
 type Copy = {
   brand:string; brandSub:string; home:string; menu:string; fixed:string; freeNow:string; laterPaid:string;
-  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string; deselectHint:string; askTitle:string; askPlaceholder:string; askHelp:string; questionAnswerTitle:string; send:string; sentQuestion:string; questionApplied:string; perCardTitle:string; integratedTitle:string; resultOpenTitle:string; situation:string; cardAdvice:string; questionPending:string;
+  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string; deselectHint:string; askTitle:string; askPlaceholder:string; askHelp:string; questionAnswerTitle:string; send:string; sentQuestion:string; questionApplied:string; perCardTitle:string; integratedTitle:string; resultOpenTitle:string; situation:string; cardAdvice:string; questionPending:string; aiAnswerReady:string; aiAnswerWaiting:string;
   todayMessage:string; readingTitle:string; readingWaiting:string; aiExplainTitle:string; aiExplainText:string; cardBackNote:string; legal:string; search:string; sponsorEmail:string;
   name:string; birth:string; gender:string; job:string; genderOptions: Record<Gender,string>; start:string; homeStart:string; deckStart:string; howTitle:string; how:string[];
   requiredCards:(n:number)=>string; selectedOf:(a:number,b:number)=>string; monthsLead:string; monthsFormTitle:string;
@@ -81,7 +81,7 @@ const KO: Copy = {
   landingTitle:"FateCard.today", landingSub:"AI가 함께 해석하는 나만의 타로",
   landingLead:"리딩 종류마다 필요한 카드 수를 정해두었습니다. 펼쳐진 전체 덱에서 직접 카드를 고르고, 선택이 끝난 뒤에만 풀이가 열립니다.",
   selectFromSpread:"펼쳐진 전체 카드에서 직접 선택하세요", tip:"직감이 이끄는 카드를 고르세요. 정답은 카드보다 선택하는 순간의 마음에 더 가깝습니다.",
-  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적은 뒤 전송하면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변", send:"전송", sentQuestion:"보낸 질문", questionApplied:"이 질문을 리딩에 반영합니다.", perCardTitle:"카드별 상황 해석", integratedTitle:"종합 리딩", resultOpenTitle:"선택한 카드 전체 풀이", situation:"상황", cardAdvice:"카드 조언", questionPending:"카드를 모두 공개하면 이 질문도 함께 반영됩니다.",
+  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적은 뒤 전송하면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변", send:"전송", sentQuestion:"보낸 질문", questionApplied:"이 질문을 리딩에 반영합니다.", perCardTitle:"카드별 상황 해석", integratedTitle:"종합 리딩", resultOpenTitle:"선택한 카드 전체 풀이", situation:"상황", cardAdvice:"카드 조언", questionPending:"카드를 모두 공개하면 이 질문도 함께 반영됩니다.", aiAnswerReady:"AI 타로 답변", aiAnswerWaiting:"카드를 먼저 모두 뽑고 풀이를 열면 답변이 생성됩니다.",
   todayMessage:"오늘의 메시지", readingTitle:"당신의 리딩", readingWaiting:"필요한 카드를 모두 선택하면 여기에 풀이가 나타납니다.",
   aiExplainTitle:"AI 타로 해석이란?", aiExplainText:"AI가 카드의 의미, 선택 순서, 리딩 종류, 입력 정보를 종합하여 상징 흐름을 해석합니다. 단순 키워드가 아니라 현재 질문에 맞춰 흐름·감정·주의점·행동 방향을 정리합니다.",
   cardBackNote:"카드 뒷면은 새로 만든 오리지널 디자인입니다. 카드 앞면은 1909년 퍼블릭 도메인 계열 이미지를 기준으로 표시합니다.",
@@ -111,7 +111,7 @@ const KO: Copy = {
 const EN: Copy = {
   ...KO, home:"Home", menu:"Menu", fixed:"fixed", freeNow:"Free now", laterPaid:"Paid later",
   landingSub:"AI-assisted tarot for your own reading", landingLead:"Each reading has its own fixed card count. Pick directly from the full spread; the interpretation opens only after every required card is chosen.",
-  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and send it; the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question", send:"Send", sentQuestion:"Sent question", questionApplied:"This question is applied to the reading.", perCardTitle:"Card-by-card interpretation", integratedTitle:"Integrated reading", resultOpenTitle:"Full result for selected cards", situation:"Situation", cardAdvice:"Card advice", questionPending:"Your question will be applied once the cards are revealed.",
+  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and send it; the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question", send:"Send", sentQuestion:"Sent question", questionApplied:"This question is applied to the reading.", perCardTitle:"Card-by-card interpretation", integratedTitle:"Integrated reading", resultOpenTitle:"Full result for selected cards", situation:"Situation", cardAdvice:"Card advice", questionPending:"Your question will be applied once the cards are revealed.", aiAnswerReady:"AI tarot answer", aiAnswerWaiting:"Select all cards and reveal the reading to generate the answer.",
   todayMessage:"Today’s message", readingTitle:"Your reading", readingWaiting:"The interpretation appears here after all required cards are selected.",
   aiExplainTitle:"What is AI tarot interpretation?", aiExplainText:"AI combines card meanings, order, reading type, and personal context into a symbolic reading with flow, emotion, caution, and action guidance.",
   cardBackNote:"Card backs are original artwork. Card fronts use public-domain 1909 style tarot images.", legal:"Entertainment and self-reflection only. Not medical, legal, or financial advice.",
@@ -281,7 +281,8 @@ function cardDetailText(card:DrawCard,index:number,role:string,mode:Mode,c:Copy,
   };
 }
 
-function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,revealed}:{c:Copy;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;revealed:boolean;}){
+function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,revealed,answerBlock}:{c:Copy;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;revealed:boolean;answerBlock?:ReadingBlock | null;}){
+  const hasAnswer = Boolean(revealed && submittedQuestion && answerBlock);
   return <section className="askBox bottomAsk">
     <div>
       <h3>✦ {c.askTitle}</h3>
@@ -299,13 +300,18 @@ function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,rev
     {submittedQuestion && <div className="sentQuestion">
       <b>{c.sentQuestion}</b>
       <p>{submittedQuestion}</p>
-      <small>{revealed ? c.questionApplied : c.questionPending}</small>
+      <small>{hasAnswer ? c.questionApplied : (revealed ? c.questionApplied : c.questionPending)}</small>
+    </div>}
+    {submittedQuestion && <div className={`aiChatAnswer ${hasAnswer ? "ready" : "waiting"}`}>
+      <b>{hasAnswer ? c.aiAnswerReady : c.aiAnswerWaiting}</b>
+      {hasAnswer ? <p>{answerBlock?.body}</p> : <p>{c.aiAnswerWaiting}</p>}
     </div>}
   </section>
 }
 
 function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion,submittedQuestion,sendQuestion}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;}){
   const roles=mode==="months" ? c.monthRoles : c.roles;
+  const answerBlock = blocks.find(b=>b.title===c.questionAnswerTitle) || null;
   return <section className="reader">
     <div className="readerHero">
       <p className="eyebrow">FATECARD · {c.tabs[mode][0]}</p>
@@ -392,7 +398,7 @@ function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revea
       </aside>}
     </div>
 
-    <QuestionChat c={c} question={question} setQuestion={setQuestion} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion} revealed={revealed}/>
+    <QuestionChat c={c} question={question} setQuestion={setQuestion} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion} revealed={revealed} answerBlock={answerBlock}/>
   </section>
 }
 
