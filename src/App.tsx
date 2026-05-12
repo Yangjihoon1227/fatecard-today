@@ -17,6 +17,7 @@ type DrawCard = {
   artPath: string;
 };
 type ReadingBlock = { icon: string; title: string; body: string };
+type ChatMessage = { role: "user" | "assistant"; text: string; ts: number };
 type Personal = { name: string; birth: string; gender: Gender; job: string };
 
 const LANGS: Record<Lang, { label: string; timeZone: string }> = {
@@ -81,7 +82,7 @@ const KO: Copy = {
   landingTitle:"FateCard.today", landingSub:"AI가 함께 해석하는 나만의 타로",
   landingLead:"리딩 종류마다 필요한 카드 수를 정해두었습니다. 펼쳐진 전체 덱에서 직접 카드를 고르고, 선택이 끝난 뒤에만 풀이가 열립니다.",
   selectFromSpread:"펼쳐진 전체 카드에서 직접 선택하세요", tip:"직감이 이끄는 카드를 고르세요. 정답은 카드보다 선택하는 순간의 마음에 더 가깝습니다.",
-  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적은 뒤 전송하면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변", send:"전송", sentQuestion:"보낸 질문", questionApplied:"이 질문을 리딩에 반영합니다.", perCardTitle:"카드별 상황 해석", integratedTitle:"종합 리딩", resultOpenTitle:"선택한 카드 전체 풀이", situation:"상황", cardAdvice:"카드 조언", questionPending:"카드를 모두 공개하면 이 질문도 함께 반영됩니다.", aiAnswerReady:"AI 타로 답변", aiAnswerWaiting:"카드를 먼저 모두 뽑고 풀이를 열면 답변이 생성됩니다.",
+  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"카드 리딩을 바탕으로 AI와 질문을 주고받을 수 있습니다. 엔터 또는 전송 버튼으로 대화를 이어가세요.", questionAnswerTitle:"질문에 대한 AI 타로 답변", send:"전송", sentQuestion:"보낸 질문", questionApplied:"이 질문을 리딩에 반영합니다.", perCardTitle:"카드별 상황 해석", integratedTitle:"종합 리딩", resultOpenTitle:"선택한 카드 전체 풀이", situation:"상황", cardAdvice:"카드 조언", questionPending:"카드를 모두 공개하면 이 질문도 함께 반영됩니다.", aiAnswerReady:"AI 타로 답변", aiAnswerWaiting:"카드를 먼저 모두 뽑고 풀이를 열면 답변이 생성됩니다.",
   todayMessage:"오늘의 메시지", readingTitle:"당신의 리딩", readingWaiting:"필요한 카드를 모두 선택하면 여기에 풀이가 나타납니다.",
   aiExplainTitle:"AI 타로 해석이란?", aiExplainText:"AI가 카드의 의미, 선택 순서, 리딩 종류, 입력 정보를 종합하여 상징 흐름을 해석합니다. 단순 키워드가 아니라 현재 질문에 맞춰 흐름·감정·주의점·행동 방향을 정리합니다.",
   cardBackNote:"카드 뒷면은 새로 만든 오리지널 디자인입니다. 카드 앞면은 1909년 퍼블릭 도메인 계열 이미지를 기준으로 표시합니다.",
@@ -111,7 +112,7 @@ const KO: Copy = {
 const EN: Copy = {
   ...KO, home:"Home", menu:"Menu", fixed:"fixed", freeNow:"Free now", laterPaid:"Paid later",
   landingSub:"AI-assisted tarot for your own reading", landingLead:"Each reading has its own fixed card count. Pick directly from the full spread; the interpretation opens only after every required card is chosen.",
-  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and send it; the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question", send:"Send", sentQuestion:"Sent question", questionApplied:"This question is applied to the reading.", perCardTitle:"Card-by-card interpretation", integratedTitle:"Integrated reading", resultOpenTitle:"Full result for selected cards", situation:"Situation", cardAdvice:"Card advice", questionPending:"Your question will be applied once the cards are revealed.", aiAnswerReady:"AI tarot answer", aiAnswerWaiting:"Select all cards and reveal the reading to generate the answer.",
+  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Chat with AI using your selected cards as context. Press Enter or Send to continue the conversation.", questionAnswerTitle:"AI tarot answer to your question", send:"Send", sentQuestion:"Sent question", questionApplied:"This question is applied to the reading.", perCardTitle:"Card-by-card interpretation", integratedTitle:"Integrated reading", resultOpenTitle:"Full result for selected cards", situation:"Situation", cardAdvice:"Card advice", questionPending:"Your question will be applied once the cards are revealed.", aiAnswerReady:"AI tarot answer", aiAnswerWaiting:"Select all cards and reveal the reading to generate the answer.",
   todayMessage:"Today’s message", readingTitle:"Your reading", readingWaiting:"The interpretation appears here after all required cards are selected.",
   aiExplainTitle:"What is AI tarot interpretation?", aiExplainText:"AI combines card meanings, order, reading type, and personal context into a symbolic reading with flow, emotion, caution, and action guidance.",
   cardBackNote:"Card backs are original artwork. Card fronts use public-domain 1909 style tarot images.", legal:"Entertainment and self-reflection only. Not medical, legal, or financial advice.",
@@ -160,6 +161,15 @@ export default function App(){
   const [job,setJob]=useState(localStorage.getItem("fate-job")||"");
   const [questionDraft,setQuestionDraft]=useState(localStorage.getItem("fate-question-draft")||"");
   const [submittedQuestion,setSubmittedQuestion]=useState(localStorage.getItem("fate-question")||"");
+  const [chatMessages,setChatMessages]=useState<ChatMessage[]>(()=>{
+    try{
+      const raw=localStorage.getItem("fate-ai-chat");
+      const parsed=raw?JSON.parse(raw):[];
+      return Array.isArray(parsed)?parsed:[];
+    }catch{
+      return [];
+    }
+  });
   const [copied,setCopied]=useState(false);
 
   const c=UI[lang]||KO;
@@ -170,13 +180,22 @@ export default function App(){
   const personal={name,birth,gender,job};
   const blocks=makeReading(mode,selectedCards,c,personal,lang,submittedQuestion);
 
-  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question-draft",questionDraft);localStorage.setItem("fate-question",submittedQuestion);},[lang,name,birth,gender,job,questionDraft,submittedQuestion]);
-  useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);},[mode,lang]);
+  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question-draft",questionDraft);localStorage.setItem("fate-question",submittedQuestion);localStorage.setItem("fate-ai-chat",JSON.stringify(chatMessages.slice(-24)));},[lang,name,birth,gender,job,questionDraft,submittedQuestion,chatMessages]);
+  useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);setChatMessages([]);},[mode,lang]);
   const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);setLangMenu(false);if(typeof window!=="undefined" && window.innerWidth<=860){setDrawer(false);}window.scrollTo({top:0,behavior:"smooth"});};
   const reshuffle=()=>{setShuffleSeed("seed-"+Date.now());setSelectedIds([]);setRevealed(false);setCopied(false);};
   const choose=(id:string)=>{if(revealed)return;if(selectedIds.includes(id)){setSelectedIds(selectedIds.filter(x=>x!==id));setCopied(false);return;}if(selectedIds.length>=need)return;setSelectedIds([...selectedIds,id]);setCopied(false);};
   const showReading=()=>{if(complete)setRevealed(true);};
-  const sendQuestion=()=>{const q=questionDraft.trim();if(!q)return;setSubmittedQuestion(q);setCopied(false);};
+  const sendQuestion=()=>{
+    const q=questionDraft.trim();
+    if(!q)return;
+    const now=Date.now();
+    const answer=makeChatAnswer(mode,selectedCards,c,personal,lang,q,revealed);
+    setSubmittedQuestion(q);
+    setChatMessages(prev=>[...prev,{role:"user",text:q,ts:now},{role:"assistant",text:answer,ts:now+1}].slice(-24));
+    setQuestionDraft("");
+    setCopied(false);
+  };
   const copyReading=async()=>{await navigator.clipboard?.writeText(blocks.map(x=>`${x.title}\n${x.body}`).join("\n\n"));setCopied(true);};
 
   return <div className={`app ${drawer?"drawerOpen":"drawerClosed"}`}>
@@ -216,7 +235,7 @@ export default function App(){
       {mode==="deck" && <Deck c={c} lang={lang}/>}
       {mode==="sponsor" && <Sponsor c={c}/>}
       {mode!=="home" && mode!=="deck" && mode!=="sponsor" &&
-        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob} question={questionDraft} setQuestion={setQuestionDraft} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion}/>
+        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob} question={questionDraft} setQuestion={setQuestionDraft} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion} chatMessages={chatMessages}/>
       }
       <footer>{c.legal}</footer>
     </main>
@@ -293,13 +312,24 @@ function cardDetailText(card:DrawCard,index:number,role:string,mode:Mode,c:Copy,
   };
 }
 
-function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,revealed,answerBlock}:{c:Copy;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;revealed:boolean;answerBlock?:ReadingBlock | null;}){
-  const hasAnswer = Boolean(revealed && submittedQuestion && answerBlock);
-  return <section className="askBox bottomAsk">
+
+function QuestionChat({c,question,setQuestion,sendQuestion,revealed,chatMessages}:{c:Copy;question:string;setQuestion:(s:string)=>void;sendQuestion:()=>void;revealed:boolean;chatMessages:ChatMessage[];}){
+  return <section className="askBox bottomAsk chatAsk">
     <div>
       <h3>✦ {c.askTitle}</h3>
       <p>{c.askHelp}</p>
     </div>
+
+    <div className="aiConversation" aria-live="polite">
+      {chatMessages.length===0 ? <div className="chatEmpty">
+        <b>{revealed ? "AI가 리딩을 읽을 준비가 되었습니다." : "카드를 뽑고 풀이를 열면 더 정확하게 답할 수 있습니다."}</b>
+        <p>{revealed ? "궁금한 점을 보내면 선택한 카드의 상징을 기준으로 바로 답변합니다." : "질문은 지금도 보낼 수 있지만, 카드 공개 후 질문하면 더 구체적인 답변이 나옵니다."}</p>
+      </div> : chatMessages.map((m,i)=><div key={`${m.ts}-${i}`} className={`chatBubble ${m.role}`}>
+        <small>{m.role==="user" ? "나" : "AI Tarot"}</small>
+        <p>{m.text}</p>
+      </div>)}
+    </div>
+
     <div className="chatComposer">
       <textarea
         value={question}
@@ -309,21 +339,12 @@ function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,rev
       />
       <button onClick={sendQuestion} disabled={!question.trim()}>{c.send}</button>
     </div>
-    {submittedQuestion && <div className="sentQuestion">
-      <b>{c.sentQuestion}</b>
-      <p>{submittedQuestion}</p>
-      <small>{hasAnswer ? c.questionApplied : (revealed ? c.questionApplied : c.questionPending)}</small>
-    </div>}
-    {submittedQuestion && <div className={`aiChatAnswer ${hasAnswer ? "ready" : "waiting"}`}>
-      <b>{hasAnswer ? c.aiAnswerReady : c.aiAnswerWaiting}</b>
-      {hasAnswer ? <p>{answerBlock?.body}</p> : <p>{c.aiAnswerWaiting}</p>}
-    </div>}
   </section>
 }
 
-function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion,submittedQuestion,sendQuestion}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;}){
+
+function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion,submittedQuestion,sendQuestion,chatMessages}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;chatMessages:ChatMessage[];}){
   const roles=mode==="months" ? c.monthRoles : c.roles;
-  const answerBlock = blocks.find(b=>b.title===c.questionAnswerTitle) || null;
   return <section className="reader">
     <div className="readerHero">
       <p className="eyebrow">FATECARD · {c.tabs[mode][0]}</p>
@@ -410,10 +431,47 @@ function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revea
       </aside>}
     </div>
 
-    <QuestionChat c={c} question={question} setQuestion={setQuestion} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion} revealed={revealed} answerBlock={answerBlock}/>
+    <QuestionChat c={c} question={question} setQuestion={setQuestion} sendQuestion={sendQuestion} revealed={revealed} chatMessages={chatMessages}/>
   </section>
 }
 
+
+
+function makeChatAnswer(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:Lang,question:string,revealed:boolean):string{
+  const q=question.trim();
+  const ko=lang==="ko";
+  if(!revealed || cards.length===0){
+    if(ko){
+      return `질문 “${q}”은 받았습니다. 다만 아직 카드가 공개되지 않았기 때문에 지금은 일반적인 방향만 말할 수 있습니다. 먼저 카드를 직접 선택하고 풀이를 연 뒤 다시 질문하면, 선택된 카드의 상징과 질문을 연결해서 더 구체적으로 답변하겠습니다. 지금 단계에서 핵심은 질문을 더 선명하게 만드는 것입니다. 원하는 결과가 아니라 실제로 알고 싶은 지점이 무엇인지 한 문장으로 좁혀보세요.`;
+    }
+    return `I received your question: “${q}”. The cards are not revealed yet, so I can only answer in a general way. Choose your cards and open the reading, then ask again for a card-based answer.`;
+  }
+
+  const names=cards.map(x=>x.title).join(" · ");
+  const first=cards[0];
+  const last=cards[cards.length-1] || first;
+  const who=personal.name ? `${personal.name}님` : "당신";
+  const modeLabel=c.tabs[mode]?.[0] || "타로";
+  const isMoney=/돈|재물|부자|부자가|투자|수익|사업|재산|금전|rich|money|invest|business|profit/i.test(q);
+  const isLove=/연애|사랑|상대|남자|여자|관계|좋아|마음|연락|love|relationship|crush|contact/i.test(q);
+  const isWork=/일|직업|취업|진로|사업|회사|공부|시험|career|job|work|study/i.test(q);
+
+  if(ko){
+    let focus="지금 질문은 감정적인 기대보다 현실 조건을 정리하는 쪽으로 읽힙니다.";
+    if(isMoney) focus="돈과 성공에 관한 질문으로 보면, 카드들은 ‘한 번에 크게 얻는 운’보다 기준·반복·리스크 관리로 쌓아가는 흐름을 말합니다.";
+    else if(isLove) focus="관계 질문으로 보면, 카드들은 상대의 한마디보다 반복되는 태도와 속도 차이를 보라고 말합니다.";
+    else if(isWork) focus="일과 진로 질문으로 보면, 카드들은 준비만 오래 하는 것보다 작게라도 결과물을 외부에 보여주는 쪽을 강조합니다.";
+
+    return `${who}, 질문 “${q}”에 대한 답변입니다. 이번 ${modeLabel}에서 핵심 카드 흐름은 ${names}입니다. 첫 카드인 ${first.title}는 질문의 출발점이 어디에 묶여 있는지를 보여주고, 마지막 카드인 ${last.title}는 선택 뒤에 감당해야 할 현실적 결과를 보여줍니다. ${focus} 특히 ${first.title}의 조언은 “${first.mission}”입니다. 그래서 지금 바로 할 일은 막연히 운이 좋아지길 기다리는 것이 아니라, 오늘 통제 가능한 행동 하나를 정하는 것입니다. 주의할 점은 “${first.warning}”입니다. 결론적으로 가능성은 있지만, 감정적으로 끌리는 답만 좇으면 흐름이 흐려지고, 기준을 세워 반복하면 결과가 좋아질 가능성이 커집니다.`;
+  }
+
+  let focus="This question points less to wishful thinking and more to practical conditions.";
+  if(isMoney) focus="For money or success, the cards emphasize standards, repetition, and risk control rather than sudden luck.";
+  else if(isLove) focus="For love, the cards ask you to watch repeated behavior and timing rather than one intense signal.";
+  else if(isWork) focus="For work or career, the cards favor visible output over endless preparation.";
+
+  return `${personal.name || "You"}, here is the answer to “${q}”. The card flow is ${names}. The first card, ${first.title}, shows the starting tension; the last card, ${last.title}, shows the consequence to handle after the choice. ${focus} Immediate guidance: ${first.mission} Caution: ${first.warning}`;
+}
 
 function injectQuestionBlock(base:ReadingBlock[], question:string, block:ReadingBlock | null):ReadingBlock[]{
   if(!question.trim() || !block)return base;

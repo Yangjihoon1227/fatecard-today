@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v35",
+  "name": "fatecard-today-v36",
   "private": true,
-  "version": "35.0.0",
+  "version": "36.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v35: custom dark language menu, art-only tarot crop, and smoother sidebar UX."
+  "description": "FateCard.today v36: AI question area becomes a real conversational chat-style response area."
 }

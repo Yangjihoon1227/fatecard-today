@@ -1833,3 +1833,72 @@ body {
   .resultCardStrip .cardArtShell.artOnly,.chosenCards .cardArtShell.artOnly{max-width:190px!important;}
   .cardDetail .detailArt.cardArtShell.artOnly{width:82px!important;}
 }
+
+
+/* v36: conversational AI tarot chat */
+.chatAsk{
+  grid-template-columns:minmax(220px,.32fr) minmax(320px,1fr) !important;
+}
+.aiConversation{
+  min-height:150px;
+  max-height:360px;
+  overflow:auto;
+  padding:14px;
+  border:1px solid rgba(214,162,79,.24);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(168,85,247,.14), transparent 34%),
+    rgba(6,10,24,.64);
+}
+.chatEmpty{
+  color:#d8d1e8;
+  line-height:1.7;
+}
+.chatEmpty b{
+  color:#ffe1a3;
+}
+.chatBubble{
+  max-width:88%;
+  margin:10px 0;
+  padding:12px 14px;
+  border-radius:18px;
+  border:1px solid rgba(214,162,79,.20);
+  line-height:1.75;
+}
+.chatBubble small{
+  display:block;
+  margin-bottom:4px;
+  font-weight:900;
+  color:#ffe1a3;
+}
+.chatBubble p{
+  margin:0;
+  color:#f4eefc;
+  white-space:pre-wrap;
+}
+.chatBubble.user{
+  margin-left:auto;
+  background:linear-gradient(135deg,rgba(91,33,182,.62),rgba(214,162,79,.15));
+  border-color:rgba(192,132,252,.38);
+}
+.chatBubble.assistant{
+  margin-right:auto;
+  background:rgba(8,13,30,.78);
+}
+.chatComposer{
+  grid-column:2;
+}
+@media(max-width:860px){
+  .chatAsk{
+    grid-template-columns:1fr !important;
+  }
+  .chatComposer{
+    grid-column:auto;
+  }
+  .aiConversation{
+    max-height:420px;
+  }
+  .chatBubble{
+    max-width:100%;
+  }
+}
