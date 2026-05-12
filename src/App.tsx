@@ -148,6 +148,7 @@ function makeCard(base:TarotCardBase,lang:Lang,seed:string):DrawCard{const rev=h
 
 export default function App(){
   const [lang,setLang]=useState<Lang>((localStorage.getItem("fate-lang") as Lang)||"ko");
+  const [langMenu,setLangMenu]=useState(false);
   const [mode,setMode]=useState<Mode>("home");
   const [drawer,setDrawer]=useState(()=> typeof window==="undefined" ? true : window.innerWidth>860);
   const [shuffleSeed,setShuffleSeed]=useState(()=>"seed-"+Date.now());
@@ -171,7 +172,7 @@ export default function App(){
 
   useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question-draft",questionDraft);localStorage.setItem("fate-question",submittedQuestion);},[lang,name,birth,gender,job,questionDraft,submittedQuestion]);
   useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);},[mode,lang]);
-  const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);if(typeof window!=="undefined" && window.innerWidth<=860){setDrawer(false);}window.scrollTo({top:0,behavior:"smooth"});};
+  const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);setLangMenu(false);if(typeof window!=="undefined" && window.innerWidth<=860){setDrawer(false);}window.scrollTo({top:0,behavior:"smooth"});};
   const reshuffle=()=>{setShuffleSeed("seed-"+Date.now());setSelectedIds([]);setRevealed(false);setCopied(false);};
   const choose=(id:string)=>{if(revealed)return;if(selectedIds.includes(id)){setSelectedIds(selectedIds.filter(x=>x!==id));setCopied(false);return;}if(selectedIds.length>=need)return;setSelectedIds([...selectedIds,id]);setCopied(false);};
   const showReading=()=>{if(complete)setRevealed(true);};
@@ -201,7 +202,14 @@ export default function App(){
         <button className="topBrand" onClick={()=>go("home")}>{c.brand}</button>
         <div className="topSpacer"/>
         <button className="messageBtn">✦ {c.todayMessage}</button>
-        <label className="language">◎ <select value={lang} onChange={e=>setLang(e.target.value as Lang)}>{Object.entries(LANGS).map(([k,v])=><option key={k} value={k}>{v.label}</option>)}</select></label>
+        <div className={`languageMenu ${langMenu?"open":""}`}>
+          <button className="languageTrigger" onClick={()=>setLangMenu(!langMenu)} aria-expanded={langMenu} aria-label="Language">
+            <GlobeIcon/><span>{LANGS[lang].label}</span><i>⌄</i>
+          </button>
+          {langMenu && <div className="languagePanel">{Object.entries(LANGS).map(([k,v])=>{const key=k as Lang;return <button key={k} className={key===lang?"active":""} onClick={()=>{setLang(key);setLangMenu(false);}}>
+            <GlobeIcon/><span>{v.label}</span><small>{k.toUpperCase()}</small>
+          </button>})}</div>}
+        </div>
       </header>
 
       {mode==="home" && <Home c={c} go={go}/>}
@@ -215,6 +223,10 @@ export default function App(){
   </div>
 }
 
+
+function GlobeIcon(){
+  return <svg className="globeIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.1 2.4 3.2 5.2 3.2 8.5s-1.1 6.1-3.2 8.5M12 3.5C9.9 5.9 8.8 8.7 8.8 12s1.1 6.1 3.2 8.5"/></svg>;
+}
 
 function CardArt({src,title,className=""}:{src:string;title:string;className?:string}){
   return <div className={`cardArtShell artOnly ${className}`.trim()}><div className="cardArtMat"><img className="cardArtImage" src={src} alt={title} loading="lazy"/></div></div>;

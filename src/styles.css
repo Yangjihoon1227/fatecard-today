@@ -1770,3 +1770,66 @@ body {
     width:82px !important;
   }
 }
+
+
+/* v35: custom dark language selector, stronger art-only cards, smoother scroll sidebar */
+.sidebar{
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  scroll-behavior:smooth !important;
+  overscroll-behavior:contain !important;
+  scrollbar-width:thin;
+  scrollbar-color: rgba(231,192,111,.42) rgba(8,13,30,.30);
+}
+.sidebar::-webkit-scrollbar{width:8px;}
+.sidebar::-webkit-scrollbar-track{background:rgba(8,13,30,.32);}
+.sidebar::-webkit-scrollbar-thumb{background:linear-gradient(180deg,rgba(231,192,111,.70),rgba(126,74,189,.52));border-radius:999px;}
+.language{display:none !important;}
+.languageMenu{position:relative;z-index:30;}
+.languageTrigger{
+  height:46px;min-width:142px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:0 15px;border-radius:999px;border:1px solid rgba(231,192,111,.56);
+  background:linear-gradient(135deg,rgba(8,13,30,.92),rgba(38,27,67,.86));
+  color:#fff3cd;font-weight:900;box-shadow:0 0 22px rgba(214,162,79,.11), inset 0 1px 0 rgba(255,255,255,.09);
+}
+.languageTrigger i{font-style:normal;color:#e7c06f;transition:transform .18s ease;}
+.languageMenu.open .languageTrigger i{transform:rotate(180deg);}
+.globeIcon{width:19px;height:19px;stroke:#f4d388;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(231,192,111,.22));}
+.languagePanel{
+  position:absolute;right:0;top:calc(100% + 10px);width:218px;padding:8px;border-radius:18px;
+  border:1px solid rgba(231,192,111,.42);background:rgba(5,9,22,.96);
+  box-shadow:0 26px 70px rgba(0,0,0,.55),0 0 0 1px rgba(151,91,255,.13);backdrop-filter:blur(16px);
+}
+.languagePanel button{width:100%;min-height:42px;display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:8px;padding:8px 10px;border:0;border-radius:13px;background:transparent;color:#eee8ff;text-align:left;font-weight:800;}
+.languagePanel button:hover,.languagePanel button.active{background:linear-gradient(135deg,rgba(97,50,157,.58),rgba(214,162,79,.16));color:#fff3cd;}
+.languagePanel small{color:#d0a95f;font-size:11px;letter-spacing:.08em;}
+/* Final card rendering policy: no visible white/cream scan/card margin. Show illustration-only rounded tarot art. */
+.cardArtShell.artOnly{padding:0!important;margin:0 auto!important;border:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden!important;}
+.cardArtShell.artOnly::before,.cardArtShell.artOnly::after{display:none!important;}
+.cardArtShell.artOnly .cardArtMat{
+  width:100%!important;aspect-ratio:.68/1!important;border-radius:16px!important;overflow:hidden!important;background:#070b18!important;
+  border:1px solid rgba(231,192,111,.30)!important;box-shadow:0 20px 38px rgba(0,0,0,.48),0 0 0 1px rgba(255,235,170,.08),0 0 32px rgba(168,85,247,.10)!important;
+}
+.cardArtShell.artOnly .cardArtMat::before{display:none!important;}
+.cardArtShell.artOnly .cardArtImage{
+  display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 29%!important;
+  transform:scale(2.18)!important;transform-origin:center 29%!important;filter:contrast(1.10) saturate(1.10) brightness(1.03)!important;background:transparent!important;
+}
+.resultCardStrip .cardArtShell.artOnly,.chosenCards .cardArtShell.artOnly{max-width:210px!important;}
+.cardDetail .detailArt.cardArtShell.artOnly{width:108px!important;align-self:start!important;}
+.deckGrid .guideArt.cardArtShell.artOnly{width:100%!important;}
+.resultCardStrip div{background:rgba(6,10,24,.62)!important;}
+/* Smooth sticky feeling on desktop without covering content */
+@media(min-width:861px){
+  .topBar{position:sticky;top:0;z-index:25;background:linear-gradient(180deg,rgba(3,7,18,.92),rgba(3,7,18,.54));backdrop-filter:blur(12px);border-bottom:1px solid rgba(231,192,111,.08);}
+  .sidebar{height:100dvh!important;}
+}
+@media(max-width:860px){
+  .languageTrigger{min-width:112px;height:42px;padding:0 10px;gap:7px;}
+  .languageTrigger span{max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .languagePanel{right:0;width:204px;}
+  .cardArtShell.artOnly .cardArtMat{border-radius:14px!important;}
+  .cardArtShell.artOnly .cardArtImage{object-position:center 29%!important;transform:scale(2.24)!important;transform-origin:center 29%!important;}
+  .resultCardStrip .cardArtShell.artOnly,.chosenCards .cardArtShell.artOnly{max-width:190px!important;}
+  .cardDetail .detailArt.cardArtShell.artOnly{width:82px!important;}
+}

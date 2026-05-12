@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v34",
+  "name": "fatecard-today-v35",
   "private": true,
-  "version": "34.0.0",
+  "version": "35.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v34: remove visible white scan borders on mobile by using art-only tarot rendering."
+  "description": "FateCard.today v35: custom dark language menu, art-only tarot crop, and smoother sidebar UX."
 }
