@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v36",
+  "name": "fatecard-today-v37",
   "private": true,
-  "version": "36.0.0",
+  "version": "37.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v36: AI question area becomes a real conversational chat-style response area."
+  "description": "FateCard.today v37: Render Docker build fix using npm ci and stable npm flags."
 }
