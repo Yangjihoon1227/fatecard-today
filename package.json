@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v24",
+  "name": "fatecard-today-v25",
   "private": true,
-  "version": "24.0.0",
+  "version": "25.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v24: polished landing, home navigation, collapsible menu, full-card display, and direct reading screens."
+  "description": "FateCard.today v25: premium home, single collapsible sidebar, full-deck spread draw, selectable card count."
 }
