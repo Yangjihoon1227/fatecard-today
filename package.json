@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v23",
+  "name": "fatecard-today-v24",
   "private": true,
-  "version": "23.0.0",
+  "version": "24.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v23: premium draw UI using public-domain 1909 RWS card artwork from Wikimedia Commons."
+  "description": "FateCard.today v24: polished landing, home navigation, collapsible menu, full-card display, and direct reading screens."
 }
