@@ -1,28 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="The Chariot">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#061021"/><stop offset="44%" stop-color="#24143b"/><stop offset="100%" stop-color="#050816"/></linearGradient>
-  <radialGradient id="halo" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#facc15" stop-opacity=".20"/><stop offset="52%" stop-color="#a78bfa" stop-opacity=".12"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
-  <filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080b18"/><stop offset=".52" stop-color="#211436"/><stop offset="1" stop-color="#050812"/></linearGradient>
+<radialGradient id="a" cx="50%" cy="40%" r="64%"><stop stop-color="#67e8f9" stop-opacity=".22"/><stop offset=".55" stop-color="#facc15" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#67e8f9" flood-opacity=".42"/></filter>
 </defs>
 <rect width="420" height="660" rx="34" fill="url(#bg)"/>
-<rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#d6a84f" stroke-width="3" stroke-opacity=".85"/>
-<rect x="32" y="32" width="356" height="596" rx="22" fill="url(#halo)"/>
-<g fill="none" stroke="#d6a84f" stroke-opacity=".34">
-  <path d="M52 82 C96 48,142 44,184 58"/><path d="M236 58 C278 44,324 48,368 82"/>
-  <path d="M52 578 C96 612,142 616,184 602"/><path d="M236 602 C278 616,324 612,368 578"/>
-  <path d="M70 110 H350 M70 550 H350"/>
-</g>
-<text x="62" y="84" font-size="25" fill="#fff7ed" font-family="Georgia,serif">07</text>
-<text x="358" y="84" text-anchor="end" font-size="25" fill="#fff7ed" font-family="Georgia,serif">07</text>
-<g>
-        <circle cx="210" cy="135" r="64" fill="#fcd34d" opacity=".25"/>
-        <path d="M156 238 L264 238 L292 430 H128 Z" fill="#1e1b4b" stroke="#fcd34d" stroke-width="4"/>
-        <circle cx="165" cy="450" r="34" fill="none" stroke="#fcd34d" stroke-width="7"/><circle cx="255" cy="450" r="34" fill="none" stroke="#fcd34d" stroke-width="7"/>
-        <path d="M140 238 Q210 180 280 238" stroke="#fcd34d" stroke-width="5" fill="none"/>
-        <path d="M92 398 C110 330,155 330,180 398" fill="#f8fafc" opacity=".75"/><path d="M240 398 C265 330,310 330,328 398" fill="#111827" opacity=".85"/>
-        <path d="M210 188 V326" stroke="#f8fafc" stroke-width="6"/><text x="210" y="178" text-anchor="middle" font-size="38" fill="#fcd34d">✦</text></g>
-<g opacity=".7"><circle cx="88" cy="160" r="2" fill="#fde68a"/><circle cx="336" cy="180" r="2" fill="#c4b5fd"/><circle cx="330" cy="492" r="2.3" fill="#fde68a"/><circle cx="92" cy="488" r="2" fill="#c4b5fd"/></g>
-<rect x="54" y="528" width="312" height="74" rx="17" fill="#020617" opacity=".62" stroke="#d6a84f" stroke-opacity=".30"/>
-<text x="210" y="566" text-anchor="middle" font-size="20" font-family="Georgia,serif" fill="#fff7ed">The Chariot</text>
-<text x="210" y="592" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
+<rect x="18" y="18" width="384" height="624" rx="30" fill="url(#a)" stroke="#d6a24f" stroke-opacity=".82" stroke-width="2.4"/>
+<rect x="36" y="36" width="348" height="588" rx="22" fill="none" stroke="#facc15" stroke-opacity=".28" stroke-width="1.5"/>
+<circle cx="248" cy="497" r="1.5" fill="#fff1b8" opacity="0.28"/>
+<circle cx="286" cy="497" r="1.5" fill="#fff1b8" opacity="0.37"/>
+<circle cx="76" cy="434" r="2" fill="#fff1b8" opacity="0.45"/>
+<circle cx="371" cy="95" r="1.5" fill="#fff1b8" opacity="0.30"/>
+<circle cx="49" cy="235" r="1" fill="#fff1b8" opacity="0.54"/>
+<circle cx="141" cy="383" r="2" fill="#fff1b8" opacity="0.65"/>
+<circle cx="100" cy="490" r="2" fill="#fff1b8" opacity="0.50"/>
+<circle cx="229" cy="249" r="1.2" fill="#fff1b8" opacity="0.51"/>
+<circle cx="229" cy="484" r="1" fill="#fff1b8" opacity="0.75"/>
+<circle cx="302" cy="472" r="1.5" fill="#fff1b8" opacity="0.45"/>
+<circle cx="45" cy="93" r="1.2" fill="#fff1b8" opacity="0.75"/>
+<circle cx="241" cy="308" r="1" fill="#fff1b8" opacity="0.29"/>
+<circle cx="139" cy="537" r="1.2" fill="#fff1b8" opacity="0.49"/>
+<circle cx="349" cy="118" r="1" fill="#fff1b8" opacity="0.59"/>
+<circle cx="298" cy="274" r="1.2" fill="#fff1b8" opacity="0.61"/>
+<circle cx="47" cy="439" r="1.2" fill="#fff1b8" opacity="0.64"/>
+<circle cx="56" cy="318" r="1" fill="#fff1b8" opacity="0.45"/>
+<circle cx="362" cy="297" r="1" fill="#fff1b8" opacity="0.70"/>
+<circle cx="154" cy="439" r="2" fill="#fff1b8" opacity="0.56"/>
+<circle cx="175" cy="196" r="1.5" fill="#fff1b8" opacity="0.67"/>
+<circle cx="108" cy="126" r="1.2" fill="#fff1b8" opacity="0.39"/>
+<circle cx="182" cy="67" r="2" fill="#fff1b8" opacity="0.40"/>
+<circle cx="217" cy="264" r="1.5" fill="#fff1b8" opacity="0.31"/>
+<circle cx="307" cy="307" r="1.2" fill="#fff1b8" opacity="0.32"/>
+<circle cx="130" cy="164" r="1" fill="#fff1b8" opacity="0.34"/>
+<circle cx="311" cy="496" r="1.2" fill="#fff1b8" opacity="0.68"/>
+<circle cx="145" cy="581" r="2" fill="#fff1b8" opacity="0.34"/>
+<circle cx="327" cy="512" r="1.2" fill="#fff1b8" opacity="0.53"/>
+<circle cx="327" cy="195" r="2" fill="#fff1b8" opacity="0.47"/>
+<circle cx="171" cy="128" r="1.2" fill="#fff1b8" opacity="0.42"/>
+<circle cx="247" cy="150" r="2" fill="#fff1b8" opacity="0.33"/>
+<circle cx="263" cy="474" r="1.5" fill="#fff1b8" opacity="0.52"/>
+<circle cx="267" cy="87" r="2" fill="#fff1b8" opacity="0.43"/>
+<circle cx="293" cy="384" r="1.2" fill="#fff1b8" opacity="0.31"/>
+<circle cx="138" cy="330" r="2" fill="#fff1b8" opacity="0.70"/>
+<circle cx="175" cy="380" r="1.5" fill="#fff1b8" opacity="0.28"/>
+<circle cx="303" cy="94" r="2" fill="#fff1b8" opacity="0.44"/>
+<circle cx="289" cy="520" r="1.2" fill="#fff1b8" opacity="0.62"/>
+<path d="M70 104 C132 68 288 68 350 104 M70 556 C132 592 288 592 350 556" fill="none" stroke="#d6a24f" stroke-opacity=".28" stroke-width="2"/>
+<text x="64" y="78" fill="#fff1b8" font-size="22" font-family="Georgia,serif">07</text>
+<text x="356" y="78" text-anchor="end" fill="#fff1b8" font-size="22" font-family="Georgia,serif">07</text>
+<g filter="url(#glow)">
+        <ellipse cx="210" cy="430" rx="108" ry="24" fill="#facc15" opacity=".15"/>
+        <path d="M140 378 C174 306 236 306 280 378" fill="#67e8f9" opacity=".16" stroke="#67e8f9" stroke-width="3"/>
+        <circle cx="210" cy="232" r="38" fill="#facc15" opacity=".20" stroke="#67e8f9" stroke-width="3"/>
+        <path d="M166 300 L254 300 L282 410 L138 410 Z" fill="#67e8f9" opacity=".20" stroke="#facc15" stroke-width="3"/>
+        <path d="M254 228 C286 252 296 292 282 334" fill="none" stroke="#67e8f9" stroke-width="6" stroke-linecap="round"/>
+        <text x="210" y="318" text-anchor="middle" font-size="56" fill="#67e8f9" font-family="Georgia,serif">♞</text>
+        </g>
+<rect x="58" y="530" width="304" height="74" rx="17" fill="#050812" opacity=".74" stroke="#d6a24f" stroke-opacity=".30"/>
+<text x="210" y="566" text-anchor="middle" fill="#fff7df" font-size="20" font-family="Georgia,serif">The Chariot</text>
+<text x="210" y="592" text-anchor="middle" fill="#c9b27a" font-size="9" font-family="Arial" letter-spacing="3">FATECARD ORIGINAL</text>
 </svg>

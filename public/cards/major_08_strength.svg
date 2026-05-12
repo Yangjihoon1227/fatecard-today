@@ -1,27 +1,60 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="660" viewBox="0 0 420 660" role="img" aria-label="Strength">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#061021"/><stop offset="44%" stop-color="#24143b"/><stop offset="100%" stop-color="#050816"/></linearGradient>
-  <radialGradient id="halo" cx="50%" cy="40%" r="62%"><stop offset="0%" stop-color="#facc15" stop-opacity=".20"/><stop offset="52%" stop-color="#a78bfa" stop-opacity=".12"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>
-  <filter id="glow"><feGaussianBlur stdDeviation="3"/></filter>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#080b18"/><stop offset=".52" stop-color="#211436"/><stop offset="1" stop-color="#050812"/></linearGradient>
+<radialGradient id="a" cx="50%" cy="40%" r="64%"><stop stop-color="#f59e0b" stop-opacity=".22"/><stop offset=".55" stop-color="#fecaca" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+<filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#f59e0b" flood-opacity=".42"/></filter>
 </defs>
 <rect width="420" height="660" rx="34" fill="url(#bg)"/>
-<rect x="18" y="18" width="384" height="624" rx="28" fill="none" stroke="#d6a84f" stroke-width="3" stroke-opacity=".85"/>
-<rect x="32" y="32" width="356" height="596" rx="22" fill="url(#halo)"/>
-<g fill="none" stroke="#d6a84f" stroke-opacity=".34">
-  <path d="M52 82 C96 48,142 44,184 58"/><path d="M236 58 C278 44,324 48,368 82"/>
-  <path d="M52 578 C96 612,142 616,184 602"/><path d="M236 602 C278 616,324 612,368 578"/>
-  <path d="M70 110 H350 M70 550 H350"/>
-</g>
-<text x="62" y="84" font-size="25" fill="#fff7ed" font-family="Georgia,serif">08</text>
-<text x="358" y="84" text-anchor="end" font-size="25" fill="#fff7ed" font-family="Georgia,serif">08</text>
-<g>
-        <circle cx="210" cy="190" r="60" fill="#f59e0b" opacity=".45"/><circle cx="210" cy="190" r="36" fill="#fbbf24" opacity=".75"/>
-        <path d="M120 380 C150 300,270 300,300 380 C278 438,142 438,120 380 Z" fill="#b45309" opacity=".72" stroke="#f59e0b" stroke-width="4"/>
-        <circle cx="176" cy="184" r="5" fill="#111827"/><circle cx="244" cy="184" r="5" fill="#111827"/>
-        <path d="M190 214 Q210 232 230 214" stroke="#111827" stroke-width="4" fill="none"/>
-        <text x="210" y="118" text-anchor="middle" font-size="58" fill="#f59e0b">∞</text></g>
-<g opacity=".7"><circle cx="88" cy="160" r="2" fill="#fde68a"/><circle cx="336" cy="180" r="2" fill="#c4b5fd"/><circle cx="330" cy="492" r="2.3" fill="#fde68a"/><circle cx="92" cy="488" r="2" fill="#c4b5fd"/></g>
-<rect x="54" y="528" width="312" height="74" rx="17" fill="#020617" opacity=".62" stroke="#d6a84f" stroke-opacity=".30"/>
-<text x="210" y="566" text-anchor="middle" font-size="20" font-family="Georgia,serif" fill="#fff7ed">Strength</text>
-<text x="210" y="592" text-anchor="middle" font-size="9" font-family="Arial,sans-serif" letter-spacing="3" fill="#c4b5fd">FATECARD ORIGINAL</text>
+<rect x="18" y="18" width="384" height="624" rx="30" fill="url(#a)" stroke="#d6a24f" stroke-opacity=".82" stroke-width="2.4"/>
+<rect x="36" y="36" width="348" height="588" rx="22" fill="none" stroke="#fecaca" stroke-opacity=".28" stroke-width="1.5"/>
+<circle cx="176" cy="184" r="1.2" fill="#fff1b8" opacity="0.75"/>
+<circle cx="359" cy="418" r="1.5" fill="#fff1b8" opacity="0.67"/>
+<circle cx="133" cy="395" r="2" fill="#fff1b8" opacity="0.67"/>
+<circle cx="147" cy="110" r="2" fill="#fff1b8" opacity="0.40"/>
+<circle cx="76" cy="358" r="1" fill="#fff1b8" opacity="0.38"/>
+<circle cx="152" cy="368" r="1.5" fill="#fff1b8" opacity="0.64"/>
+<circle cx="356" cy="93" r="1.5" fill="#fff1b8" opacity="0.42"/>
+<circle cx="91" cy="429" r="1.5" fill="#fff1b8" opacity="0.67"/>
+<circle cx="350" cy="318" r="1.5" fill="#fff1b8" opacity="0.53"/>
+<circle cx="304" cy="325" r="1.5" fill="#fff1b8" opacity="0.56"/>
+<circle cx="351" cy="308" r="1" fill="#fff1b8" opacity="0.66"/>
+<circle cx="335" cy="558" r="1.2" fill="#fff1b8" opacity="0.44"/>
+<circle cx="195" cy="574" r="1.2" fill="#fff1b8" opacity="0.61"/>
+<circle cx="356" cy="311" r="1.2" fill="#fff1b8" opacity="0.27"/>
+<circle cx="278" cy="362" r="1.5" fill="#fff1b8" opacity="0.54"/>
+<circle cx="159" cy="449" r="1.2" fill="#fff1b8" opacity="0.66"/>
+<circle cx="133" cy="124" r="1.2" fill="#fff1b8" opacity="0.59"/>
+<circle cx="66" cy="574" r="1" fill="#fff1b8" opacity="0.57"/>
+<circle cx="90" cy="417" r="2" fill="#fff1b8" opacity="0.74"/>
+<circle cx="171" cy="560" r="2" fill="#fff1b8" opacity="0.36"/>
+<circle cx="337" cy="585" r="1.5" fill="#fff1b8" opacity="0.72"/>
+<circle cx="104" cy="172" r="1.5" fill="#fff1b8" opacity="0.50"/>
+<circle cx="109" cy="583" r="1.5" fill="#fff1b8" opacity="0.67"/>
+<circle cx="323" cy="534" r="2" fill="#fff1b8" opacity="0.58"/>
+<circle cx="346" cy="456" r="1" fill="#fff1b8" opacity="0.64"/>
+<circle cx="263" cy="208" r="2" fill="#fff1b8" opacity="0.47"/>
+<circle cx="243" cy="69" r="1.2" fill="#fff1b8" opacity="0.45"/>
+<circle cx="239" cy="436" r="1" fill="#fff1b8" opacity="0.48"/>
+<circle cx="239" cy="268" r="2" fill="#fff1b8" opacity="0.58"/>
+<circle cx="122" cy="187" r="1.5" fill="#fff1b8" opacity="0.51"/>
+<circle cx="185" cy="362" r="1.2" fill="#fff1b8" opacity="0.33"/>
+<circle cx="328" cy="62" r="1.2" fill="#fff1b8" opacity="0.78"/>
+<circle cx="175" cy="453" r="2" fill="#fff1b8" opacity="0.66"/>
+<circle cx="127" cy="489" r="1.2" fill="#fff1b8" opacity="0.39"/>
+<circle cx="247" cy="185" r="1.2" fill="#fff1b8" opacity="0.70"/>
+<circle cx="171" cy="104" r="1" fill="#fff1b8" opacity="0.41"/>
+<circle cx="235" cy="383" r="2" fill="#fff1b8" opacity="0.31"/>
+<circle cx="269" cy="438" r="1" fill="#fff1b8" opacity="0.76"/>
+<path d="M70 104 C132 68 288 68 350 104 M70 556 C132 592 288 592 350 556" fill="none" stroke="#d6a24f" stroke-opacity=".28" stroke-width="2"/>
+<text x="64" y="78" fill="#fff1b8" font-size="22" font-family="Georgia,serif">08</text>
+<text x="356" y="78" text-anchor="end" fill="#fff1b8" font-size="22" font-family="Georgia,serif">08</text>
+<g filter="url(#glow)">
+    <circle cx="210" cy="284" r="98" fill="#f59e0b" opacity=".13"/>
+    <circle cx="210" cy="284" r="70" fill="none" stroke="#f59e0b" stroke-width="3" opacity=".72"/>
+    <text x="210" y="306" text-anchor="middle" font-size="84" fill="#f59e0b" font-family="Georgia,serif">✦</text>
+    <path d="M136 432 C170 398 250 398 284 432" fill="none" stroke="#fecaca" stroke-width="6" stroke-linecap="round" opacity=".68"/>
+    </g>
+<rect x="58" y="530" width="304" height="74" rx="17" fill="#050812" opacity=".74" stroke="#d6a24f" stroke-opacity=".30"/>
+<text x="210" y="566" text-anchor="middle" fill="#fff7df" font-size="20" font-family="Georgia,serif">Strength</text>
+<text x="210" y="592" text-anchor="middle" fill="#c9b27a" font-size="9" font-family="Arial" letter-spacing="3">FATECARD ORIGINAL</text>
 </svg>

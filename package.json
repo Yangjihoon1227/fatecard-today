@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v19",
+  "name": "fatecard-today-v22",
   "private": true,
-  "version": "19.0.0",
+  "version": "22.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v19: direct touch/click tarot draw flow, menu-first AI oracle UX, richer localized interpretations, public-domain-inspired original card art."
+  "description": "FateCard.today v22: premium left-sidebar tarot draw interface with richer readings and original public-domain-inspired art direction."
 }
