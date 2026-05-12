@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v37",
+  "name": "fatecard-today-v38",
   "private": true,
-  "version": "37.0.0",
+  "version": "38.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v37: Render Docker build fix using npm ci and stable npm flags."
+  "description": "FateCard.today v38: pin npm in Docker to avoid Render npm 10.9.7 exit-handler build failure."
 }
