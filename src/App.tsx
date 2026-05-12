@@ -217,7 +217,7 @@ export default function App(){
 
 
 function CardArt({src,title,className=""}:{src:string;title:string;className?:string}){
-  return <div className={`cardArtShell ${className}`.trim()}><div className="cardArtMat"><img className="cardArtImage" src={src} alt={title} loading="lazy"/></div></div>;
+  return <div className={`cardArtShell artOnly ${className}`.trim()}><div className="cardArtMat"><img className="cardArtImage" src={src} alt={title} loading="lazy"/></div></div>;
 }
 
 function Home({c,go}:{c:Copy;go:(m:Mode)=>void}){

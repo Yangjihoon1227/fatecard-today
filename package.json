@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v33",
+  "name": "fatecard-today-v34",
   "private": true,
-  "version": "33.0.0",
+  "version": "34.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v33: show immediate AI answer in chat area after sending a question."
+  "description": "FateCard.today v34: remove visible white scan borders on mobile by using art-only tarot rendering."
 }

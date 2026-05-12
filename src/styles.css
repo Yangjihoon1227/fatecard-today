@@ -1673,3 +1673,100 @@ body {
   .aiChatAnswer b{font-size:18px;}
   .aiChatAnswer p{font-size:15px;line-height:1.75;}
 }
+
+
+/* v34: hard fix for mobile/desktop white scan-border issue.
+   The source file contains a cream/white RWS card border. On phones it reads as a photo background.
+   This rendering crops into the illustration area so only the card artwork is shown. */
+.cardArtShell.artOnly{
+  padding:0 !important;
+  margin:0 auto !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+.cardArtShell.artOnly::before,
+.cardArtShell.artOnly::after{
+  display:none !important;
+}
+.cardArtShell.artOnly .cardArtMat{
+  width:100% !important;
+  aspect-ratio: 0.72 / 1 !important;
+  border-radius:14px !important;
+  overflow:hidden !important;
+  background:#080d1d !important;
+  border:1px solid rgba(214,162,79,.28) !important;
+  box-shadow:
+    0 20px 34px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,231,160,.10),
+    0 0 30px rgba(214,162,79,.12) !important;
+}
+.cardArtShell.artOnly .cardArtMat::before{
+  display:none !important;
+}
+.cardArtShell.artOnly .cardArtImage{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:cover !important;
+  object-position:center 34% !important;
+  transform:scale(1.58) !important;
+  transform-origin:center 34% !important;
+  filter:contrast(1.08) saturate(1.08) brightness(1.02) !important;
+  background:transparent !important;
+}
+
+/* Main selected-card result: show art cleanly, no white photo/card margin */
+.resultCardStrip .cardArtShell.artOnly,
+.chosenCards .cardArtShell.artOnly{
+  max-width:220px !important;
+}
+.resultCardStrip .cardArtShell.artOnly .cardArtMat,
+.chosenCards .cardArtShell.artOnly .cardArtMat{
+  aspect-ratio: 0.72 / 1 !important;
+}
+
+/* Card-by-card thumbnail: same crop, tighter size */
+.cardDetail .detailArt.cardArtShell.artOnly{
+  width:112px !important;
+  align-self:start !important;
+}
+.cardDetail .detailArt.cardArtShell.artOnly .cardArtMat{
+  border-radius:11px !important;
+}
+
+/* 78-card guide: avoid white borders there too */
+.deckGrid .guideArt.cardArtShell.artOnly{
+  width:100% !important;
+}
+.deckGrid .guideArt.cardArtShell.artOnly .cardArtMat{
+  aspect-ratio:0.72 / 1 !important;
+}
+
+/* Kill older plain img rules from previous versions when CardArt is used */
+.resultCardStrip img,
+.cardDetail img,
+.deckGrid img,
+.chosenCards img{
+  background:transparent !important;
+}
+
+/* Mobile needs stronger crop because browser zoom makes the cream border look worse */
+@media(max-width:860px){
+  .resultCardStrip .cardArtShell.artOnly,
+  .chosenCards .cardArtShell.artOnly{
+    max-width:210px !important;
+  }
+  .cardArtShell.artOnly .cardArtMat{
+    border-radius:13px !important;
+  }
+  .cardArtShell.artOnly .cardArtImage{
+    object-position:center 35% !important;
+    transform:scale(1.66) !important;
+    transform-origin:center 35% !important;
+  }
+  .cardDetail .detailArt.cardArtShell.artOnly{
+    width:82px !important;
+  }
+}
