@@ -215,6 +215,11 @@ export default function App(){
   </div>
 }
 
+
+function CardArt({src,title,className=""}:{src:string;title:string;className?:string}){
+  return <div className={`cardArtShell ${className}`.trim()}><div className="cardArtMat"><img className="cardArtImage" src={src} alt={title} loading="lazy"/></div></div>;
+}
+
 function Home({c,go}:{c:Copy;go:(m:Mode)=>void}){
   const featureModes: Mode[]=["daily","love","three","yesno","birth","months"];
   return <section className="homePage">
@@ -350,7 +355,7 @@ function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revea
 
           <div className={`resultCardStrip ${mode==="months" ? "many" : ""}`}>
             {selectedCards.map((card,i)=><div key={card.id+i}>
-              <img src={card.artPath}/>
+              <CardArt src={card.artPath} title={card.title} />
               <small>{roles[i] || `${i+1}`}</small>
               <b>{card.title}</b>
             </div>)}
@@ -362,7 +367,7 @@ function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revea
               {selectedCards.map((card,i)=>{
                 const detail=cardDetailText(card,i,roles[i] || `${i+1}`,mode,c,lang);
                 return <article className="cardDetail" key={card.id+i}>
-                  <img src={card.artPath}/>
+                  <CardArt src={card.artPath} title={card.title} className="detailArt" />
                   <div>
                     <small>{roles[i] || `${i+1}`}</small>
                     <h4>{i+1}. {card.title}</h4>
@@ -498,6 +503,6 @@ function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:La
 function Deck({c,lang}:{c:Copy;lang:Lang}){
   const [q,setQ]=useState("");
   const list=TAROT_DECK.filter(card=>`${card.title.en} ${card.title.ko} ${card.id}`.toLowerCase().includes(q.toLowerCase()));
-  return <section className="deckGuide"><h1>{c.tabs.deck[0]}</h1><p>{c.intros.deck}</p><input value={q} onChange={e=>setQ(e.target.value)} placeholder={c.search}/><div className="deckGrid">{list.map(card=>{const t=getTarotText(card,lang,false);return <article key={card.id}><img src={rwsImageUrl(card.id)}/><b>{t.title}</b><p>{t.aura}</p></article>})}</div></section>
+  return <section className="deckGuide"><h1>{c.tabs.deck[0]}</h1><p>{c.intros.deck}</p><input value={q} onChange={e=>setQ(e.target.value)} placeholder={c.search}/><div className="deckGrid">{list.map(card=>{const t=getTarotText(card,lang,false);return <article key={card.id}><CardArt src={rwsImageUrl(card.id)} title={t.title} className="guideArt"/><b>{t.title}</b><p>{t.aura}</p></article>})}</div></section>
 }
 function Sponsor({c}:{c:Copy}){return <section className="sponsorPage"><h1>{c.tabs.sponsor[0]}</h1><p>{c.intros.sponsor}</p><a href={`mailto:${c.sponsorEmail}`}>{c.sponsorEmail}</a></section>}

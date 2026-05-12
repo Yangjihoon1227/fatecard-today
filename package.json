@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v30",
+  "name": "fatecard-today-v31",
   "private": true,
-  "version": "30.0.0",
+  "version": "31.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v30: mobile/tablet responsive layout fix, off-canvas menu, and upgraded mystical icons."
+  "description": "FateCard.today v31: tarot fronts styled as clean cards instead of photographed scans."
 }
