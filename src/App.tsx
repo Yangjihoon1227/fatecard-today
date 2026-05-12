@@ -65,7 +65,7 @@ function rwsImageUrl(cardId: string) {
 
 type Copy = {
   brand:string; brandSub:string; home:string; menu:string; fixed:string; freeNow:string; laterPaid:string;
-  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string;
+  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string; deselectHint:string; askTitle:string; askPlaceholder:string; askHelp:string; questionAnswerTitle:string;
   todayMessage:string; readingTitle:string; readingWaiting:string; aiExplainTitle:string; aiExplainText:string; cardBackNote:string; legal:string; search:string; sponsorEmail:string;
   name:string; birth:string; gender:string; job:string; genderOptions: Record<Gender,string>; start:string; homeStart:string; deckStart:string; howTitle:string; how:string[];
   requiredCards:(n:number)=>string; selectedOf:(a:number,b:number)=>string; monthsLead:string; monthsFormTitle:string;
@@ -81,7 +81,7 @@ const KO: Copy = {
   landingTitle:"FateCard.today", landingSub:"AI가 함께 해석하는 나만의 타로",
   landingLead:"리딩 종류마다 필요한 카드 수를 정해두었습니다. 펼쳐진 전체 덱에서 직접 카드를 고르고, 선택이 끝난 뒤에만 풀이가 열립니다.",
   selectFromSpread:"펼쳐진 전체 카드에서 직접 선택하세요", tip:"직감이 이끄는 카드를 고르세요. 정답은 카드보다 선택하는 순간의 마음에 더 가깝습니다.",
-  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨",
+  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적으면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변",
   todayMessage:"오늘의 메시지", readingTitle:"당신의 리딩", readingWaiting:"필요한 카드를 모두 선택하면 여기에 풀이가 나타납니다.",
   aiExplainTitle:"AI 타로 해석이란?", aiExplainText:"AI가 카드의 의미, 선택 순서, 리딩 종류, 입력 정보를 종합하여 상징 흐름을 해석합니다. 단순 키워드가 아니라 현재 질문에 맞춰 흐름·감정·주의점·행동 방향을 정리합니다.",
   cardBackNote:"카드 뒷면은 새로 만든 오리지널 디자인입니다. 카드 앞면은 1909년 퍼블릭 도메인 계열 이미지를 기준으로 표시합니다.",
@@ -111,7 +111,7 @@ const KO: Copy = {
 const EN: Copy = {
   ...KO, home:"Home", menu:"Menu", fixed:"fixed", freeNow:"Free now", laterPaid:"Paid later",
   landingSub:"AI-assisted tarot for your own reading", landingLead:"Each reading has its own fixed card count. Pick directly from the full spread; the interpretation opens only after every required card is chosen.",
-  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied",
+  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question",
   todayMessage:"Today’s message", readingTitle:"Your reading", readingWaiting:"The interpretation appears here after all required cards are selected.",
   aiExplainTitle:"What is AI tarot interpretation?", aiExplainText:"AI combines card meanings, order, reading type, and personal context into a symbolic reading with flow, emotion, caution, and action guidance.",
   cardBackNote:"Card backs are original artwork. Card fronts use public-domain 1909 style tarot images.", legal:"Entertainment and self-reflection only. Not medical, legal, or financial advice.",
@@ -157,6 +157,7 @@ export default function App(){
   const [birth,setBirth]=useState(localStorage.getItem("fate-birth")||"2000-12-27");
   const [gender,setGender]=useState<Gender>((localStorage.getItem("fate-gender") as Gender)||"unset");
   const [job,setJob]=useState(localStorage.getItem("fate-job")||"");
+  const [question,setQuestion]=useState(localStorage.getItem("fate-question")||"");
   const [copied,setCopied]=useState(false);
 
   const c=UI[lang]||KO;
@@ -165,13 +166,13 @@ export default function App(){
   const selectedCards=selectedIds.map((id,i)=>makeCard(TAROT_DECK.find(x=>x.id===id)||TAROT_DECK[0],lang,`${shuffleSeed}-${id}-${i}`));
   const complete=need>0 && selectedIds.length>=need;
   const personal={name,birth,gender,job};
-  const blocks=makeReading(mode,selectedCards,c,personal,lang);
+  const blocks=makeReading(mode,selectedCards,c,personal,lang,question);
 
-  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);},[lang,name,birth,gender,job]);
+  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question",question);},[lang,name,birth,gender,job,question]);
   useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);},[mode,lang]);
   const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);window.scrollTo({top:0,behavior:"smooth"});};
   const reshuffle=()=>{setShuffleSeed("seed-"+Date.now());setSelectedIds([]);setRevealed(false);setCopied(false);};
-  const choose=(id:string)=>{if(selectedIds.includes(id)||selectedIds.length>=need||revealed)return;setSelectedIds([...selectedIds,id]);};
+  const choose=(id:string)=>{if(revealed)return;if(selectedIds.includes(id)){setSelectedIds(selectedIds.filter(x=>x!==id));setCopied(false);return;}if(selectedIds.length>=need)return;setSelectedIds([...selectedIds,id]);setCopied(false);};
   const showReading=()=>{if(complete)setRevealed(true);};
   const copyReading=async()=>{await navigator.clipboard?.writeText(blocks.map(x=>`${x.title}\n${x.body}`).join("\n\n"));setCopied(true);};
 
@@ -204,7 +205,7 @@ export default function App(){
       {mode==="deck" && <Deck c={c} lang={lang}/>}
       {mode==="sponsor" && <Sponsor c={c}/>}
       {mode!=="home" && mode!=="deck" && mode!=="sponsor" &&
-        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob}/>
+        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob} question={question} setQuestion={setQuestion}/>
       }
       <footer>{c.legal}</footer>
     </main>
@@ -239,7 +240,7 @@ function Home({c,go}:{c:Copy;go:(m:Mode)=>void}){
   </section>
 }
 
-function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;}){
+function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;}){
   const roles=mode==="months" ? c.monthRoles : c.roles;
   return <section className="reader">
     <div className="readerHero">
@@ -256,6 +257,10 @@ function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,c
           <input value={personal.job} onChange={e=>setJob(e.target.value)} placeholder={c.job}/>
         </>}
       </div>}
+      <div className="askBox">
+        <div><h3>✦ {c.askTitle}</h3><p>{c.askHelp}</p></div>
+        <textarea value={question} onChange={e=>setQuestion(e.target.value)} placeholder={c.askPlaceholder}/>
+      </div>
     </div>
 
     <div className="readerGrid">
@@ -264,14 +269,14 @@ function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,c
         <div className={`fullSpread ${mode==="months" ? "largeSpread" : ""}`}>
           {deck.map((card,i)=>{
             const order=selectedIds.indexOf(card.id)+1;
-            return <button key={card.id} onClick={()=>choose(card.id)} className={`spreadCard ${order>0?"picked":""}`} disabled={selectedIds.length>=need || order>0 || revealed} style={{"--i":i} as React.CSSProperties}>
+            return <button key={card.id} onClick={()=>choose(card.id)} className={`spreadCard ${order>0?"picked":""}`} disabled={revealed || (selectedIds.length>=need && order===0)} style={{"--i":i} as React.CSSProperties}>
               <img src={order>0 && revealed ? rwsImageUrl(card.id) : "/cards/back.svg"} alt="tarot card"/>
               {order>0 && <em>{order}</em>}
             </button>
           })}
         </div>
         <div className="actions"><button onClick={reshuffle}>↻ {c.reshuffle}</button><button className="primary" disabled={!complete} onClick={showReading}>✦ {c.reveal}</button><button disabled={!selectedIds.length} onClick={reshuffle}>⟲ {c.reset}</button></div>
-        <p className="tip">✦ TIP&nbsp; {c.tip}</p>
+        <p className="tip">✦ TIP&nbsp; {c.tip}<br/><span>{c.deselectHint}</span></p>
       </section>
 
       <aside className="readingPanel">
@@ -283,14 +288,46 @@ function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,c
   </section>
 }
 
-function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:Lang):ReadingBlock[]{
+
+function injectQuestionBlock(base:ReadingBlock[], question:string, block:ReadingBlock | null):ReadingBlock[]{
+  if(!question.trim() || !block)return base;
+  if(base.length<=1)return [...base, block];
+  return [base[0], block, ...base.slice(1)];
+}
+
+function makeQuestionBlock(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:Lang,question:string):ReadingBlock | null{
+  const q=question.trim();
+  if(!q)return null;
+  const ko=lang==="ko";
+  const names=cards.map(x=>x.title).join(" · ");
+  const first=cards[0];
+  const last=cards[cards.length-1] || first;
+  const who=personal.name ? `${personal.name}님` : "당신";
+  if(ko){
+    const modeTone=mode==="love" ? "관계와 감정의 흐름" : mode==="yesno" ? "선택의 방향성" : mode==="months" ? "장기 흐름과 현실 계획" : mode==="birth" ? "타고난 성향과 현재 선택" : "오늘의 흐름";
+    return {
+      icon:"✦",
+      title:c.questionAnswerTitle,
+      body:`질문 “${q}”에 대해 카드들은 ${modeTone}을 중심으로 답하고 있습니다. 핵심 카드는 ${first.title}이고, 전체 흐름은 ${names} 순서로 이어집니다. 첫 카드는 질문의 출발점이 이미 마음속에서 분명해지고 있음을 보여주며, 마지막 카드 ${last.title}는 지금 당장 결론을 재촉하기보다 선택 후의 책임과 현실적인 결과를 함께 보라고 말합니다. 지금 가장 중요한 것은 감정적으로 원하는 답을 끌어내는 것이 아니라, 카드가 반복해서 보여주는 패턴을 기준으로 행동을 정리하는 것입니다. 질문이 사람과 관계된 문제라면 상대의 말 한마디보다 반복되는 태도를 보세요. 질문이 일·돈·미래와 관련된 문제라면 큰 운보다 실행 가능한 기준, 비용, 시간표를 먼저 확인해야 합니다. 결론적으로 이 질문의 답은 “가능성은 있지만 조건을 정리해야 한다”에 가깝고, 오늘 바로 할 일은 ${first.mission}`
+    };
+  }
+  return {
+    icon:"✦",
+    title:c.questionAnswerTitle,
+    body:`For your question “${q}”, the cards answer through ${names}. The first card, ${first.title}, shows the core tension; the final card, ${last.title}, shows what must be handled after the choice. This does not promise a fixed outcome. It points to a practical direction: clarify the condition, watch repeated behavior, and choose the next action you can actually control. Immediate guidance: ${first.mission}`
+  };
+}
+
+function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:Lang,question:string):ReadingBlock[]{
   if(!cards.length)return[];
   const ko=lang==="ko";
   const names=cards.map(x=>x.title).join(" · ");
   const first=cards[0];
+  const qBlock=makeQuestionBlock(mode,cards,c,personal,lang,question);
+
   if(mode==="yesno"){
     const yes=first.orientation==="upright";
-    return ko ? [
+    const base = ko ? [
       {icon:"◇",title:c.sections.answer,body:`${yes?"YES 쪽으로 기울어 있습니다. 단, 이것은 무조건적인 허락이 아니라 지금 흐름이 열려 있다는 신호에 가깝습니다.":"NO 또는 보류 쪽으로 기울어 있습니다. 지금은 밀어붙이기보다 조건을 정리하고 타이밍을 다시 보는 편이 낫습니다."} ${first.aura}`},
       {icon:"✦",title:c.sections.advice,body:`${first.mission} 질문이 사람의 마음과 관련되어 있다면 상대의 속도와 경계를 존중하는 것이 핵심입니다.`},
       {icon:"⚠",title:c.sections.caution,body:`${first.warning} 카드가 주는 답을 확정 예언으로 받아들이기보다, 지금 선택에서 조심해야 할 방향으로 읽는 것이 안전합니다.`}
@@ -299,12 +336,14 @@ function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:La
       {icon:"✦",title:c.sections.advice,body:`${first.mission} Respect timing and boundaries, especially if the question involves another person.`},
       {icon:"⚠",title:c.sections.caution,body:`${first.warning} Treat this as guidance, not certainty.`}
     ];
+    return injectQuestionBlock(base,question,qBlock);
   }
+
   if(mode==="months"){
     const monthLine=(start:number,end:number)=>cards.slice(start,end).map((card,i)=>`${c.monthRoles[start+i]}: ${card.title} — ${card.aura}`).join(" / ");
     const who=personal.name ? `${personal.name}님` : "당신";
     const jobText=personal.job ? ` 현재 직업/상황으로 입력한 “${personal.job}”의 흐름까지 함께 보면,` : "";
-    return ko ? [
+    const base = ko ? [
       {icon:"✦",title:c.sections.summary,body:`${who}의 6·12개월 통합 리딩은 총 18장의 카드(${names})를 기준으로 읽습니다.${jobText} 가까운 6개월은 현재 습관과 선택이 현실로 드러나는 구간이고, 이후 12개월 흐름은 방향 전환과 장기적 결과가 천천히 굳어지는 구간으로 보입니다. 이 리딩에서 중요한 핵심은 “무엇을 기다릴 것인가”보다 “어떤 기준으로 선택을 반복할 것인가”입니다.`},
       {icon:"☽",title:c.sections.six,body:`앞으로 6개월은 ${monthLine(0,6)}. 이 구간은 빠른 대박보다 정리, 관계 조율, 생활 리듬 회복, 실질적인 준비가 중요합니다. 특히 초반 1~2개월은 마음이 앞서기 쉽고, 3~4개월차에는 현실적인 조건을 확인하게 되며, 5~6개월차에는 지금까지 미뤄둔 결정이 형태를 갖추기 시작합니다. 급하게 결론을 내리기보다 매달 하나의 기준을 세워 행동하는 편이 더 유리합니다.`},
       {icon:"◎",title:c.sections.twelve,body:`7개월차부터 12개월차는 ${monthLine(6,12)}. 후반 흐름은 단순 유지가 아니라 선택의 결과를 검증하는 시기입니다. 이때는 주변 사람의 말보다 실제로 반복해서 나타나는 신호를 봐야 합니다. 좋은 기회처럼 보여도 체력, 돈, 인간관계 비용을 같이 계산해야 하며, 반대로 작아 보이는 기회라도 장기적으로 반복 가능하면 잡을 가치가 있습니다.`},
@@ -323,9 +362,11 @@ function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:La
       {icon:"♧",title:c.sections.health,body:`Health theme: ${cards[15]?.title || first.title}. Energy management affects judgment.`},
       {icon:"✹",title:c.sections.action,body:`Opportunity: ${cards[16]?.title || first.title}. Caution: ${cards[17]?.title || first.title}. Choose one monthly action, one 6-month result, and one 12-month habit.`}
     ];
+    return injectQuestionBlock(base,question,qBlock);
   }
+
   if(mode==="birth"){
-    return ko ? [
+    const base = ko ? [
       {icon:"✶",title:c.sections.summary,body:`생년월일 ${personal.birth}와 선택된 카드(${names})는 당신이 반복해서 끌리는 삶의 주제와 선택 패턴을 보여줍니다. 장점은 분명하지만, 익숙한 방식으로만 문제를 풀려고 할 때 흐름이 좁아질 수 있습니다.`},
       {icon:"☽",title:c.sections.flow,body:"이 리딩은 타고난 성향을 고정된 운명으로 단정하지 않습니다. 지금 어떤 태도를 선택할 때 더 자연스럽게 힘이 붙는지, 반대로 어디서 에너지가 새는지를 보여주는 상징 지도에 가깝습니다."},
       {icon:"✦",title:c.sections.advice,body:`가장 먼저 적용할 조언은 ${first.mission} 입니다. 거창한 변화보다 오늘의 작은 선택 하나가 원형을 현실로 끌어내는 출발점입니다.`}
@@ -334,8 +375,10 @@ function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:La
       {icon:"☽",title:c.sections.flow,body:"This is a symbolic map, not a fixed destiny."},
       {icon:"✦",title:c.sections.advice,body:`First advice: ${first.mission}`}
     ];
+    return injectQuestionBlock(base,question,qBlock);
   }
-  return ko ? [
+
+  const base = ko ? [
     {icon:"♡",title:mode==="love"?c.sections.flow:c.sections.summary,body:`선택된 카드(${names})는 지금 상황이 단순한 호불호보다 흐름과 타이밍의 문제에 가깝다는 것을 보여줍니다. 첫 카드는 현재의 기본 에너지, 다음 카드는 상대나 환경의 반응, 이후 카드는 앞으로 열릴 가능성을 말합니다. 관계 문제라면 “누가 더 좋아하느냐”보다 서로가 같은 속도로 움직이고 있는지가 더 중요합니다.`},
     {icon:"☽",title:c.sections.emotion,body:"감정선은 겉으로 보이는 말보다 천천히 움직입니다. 한쪽은 이미 마음속에서 정리를 시작했지만, 다른 쪽은 아직 현실적인 확신이나 명분을 기다릴 수 있습니다. 시험하듯 확인하려 하기보다 작고 분명한 표현으로 오해를 줄이는 쪽이 낫습니다."},
     {icon:"✦",title:c.sections.advice,body:`오늘의 조언은 ${first.mission} 카드가 좋다/나쁘다로 단정하기보다, 지금 내가 통제할 수 있는 행동 하나를 고르는 것이 핵심입니다. 연락, 대화, 결정, 거리두기 중 무엇을 선택하든 감정적인 반응보다 일관성이 더 중요합니다.`},
@@ -346,6 +389,7 @@ function makeReading(mode:Mode,cards:DrawCard[],c:Copy,personal:Personal,lang:La
     {icon:"✦",title:c.sections.advice,body:`Advice: ${first.mission}`},
     {icon:"⚠",title:c.sections.caution,body:`Caution: ${first.warning}`}
   ];
+  return injectQuestionBlock(base,question,qBlock);
 }
 
 function Deck({c,lang}:{c:Copy;lang:Lang}){

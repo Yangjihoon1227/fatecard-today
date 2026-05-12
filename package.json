@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v26",
+  "name": "fatecard-today-v27",
   "private": true,
-  "version": "26.0.0",
+  "version": "27.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v26: fixed-count readings, 18-card 6/12 month reading, stronger nav, improved full-deck spread layout."
+  "description": "FateCard.today v27: card deselect/toggle UX and question-aware AI-style tarot answers."
 }

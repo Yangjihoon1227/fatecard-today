@@ -724,3 +724,81 @@ footer{
   .actions{grid-template-columns:1fr}
   .deckGrid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
 }
+
+
+/* v27: question-aware reading + card deselect UX */
+.askBox{
+  max-width: 1040px;
+  margin: 18px auto 0;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(220px,.42fr) minmax(320px,1fr);
+  gap: 16px;
+  align-items: stretch;
+  border: 1px solid rgba(214,162,79,.36);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 14%, rgba(168,85,247,.16), transparent 34%),
+    rgba(7,12,28,.74);
+  box-shadow: 0 22px 54px rgba(0,0,0,.24);
+}
+.askBox h3{
+  margin: 0 0 6px;
+  color: var(--gold2);
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+.askBox p{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.askBox textarea{
+  width: 100%;
+  min-height: 112px;
+  resize: vertical;
+  border: 1px solid rgba(214,162,79,.30);
+  border-radius: 16px;
+  background: rgba(8,14,30,.84);
+  color: #fff;
+  padding: 14px 16px;
+  line-height: 1.65;
+  outline: none;
+}
+.askBox textarea:focus{
+  border-color: rgba(192,132,252,.82);
+  box-shadow: 0 0 0 3px rgba(168,85,247,.16), 0 0 28px rgba(168,85,247,.22);
+}
+.spreadCard.picked:not(:disabled){
+  cursor: pointer;
+}
+.spreadCard.picked:not(:disabled)::after{
+  content: "다시 누르면 취소";
+  position: absolute;
+  left: 50%;
+  top: -42px;
+  transform: translateX(-50%);
+  min-width: 98px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(214,162,79,.42);
+  background: rgba(7,12,28,.92);
+  color: #ffe8ad;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease;
+  white-space: nowrap;
+}
+.spreadCard.picked:hover::after{
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+.tip span{
+  color: #e7c06f;
+}
+@media(max-width:820px){
+  .askBox{
+    grid-template-columns: 1fr;
+  }
+}
