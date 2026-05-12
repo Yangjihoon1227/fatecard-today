@@ -802,3 +802,288 @@ footer{
     grid-template-columns: 1fr;
   }
 }
+
+
+/* v28: full-width result canvas, per-card explanations, bottom AI chat */
+.readerGrid.revealedGrid{
+  grid-template-columns: minmax(0,1fr);
+}
+.deckTable.resultMode{
+  width: 100%;
+}
+.resultCanvas{
+  margin-top: 22px;
+  display: grid;
+  gap: 24px;
+}
+.resultHero{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  padding:22px;
+  border:1px solid rgba(214,162,79,.28);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(168,85,247,.18), transparent 38%),
+    rgba(8,13,30,.64);
+}
+.resultHero h2{
+  margin: 4px 0 8px;
+  color: var(--gold2);
+  font-family: Georgia, serif;
+  font-size: clamp(34px,4vw,58px);
+}
+.resultHero p{
+  color: #d8d0e9;
+  line-height: 1.75;
+  margin: 0;
+}
+.resultActions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.resultActions button{
+  min-height:46px;
+  border-radius:14px;
+  border:1px solid rgba(214,162,79,.36);
+  background:rgba(11,17,36,.86);
+  color:#fff2bd;
+  font-weight:900;
+  padding:0 16px;
+}
+.resultCardStrip{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:16px;
+}
+.resultCardStrip.many{
+  grid-template-columns:repeat(auto-fit,minmax(105px,1fr));
+}
+.resultCardStrip div{
+  border:1px solid rgba(214,162,79,.28);
+  border-radius:18px;
+  background:rgba(7,12,28,.74);
+  padding:12px;
+  text-align:center;
+}
+.resultCardStrip img{
+  width:100%;
+  max-height:220px;
+  object-fit:contain;
+  border-radius:12px;
+  background:#070a18;
+}
+.resultCardStrip small{
+  display:block;
+  color:#d9b66b;
+  margin-top:8px;
+  font-weight:800;
+}
+.resultCardStrip b{
+  display:block;
+  color:#fff;
+  margin-top:4px;
+}
+.perCardSection,
+.integratedBlocks{
+  border:1px solid rgba(214,162,79,.30);
+  border-radius:26px;
+  padding:24px;
+  background:
+    radial-gradient(circle at 8% 0, rgba(214,162,79,.12), transparent 30%),
+    rgba(6,10,24,.74);
+}
+.perCardSection h3,
+.integratedBlocks h3{
+  margin:0 0 18px;
+  color:var(--gold2);
+  font-family:Georgia,serif;
+  font-size:clamp(28px,3vw,42px);
+}
+.cardDetailGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+  gap:18px;
+}
+.cardDetail{
+  display:grid;
+  grid-template-columns:120px minmax(0,1fr);
+  gap:16px;
+  padding:16px;
+  border:1px solid rgba(214,162,79,.22);
+  border-radius:20px;
+  background:rgba(8,13,30,.70);
+}
+.cardDetail img{
+  width:120px;
+  aspect-ratio:825/1429;
+  object-fit:contain;
+  border-radius:10px;
+  background:#070a18;
+}
+.cardDetail small{
+  color:#d9b66b;
+  font-weight:900;
+}
+.cardDetail h4{
+  margin:4px 0 10px;
+  color:#fff3d0;
+  font-family:Georgia,serif;
+  font-size:22px;
+}
+.cardDetail p{
+  color:#d9d4e7;
+  line-height:1.85;
+  margin:10px 0;
+}
+.cardDetail p b{
+  color:#ffe1a3;
+}
+.integratedBlocks article{
+  border-top:1px solid rgba(214,162,79,.18);
+  padding:18px 0;
+}
+.integratedBlocks article:first-of-type{
+  border-top:0;
+}
+.integratedBlocks h4{
+  margin:0 0 8px;
+  color:#ffe1a3;
+  font-family:Georgia,serif;
+  font-size:24px;
+}
+.integratedBlocks p{
+  color:#ddd7e9;
+  line-height:1.9;
+  font-size:16px;
+}
+.bottomAsk{
+  margin-top:24px;
+  max-width:none;
+}
+.chatComposer{
+  position:relative;
+}
+.chatComposer textarea{
+  padding-right:82px;
+}
+.chatComposer button{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  height:38px;
+  min-width:58px;
+  border-radius:999px;
+  border:1px solid rgba(214,162,79,.38);
+  background:linear-gradient(135deg,rgba(91,33,182,.9),rgba(214,162,79,.30));
+  color:#fff;
+  font-weight:900;
+}
+.sentQuestion{
+  grid-column:1/-1;
+  border:1px solid rgba(192,132,252,.28);
+  border-radius:16px;
+  padding:14px 16px;
+  background:rgba(30,24,58,.54);
+}
+.sentQuestion b{
+  color:#ffe1a3;
+}
+.sentQuestion p{
+  color:#fff;
+  margin:6px 0;
+  line-height:1.65;
+}
+.sentQuestion small{
+  color:#c7bff0;
+}
+@media(max-width:820px){
+  .resultHero{
+    display:grid;
+  }
+  .cardDetailGrid{
+    grid-template-columns:1fr;
+  }
+  .cardDetail{
+    grid-template-columns:86px minmax(0,1fr);
+  }
+  .cardDetail img{
+    width:86px;
+  }
+}
+
+
+/* v29 mystical nav icons + build fix */
+.modeIcon{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,247,214,.95), rgba(242,222,184,.92) 28%, rgba(225,182,110,.86) 60%, rgba(86,42,128,.55) 100%),
+    linear-gradient(135deg, rgba(255,232,173,.18), rgba(115,68,190,.22));
+  border: 1px solid rgba(231,194,109,.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 12px 32px rgba(9,8,29,.35);
+}
+.modeIcon svg{
+  width: 22px;
+  height: 22px;
+  stroke: #4d2a72;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.modeIcon.active,
+.navList button.active .modeIcon,
+.featureGrid button:hover .modeIcon,
+.featureGrid .premiumFeature .modeIcon{
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,248,225,.98), rgba(241,223,255,.96) 26%, rgba(190,122,255,.72) 60%, rgba(78,34,129,.68) 100%),
+    linear-gradient(135deg, rgba(255,234,173,.24), rgba(149,87,255,.34));
+  border-color: rgba(215,180,255,.46);
+}
+.modeIcon.active svg,
+.navList button.active .modeIcon svg,
+.featureGrid button:hover .modeIcon svg,
+.featureGrid .premiumFeature .modeIcon svg{
+  stroke: #fff3cb;
+}
+.navList button,
+.featureGrid button{
+  gap: 14px;
+}
+.navList button > span:first-child,
+.featureGrid button > span:first-child{
+  display: none;
+}
+.membership .modeIcon,
+.sponsor .modeIcon{
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  margin-right: 8px;
+}
+.membership .modeIcon svg,
+.sponsor .modeIcon svg{width:18px;height:18px;}
+.sponsor{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.homeIcon .modeIcon{
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  background: transparent;
+  border: 0;
+  box-shadow:none;
+}
+.homeIcon .modeIcon svg{stroke:#f4d388;width:18px;height:18px;}

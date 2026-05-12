@@ -65,7 +65,7 @@ function rwsImageUrl(cardId: string) {
 
 type Copy = {
   brand:string; brandSub:string; home:string; menu:string; fixed:string; freeNow:string; laterPaid:string;
-  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string; deselectHint:string; askTitle:string; askPlaceholder:string; askHelp:string; questionAnswerTitle:string;
+  landingTitle:string; landingSub:string; landingLead:string; selectFromSpread:string; tip:string; selected:string; reveal:string; reshuffle:string; reset:string; copy:string; copied:string; deselectHint:string; askTitle:string; askPlaceholder:string; askHelp:string; questionAnswerTitle:string; send:string; sentQuestion:string; questionApplied:string; perCardTitle:string; integratedTitle:string; resultOpenTitle:string; situation:string; cardAdvice:string; questionPending:string;
   todayMessage:string; readingTitle:string; readingWaiting:string; aiExplainTitle:string; aiExplainText:string; cardBackNote:string; legal:string; search:string; sponsorEmail:string;
   name:string; birth:string; gender:string; job:string; genderOptions: Record<Gender,string>; start:string; homeStart:string; deckStart:string; howTitle:string; how:string[];
   requiredCards:(n:number)=>string; selectedOf:(a:number,b:number)=>string; monthsLead:string; monthsFormTitle:string;
@@ -81,7 +81,7 @@ const KO: Copy = {
   landingTitle:"FateCard.today", landingSub:"AI가 함께 해석하는 나만의 타로",
   landingLead:"리딩 종류마다 필요한 카드 수를 정해두었습니다. 펼쳐진 전체 덱에서 직접 카드를 고르고, 선택이 끝난 뒤에만 풀이가 열립니다.",
   selectFromSpread:"펼쳐진 전체 카드에서 직접 선택하세요", tip:"직감이 이끄는 카드를 고르세요. 정답은 카드보다 선택하는 순간의 마음에 더 가깝습니다.",
-  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적으면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변",
+  selected:"선택됨", reveal:"풀이 보기", reshuffle:"다시 섞기", reset:"선택 초기화", copy:"풀이 복사", copied:"복사됨", deselectHint:"선택한 카드는 다시 누르면 내려놓을 수 있습니다.", askTitle:"AI에게 묻고 싶은 것", askPlaceholder:"예: 이 사람이 나를 어떻게 생각할까? 올해 일과 돈 흐름은 어떨까? 지금 연락해도 될까?", askHelp:"질문을 적은 뒤 전송하면 선택한 카드와 질문을 함께 엮어 더 맞춤형으로 풀이합니다.", questionAnswerTitle:"질문에 대한 AI 타로 답변", send:"전송", sentQuestion:"보낸 질문", questionApplied:"이 질문을 리딩에 반영합니다.", perCardTitle:"카드별 상황 해석", integratedTitle:"종합 리딩", resultOpenTitle:"선택한 카드 전체 풀이", situation:"상황", cardAdvice:"카드 조언", questionPending:"카드를 모두 공개하면 이 질문도 함께 반영됩니다.",
   todayMessage:"오늘의 메시지", readingTitle:"당신의 리딩", readingWaiting:"필요한 카드를 모두 선택하면 여기에 풀이가 나타납니다.",
   aiExplainTitle:"AI 타로 해석이란?", aiExplainText:"AI가 카드의 의미, 선택 순서, 리딩 종류, 입력 정보를 종합하여 상징 흐름을 해석합니다. 단순 키워드가 아니라 현재 질문에 맞춰 흐름·감정·주의점·행동 방향을 정리합니다.",
   cardBackNote:"카드 뒷면은 새로 만든 오리지널 디자인입니다. 카드 앞면은 1909년 퍼블릭 도메인 계열 이미지를 기준으로 표시합니다.",
@@ -111,7 +111,7 @@ const KO: Copy = {
 const EN: Copy = {
   ...KO, home:"Home", menu:"Menu", fixed:"fixed", freeNow:"Free now", laterPaid:"Paid later",
   landingSub:"AI-assisted tarot for your own reading", landingLead:"Each reading has its own fixed card count. Pick directly from the full spread; the interpretation opens only after every required card is chosen.",
-  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question",
+  selectFromSpread:"Choose directly from the full spread", tip:"Pick the card your instinct pulls toward. The answer begins with attention.", selected:"selected", reveal:"Show reading", reshuffle:"Shuffle again", reset:"Reset", copy:"Copy reading", copied:"Copied", deselectHint:"Tap a selected card again to put it back.", askTitle:"Ask AI tarot", askPlaceholder:"Example: How does this person feel about me? What should I do next? How will work and money flow this year?", askHelp:"Write your question and send it; the reading will connect your cards to that exact concern.", questionAnswerTitle:"AI tarot answer to your question", send:"Send", sentQuestion:"Sent question", questionApplied:"This question is applied to the reading.", perCardTitle:"Card-by-card interpretation", integratedTitle:"Integrated reading", resultOpenTitle:"Full result for selected cards", situation:"Situation", cardAdvice:"Card advice", questionPending:"Your question will be applied once the cards are revealed.",
   todayMessage:"Today’s message", readingTitle:"Your reading", readingWaiting:"The interpretation appears here after all required cards are selected.",
   aiExplainTitle:"What is AI tarot interpretation?", aiExplainText:"AI combines card meanings, order, reading type, and personal context into a symbolic reading with flow, emotion, caution, and action guidance.",
   cardBackNote:"Card backs are original artwork. Card fronts use public-domain 1909 style tarot images.", legal:"Entertainment and self-reflection only. Not medical, legal, or financial advice.",
@@ -157,7 +157,8 @@ export default function App(){
   const [birth,setBirth]=useState(localStorage.getItem("fate-birth")||"2000-12-27");
   const [gender,setGender]=useState<Gender>((localStorage.getItem("fate-gender") as Gender)||"unset");
   const [job,setJob]=useState(localStorage.getItem("fate-job")||"");
-  const [question,setQuestion]=useState(localStorage.getItem("fate-question")||"");
+  const [questionDraft,setQuestionDraft]=useState(localStorage.getItem("fate-question-draft")||"");
+  const [submittedQuestion,setSubmittedQuestion]=useState(localStorage.getItem("fate-question")||"");
   const [copied,setCopied]=useState(false);
 
   const c=UI[lang]||KO;
@@ -166,14 +167,15 @@ export default function App(){
   const selectedCards=selectedIds.map((id,i)=>makeCard(TAROT_DECK.find(x=>x.id===id)||TAROT_DECK[0],lang,`${shuffleSeed}-${id}-${i}`));
   const complete=need>0 && selectedIds.length>=need;
   const personal={name,birth,gender,job};
-  const blocks=makeReading(mode,selectedCards,c,personal,lang,question);
+  const blocks=makeReading(mode,selectedCards,c,personal,lang,submittedQuestion);
 
-  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question",question);},[lang,name,birth,gender,job,question]);
+  useEffect(()=>{localStorage.setItem("fate-lang",lang);localStorage.setItem("fate-name",name);localStorage.setItem("fate-birth",birth);localStorage.setItem("fate-gender",gender);localStorage.setItem("fate-job",job);localStorage.setItem("fate-question-draft",questionDraft);localStorage.setItem("fate-question",submittedQuestion);},[lang,name,birth,gender,job,questionDraft,submittedQuestion]);
   useEffect(()=>{setSelectedIds([]);setRevealed(false);setCopied(false);},[mode,lang]);
   const go=(m:Mode)=>{setMode(m);setSelectedIds([]);setRevealed(false);setCopied(false);window.scrollTo({top:0,behavior:"smooth"});};
   const reshuffle=()=>{setShuffleSeed("seed-"+Date.now());setSelectedIds([]);setRevealed(false);setCopied(false);};
   const choose=(id:string)=>{if(revealed)return;if(selectedIds.includes(id)){setSelectedIds(selectedIds.filter(x=>x!==id));setCopied(false);return;}if(selectedIds.length>=need)return;setSelectedIds([...selectedIds,id]);setCopied(false);};
   const showReading=()=>{if(complete)setRevealed(true);};
+  const sendQuestion=()=>{const q=questionDraft.trim();if(!q)return;setSubmittedQuestion(q);setCopied(false);};
   const copyReading=async()=>{await navigator.clipboard?.writeText(blocks.map(x=>`${x.title}\n${x.body}`).join("\n\n"));setCopied(true);};
 
   return <div className={`app ${drawer?"drawerOpen":"drawerClosed"}`}>
@@ -185,16 +187,16 @@ export default function App(){
       </div>
       <nav className="navList">{(["home","daily","love","three","yesno","birth","months","deck"] as Mode[]).map(m=>
         <button key={m} className={mode===m?"active":""} onClick={()=>go(m)} title={c.tabs[m][0]}>
-          <span>{c.tabs[m][2]}</span><b>{c.tabs[m][0]}</b><small>{c.tabs[m][1]}</small>
+          <ModeIcon mode={m} active={mode===m}/><b>{c.tabs[m][0]}</b><small>{c.tabs[m][1]}</small>
         </button>
       )}</nav>
-      <div className="membership"><div>✦</div><b>{c.tabs.months[0]}</b><p>{c.freeNow} · {c.laterPaid}</p></div>
-      <button className="sponsor" onClick={()=>go("sponsor")}>✉ {c.tabs.sponsor[0]}</button>
+      <div className="membership"><ModeIcon mode="months" /><b>{c.tabs.months[0]}</b><p>{c.freeNow} · {c.laterPaid}</p></div>
+      <button className="sponsor" onClick={()=>go("sponsor")}><ModeIcon mode="sponsor" /> {c.tabs.sponsor[0]}</button>
     </aside>
 
     <main className="main">
       <header className="topBar">
-        <button className="homeIcon" onClick={()=>go("home")} title={c.home}>⌂</button>
+        <button className="homeIcon" onClick={()=>go("home")} title={c.home}><ModeIcon mode="home" /></button>
         <button className="topBrand" onClick={()=>go("home")}>{c.brand}</button>
         <div className="topSpacer"/>
         <button className="messageBtn">✦ {c.todayMessage}</button>
@@ -205,7 +207,7 @@ export default function App(){
       {mode==="deck" && <Deck c={c} lang={lang}/>}
       {mode==="sponsor" && <Sponsor c={c}/>}
       {mode!=="home" && mode!=="deck" && mode!=="sponsor" &&
-        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob} question={question} setQuestion={setQuestion}/>
+        <Reading c={c} mode={mode} lang={lang} deck={deck} need={need} selectedIds={selectedIds} selectedCards={selectedCards} complete={complete} revealed={revealed} choose={choose} reshuffle={reshuffle} showReading={showReading} blocks={blocks} copyReading={copyReading} copied={copied} personal={personal} setName={setName} setBirth={setBirth} setGender={setGender} setJob={setJob} question={questionDraft} setQuestion={setQuestionDraft} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion}/>
       }
       <footer>{c.legal}</footer>
     </main>
@@ -223,7 +225,7 @@ function Home({c,go}:{c:Copy;go:(m:Mode)=>void}){
       <p className="lead">{c.landingLead}</p>
       <div className="featureGrid">
         {featureModes.map(m=><button key={m} onClick={()=>go(m)} className={m==="months"?"premiumFeature":""}>
-          <span>{c.tabs[m][2]}</span>
+          <ModeIcon mode={m} />
           <b>{c.tabs[m][0]}</b>
           <small>{c.tabs[m][1]}</small>
           <em>{c.requiredCards(READING_COUNTS[m])}{m==="months" ? ` · ${c.freeNow}` : ""}</em>
@@ -240,7 +242,63 @@ function Home({c,go}:{c:Copy;go:(m:Mode)=>void}){
   </section>
 }
 
-function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;}){
+
+type ModeIconProps={mode:Mode; active?:boolean;};
+function ModeIcon({mode,active}:ModeIconProps){
+  const cls=`modeIcon ${active?"active":""}`;
+  switch(mode){
+    case "home": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5"/><path d="M7 10.5V19h10v-8.5"/></svg></span>;
+    case "daily": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.7v2.4M12 18.9v2.4M2.7 12h2.4M18.9 12h2.4M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8"/></svg></span>;
+    case "love": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20.2 5.3 13.8a4.5 4.5 0 0 1 6.4-6.3L12 8l.3-.5a4.5 4.5 0 0 1 6.4 6.3Z"/></svg></span>;
+    case "three": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="5" height="10" rx="1.2"/><rect x="9.5" y="5" width="5" height="14" rx="1.2"/><rect x="16" y="7" width="5" height="10" rx="1.2"/></svg></span>;
+    case "yesno": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4.5a7.5 7.5 0 0 0-7.5 7.5c0 4.1 3.4 7.5 7.5 7.5s7.5-3.4 7.5-7.5c0-1.3-.3-2.4-.8-3.5"/><path d="M12 16.4v-1.3c0-1.9 2.2-2.2 2.2-4.3A2.3 2.3 0 0 0 9.8 10"/><circle cx="12" cy="18.5" r=".9"/></svg></span>;
+    case "birth": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 14.1 8l4.9.7-3.5 3.5.8 5-4.3-2.3-4.3 2.3.8-5L5 8.7l4.9-.7Z"/></svg></span>;
+    case "months": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 6.5A6 6 0 1 0 15 17a6.8 6.8 0 1 1-6.5-10.5Z"/><path d="m17.8 5.1.7 1.5 1.6.2-1.1 1.1.2 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.7-.2Z"/></svg></span>;
+    case "deck": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 7h12M6 12h12M6 17h12"/><circle cx="4" cy="7" r=".9"/><circle cx="4" cy="12" r=".9"/><circle cx="4" cy="17" r=".9"/></svg></span>;
+    case "sponsor": return <span className={cls} aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4z"/><path d="m4.5 8 7.5 6 7.5-6"/></svg></span>;
+    default: return <span className={cls} aria-hidden="true">✦</span>;
+  }
+}
+
+function cardDetailText(card:DrawCard,index:number,role:string,mode:Mode,c:Copy,lang:Lang){
+  if(lang==="ko"){
+    const pos = `${index+1}번째 카드 · ${role}`;
+    const direction = card.orientation==="reversed" ? "역방향으로 나왔기 때문에 이 카드의 에너지는 바로 드러나기보다 지연, 망설임, 오해, 또는 과잉 반응으로 나타날 수 있습니다." : "정방향으로 나왔기 때문에 이 카드의 에너지는 비교적 곧게 드러나며, 지금 상황의 핵심 흐름을 직접적으로 보여줍니다.";
+    return {
+      situation:`${pos} 위치의 ${card.title}는 ${card.aura} ${direction} 이 카드는 단순히 좋고 나쁨을 말하기보다, 지금 이 위치에서 무엇이 움직이고 무엇이 막혀 있는지를 보여줍니다.`,
+      advice:`${card.mission} 동시에 ${card.warning} 이 카드를 뽑은 순서는 중요합니다. 앞 카드의 분위기를 받아 다음 카드로 넘기는 연결점이기 때문에, 이 카드는 전체 리딩 안에서 “지금 당장 조정해야 할 태도”를 담당합니다.`
+    };
+  }
+  return {
+    situation:`Card ${index+1}, ${role}: ${card.title}. ${card.aura} ${card.orientation==="reversed" ? "Because it is reversed, the energy may appear as delay, hesitation, misunderstanding, or excess." : "Because it is upright, the energy is direct and visible in the current situation."}`,
+    advice:`${card.mission} Also watch this caution: ${card.warning}`
+  };
+}
+
+function QuestionChat({c,question,setQuestion,submittedQuestion,sendQuestion,revealed}:{c:Copy;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;revealed:boolean;}){
+  return <section className="askBox bottomAsk">
+    <div>
+      <h3>✦ {c.askTitle}</h3>
+      <p>{c.askHelp}</p>
+    </div>
+    <div className="chatComposer">
+      <textarea
+        value={question}
+        onChange={e=>setQuestion(e.target.value)}
+        onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendQuestion();}}}
+        placeholder={c.askPlaceholder}
+      />
+      <button onClick={sendQuestion} disabled={!question.trim()}>{c.send}</button>
+    </div>
+    {submittedQuestion && <div className="sentQuestion">
+      <b>{c.sentQuestion}</b>
+      <p>{submittedQuestion}</p>
+      <small>{revealed ? c.questionApplied : c.questionPending}</small>
+    </div>}
+  </section>
+}
+
+function Reading({c,mode,lang,deck,need,selectedIds,selectedCards,complete,revealed,choose,reshuffle,showReading,blocks,copyReading,copied,personal,setName,setBirth,setGender,setJob,question,setQuestion,submittedQuestion,sendQuestion}:{c:Copy;mode:Mode;lang:Lang;deck:TarotCardBase[];need:number;selectedIds:string[];selectedCards:DrawCard[];complete:boolean;revealed:boolean;choose:(id:string)=>void;reshuffle:()=>void;showReading:()=>void;blocks:ReadingBlock[];copyReading:()=>void;copied:boolean;personal:Personal;setName:(s:string)=>void;setBirth:(s:string)=>void;setGender:(g:Gender)=>void;setJob:(s:string)=>void;question:string;setQuestion:(s:string)=>void;submittedQuestion:string;sendQuestion:()=>void;}){
   const roles=mode==="months" ? c.monthRoles : c.roles;
   return <section className="reader">
     <div className="readerHero">
@@ -257,34 +315,78 @@ function Reading({c,mode,deck,need,selectedIds,selectedCards,complete,revealed,c
           <input value={personal.job} onChange={e=>setJob(e.target.value)} placeholder={c.job}/>
         </>}
       </div>}
-      <div className="askBox">
-        <div><h3>✦ {c.askTitle}</h3><p>{c.askHelp}</p></div>
-        <textarea value={question} onChange={e=>setQuestion(e.target.value)} placeholder={c.askPlaceholder}/>
-      </div>
     </div>
 
-    <div className="readerGrid">
-      <section className="deckTable">
-        <div className="tableHead"><h2>{c.selectFromSpread}</h2><span>{c.selectedOf(selectedIds.length,need)}</span></div>
-        <div className={`fullSpread ${mode==="months" ? "largeSpread" : ""}`}>
-          {deck.map((card,i)=>{
-            const order=selectedIds.indexOf(card.id)+1;
-            return <button key={card.id} onClick={()=>choose(card.id)} className={`spreadCard ${order>0?"picked":""}`} disabled={revealed || (selectedIds.length>=need && order===0)} style={{"--i":i} as React.CSSProperties}>
-              <img src={order>0 && revealed ? rwsImageUrl(card.id) : "/cards/back.svg"} alt="tarot card"/>
-              {order>0 && <em>{order}</em>}
-            </button>
-          })}
-        </div>
-        <div className="actions"><button onClick={reshuffle}>↻ {c.reshuffle}</button><button className="primary" disabled={!complete} onClick={showReading}>✦ {c.reveal}</button><button disabled={!selectedIds.length} onClick={reshuffle}>⟲ {c.reset}</button></div>
-        <p className="tip">✦ TIP&nbsp; {c.tip}<br/><span>{c.deselectHint}</span></p>
+    <div className={`readerGrid ${revealed ? "revealedGrid" : ""}`}>
+      <section className={`deckTable ${revealed ? "resultMode" : ""}`}>
+        <div className="tableHead"><h2>{revealed ? c.resultOpenTitle : c.selectFromSpread}</h2><span>{c.selectedOf(selectedIds.length,need)}</span></div>
+        {!revealed && <>
+          <div className={`fullSpread ${mode==="months" ? "largeSpread" : ""}`}>
+            {deck.map((card,i)=>{
+              const order=selectedIds.indexOf(card.id)+1;
+              return <button key={card.id} onClick={()=>choose(card.id)} className={`spreadCard ${order>0?"picked":""}`} disabled={revealed || (selectedIds.length>=need && order===0)} style={{"--i":i} as React.CSSProperties}>
+                <img src="/cards/back.svg" alt="tarot card"/>
+                {order>0 && <em>{order}</em>}
+              </button>
+            })}
+          </div>
+          <div className="actions"><button onClick={reshuffle}>↻ {c.reshuffle}</button><button className="primary" disabled={!complete} onClick={showReading}>✦ {c.reveal}</button><button disabled={!selectedIds.length} onClick={reshuffle}>⟲ {c.reset}</button></div>
+          <p className="tip">✦ TIP&nbsp; {c.tip}<br/><span>{c.deselectHint}</span></p>
+        </>}
+
+        {revealed && <div className="resultCanvas">
+          <div className="resultHero">
+            <div>
+              <p className="eyebrow">{c.sections.cards}</p>
+              <h2>{c.tabs[mode][0]}</h2>
+              <p>{submittedQuestion ? `${c.sentQuestion}: ${submittedQuestion}` : c.intros[mode]}</p>
+            </div>
+            <div className="resultActions">
+              <button onClick={copyReading}>{copied?c.copied:c.copy}</button>
+              <button onClick={reshuffle}>↻ {c.reshuffle}</button>
+            </div>
+          </div>
+
+          <div className={`resultCardStrip ${mode==="months" ? "many" : ""}`}>
+            {selectedCards.map((card,i)=><div key={card.id+i}>
+              <img src={card.artPath}/>
+              <small>{roles[i] || `${i+1}`}</small>
+              <b>{card.title}</b>
+            </div>)}
+          </div>
+
+          <section className="perCardSection">
+            <h3>✦ {c.perCardTitle}</h3>
+            <div className="cardDetailGrid">
+              {selectedCards.map((card,i)=>{
+                const detail=cardDetailText(card,i,roles[i] || `${i+1}`,mode,c,lang);
+                return <article className="cardDetail" key={card.id+i}>
+                  <img src={card.artPath}/>
+                  <div>
+                    <small>{roles[i] || `${i+1}`}</small>
+                    <h4>{i+1}. {card.title}</h4>
+                    <p><b>{c.situation}</b> — {detail.situation}</p>
+                    <p><b>{c.cardAdvice}</b> — {detail.advice}</p>
+                  </div>
+                </article>
+              })}
+            </div>
+          </section>
+
+          <section className="integratedBlocks">
+            <h3>✦ {c.integratedTitle}</h3>
+            {blocks.map(b=><article key={b.title}><h4>{b.icon} {b.title}</h4><p>{b.body}</p></article>)}
+          </section>
+        </div>}
       </section>
 
-      <aside className="readingPanel">
+      {!revealed && <aside className="readingPanel">
         <h3>{c.readingTitle}</h3>
-        {!revealed && <div className="waiting"><div className="crescent">☾</div><p>{c.readingWaiting}</p><div className="placeholders">{Array.from({length:Math.min(need,18)}).map((_,i)=><span key={i}/>)}</div><article><h4>{c.aiExplainTitle}</h4><p>{c.aiExplainText}</p></article></div>}
-        {revealed && <><div className={`chosenCards ${mode==="months" ? "many" : ""}`}>{selectedCards.map((card,i)=><div key={card.id}><img src={card.artPath}/><small>{roles[i] || `${i+1}`}</small><b>{card.title}</b></div>)}</div>{blocks.map(b=><article key={b.title}><h4>{b.icon} {b.title}</h4><p>{b.body}</p></article>)}<button className="copyBtn" onClick={copyReading}>{copied?c.copied:c.copy}</button></>}
-      </aside>
+        <div className="waiting"><div className="crescent">☾</div><p>{c.readingWaiting}</p><div className="placeholders">{Array.from({length:Math.min(need,18)}).map((_,i)=><span key={i}/>)}</div><article><h4>{c.aiExplainTitle}</h4><p>{c.aiExplainText}</p></article></div>
+      </aside>}
     </div>
+
+    <QuestionChat c={c} question={question} setQuestion={setQuestion} submittedQuestion={submittedQuestion} sendQuestion={sendQuestion} revealed={revealed}/>
   </section>
 }
 

@@ -1,0 +1,1 @@
+v29 fixes missing c.wait by introducing questionPending, and replaces plain text home/menu icons with refined mystical SVG icons.

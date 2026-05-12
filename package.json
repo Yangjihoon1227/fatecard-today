@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v27",
+  "name": "fatecard-today-v29",
   "private": true,
-  "version": "27.0.0",
+  "version": "29.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v27: card deselect/toggle UX and question-aware AI-style tarot answers."
+  "description": "FateCard.today v29: build fix and refined mystical mode icons."
 }
