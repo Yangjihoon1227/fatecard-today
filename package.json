@@ -1,7 +1,7 @@
 {
-  "name": "fatecard-today-v22",
+  "name": "fatecard-today-v23",
   "private": true,
-  "version": "22.0.0",
+  "version": "23.0.0",
   "type": "module",
   "scripts": {
     "dev": "node dev.cjs",
@@ -18,5 +18,5 @@
     "react-dom": "latest"
   },
   "devDependencies": {},
-  "description": "FateCard.today v22: premium left-sidebar tarot draw interface with richer readings and original public-domain-inspired art direction."
+  "description": "FateCard.today v23: premium draw UI using public-domain 1909 RWS card artwork from Wikimedia Commons."
 }
